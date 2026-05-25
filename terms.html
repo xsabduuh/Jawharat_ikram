@@ -120,9 +120,13 @@
     padding: 40px 30px;
     box-shadow: var(--shadow-sm);
     max-width: 860px;
+    width: 100%;
     margin: 0 auto;
     line-height: 1.9;
     color: var(--text-light);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .terms-intro {
@@ -131,6 +135,7 @@
     color: var(--text);
     border-bottom: 2px solid var(--pink-soft);
     padding-bottom: 24px;
+    max-width: 100%;
   }
 
   .terms-intro strong { color: var(--pink-deep); }
@@ -142,6 +147,7 @@
     align-items: flex-start;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--border);
+    max-width: 100%;
   }
 
   .terms-section:last-of-type { border-bottom: none; }
@@ -161,7 +167,11 @@
     box-shadow: 0 3px 12px rgba(224,120,152,0.25);
   }
 
-  .terms-content { flex: 1; }
+  .terms-content {
+    flex: 1;
+    min-width: 0; /* يسمح بتصغير العنصر والتفاف النص */
+    max-width: 100%;
+  }
 
   .terms-content h3 {
     font-size: 17px;
@@ -172,6 +182,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    max-width: 100%;
   }
 
   .terms-content h3 i { color: var(--pink-deep); font-size: 15px; }
@@ -180,12 +191,17 @@
     font-size: 14px;
     color: var(--text-light);
     margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   .terms-content ul {
     list-style: none;
     padding: 0;
     margin-top: 8px;
+    max-width: 100%;
   }
 
   .terms-content ul li {
@@ -195,6 +211,10 @@
     display: flex;
     align-items: flex-start;
     gap: 8px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   .terms-content ul li:last-child { border-bottom: none; }
@@ -213,6 +233,7 @@
     gap: 14px;
     margin-top: 14px;
     flex-wrap: wrap;
+    max-width: 100%;
   }
 
   .method-item {
@@ -226,6 +247,8 @@
     color: var(--text);
     font-size: 14px;
     transition: all 0.25s ease;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   .method-item:hover {
