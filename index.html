@@ -6,7 +6,6 @@
   <title>جوهرة اكرام | متجر الأزياء النسائية</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- خطوط أنيقة للعناوين -->
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
 
   <style>
@@ -60,9 +59,7 @@
       padding: 0 20px;
     }
 
-    /* ============================
-       NAVBAR
-    ============================ */
+    /* NAVBAR */
     #navbar {
       position: fixed;
       top: 0; right: 0; left: 0;
@@ -180,9 +177,7 @@
     .mobile-menu a { padding: 12px 16px; border-radius: var(--radius-md); font-size: 15px; font-weight: 600; color: var(--text-light); transition: all var(--transition); }
     .mobile-menu a:hover, .mobile-menu a.active { background: var(--pink-soft); color: var(--pink-deep); }
 
-    /* ============================
-       PAGE WRAPPER
-    ============================ */
+    /* PAGE WRAPPER */
     #app {
       padding-top: var(--nav-h);
       min-height: 100vh;
@@ -196,9 +191,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ============================
-       HERO SECTION
-    ============================ */
+    /* HERO */
     .hero {
       background: linear-gradient(135deg, #fdf0f5 0%, #fff5f9 40%, #fce8f2 100%);
       padding: 80px 20px 70px;
@@ -272,9 +265,7 @@
       transform: translateY(-3px);
     }
 
-    /* ============================
-       SECTION STYLES
-    ============================ */
+    /* SECTION STYLES */
     .section { padding: 60px 20px; }
 
     .section-header {
@@ -308,9 +299,7 @@
       margin: 0 auto;
     }
 
-    /* ============================
-       CATEGORY PILLS
-    ============================ */
+    /* CATEGORY PILLS */
     .category-pills {
       display: flex;
       flex-wrap: wrap;
@@ -337,9 +326,7 @@
       border-color: var(--pink-deep);
     }
 
-    /* ============================
-       PRODUCT GRID & CARDS
-    ============================ */
+    /* PRODUCT GRID & CARDS */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -449,9 +436,7 @@
       background: #6dbb8a;
     }
 
-    /* ============================
-       FILTER BAR
-    ============================ */
+    /* FILTER BAR */
     .filter-bar {
       display: flex;
       align-items: center;
@@ -499,9 +484,7 @@
       font-weight: 700;
     }
 
-    /* ============================
-       PRODUCT DETAIL
-    ============================ */
+    /* PRODUCT DETAIL */
     .detail-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -637,9 +620,7 @@
 
     .back-btn:hover { color: var(--pink-deep); }
 
-    /* ============================
-       CART PAGE
-    ============================ */
+    /* CART PAGE */
     .cart-wrap {
       display: grid;
       grid-template-columns: 1fr 340px;
@@ -929,9 +910,7 @@
       border: none;
     }
 
-    /* ============================
-       TRUST FEATURES
-    ============================ */
+    /* TRUST FEATURES */
     .trust-features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -966,9 +945,7 @@
       line-height: 1.5;
     }
 
-    /* ============================
-       FOOTER
-    ============================ */
+    /* FOOTER */
     footer {
       background: var(--white);
       border-top: 1.5px solid var(--border);
@@ -1051,9 +1028,7 @@
     .footer-bottom span { color: var(--pink-deep); }
     .footer-bottom a { color: var(--pink-deep); cursor: pointer; }
 
-    /* ============================
-       RESPONSIVE
-    ============================ */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .detail-wrap, .about-grid, .contact-grid {
         grid-template-columns: 1fr;
@@ -1356,13 +1331,10 @@
     }
     function isInWishlist(id) { return wishlist.includes(id); }
 
-    // Toast functionality (بدون عنصر مرئي دائم، سنستخدم console فقط إذا احتجنا)
     function showToast(msg) {
-      // تم إزالة عنصر التوست من الصفحة، يمكننا استخدام alert مؤقتاً أو تركه فارغاً
       console.log('Toast:', msg);
     }
 
-    // Navigation & History API
     async function navigate(page, productId, replace = false) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
