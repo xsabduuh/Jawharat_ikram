@@ -2,12 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>جوهرة اكرام | متجر الأزياء النسائية</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       --pink:        #f8c8dc;
@@ -65,15 +64,18 @@
       top: 0; right: 0; left: 0;
       height: auto;
       min-height: var(--nav-h);
-      background: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.92);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1.5px solid var(--border);
+      border-bottom: 1px solid var(--border);
       z-index: 1000;
-      transition: box-shadow var(--transition);
+      transition: box-shadow var(--transition), background var(--transition);
     }
 
-    #navbar.scrolled { box-shadow: var(--shadow-md); }
+    #navbar.scrolled {
+      box-shadow: var(--shadow-md);
+      background: rgba(255,255,255,.98);
+    }
 
     .nav-inner {
       display: flex;
@@ -81,12 +83,14 @@
       justify-content: space-between;
       min-height: var(--nav-h);
       padding: 8px 0;
+      gap: 16px;
     }
 
     .nav-logo {
       cursor: pointer;
       display: flex;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .logo-text {
@@ -118,6 +122,7 @@
       font-weight: 500;
       color: var(--text-light);
       transition: all var(--transition);
+      white-space: nowrap;
     }
 
     .nav-links li a:hover,
@@ -172,7 +177,7 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    .mobile-menu { display: none; position: fixed; top: var(--nav-h); right: 0; left: 0; background: rgba(255,255,255,.97); backdrop-filter: blur(20px); border-bottom: 1.5px solid var(--border); padding: 20px; z-index: 999; flex-direction: column; gap: 8px; }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); right: 0; left: 0; background: rgba(255,255,255,.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 20px; z-index: 999; flex-direction: column; gap: 8px; }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { padding: 12px 16px; border-radius: var(--radius-md); font-size: 15px; font-weight: 600; color: var(--text-light); transition: all var(--transition); }
     .mobile-menu a:hover, .mobile-menu a.active { background: var(--pink-soft); color: var(--pink-deep); }
@@ -181,6 +186,8 @@
     #app {
       padding-top: var(--nav-h);
       min-height: 100vh;
+      opacity: 1;
+      transition: opacity 0.2s ease;
     }
 
     .page { display: none; animation: fadeIn .4s ease; }
@@ -242,6 +249,7 @@
       box-shadow: var(--shadow-sm);
       transition: all var(--transition);
       display: inline-flex; align-items: center; gap: 8px;
+      border: none;
     }
 
     .btn-primary:hover {
@@ -338,9 +346,11 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
-      border: 1.5px solid var(--border);
+      border: 1px solid var(--border);
       transition: all var(--transition);
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
     .product-card:hover {
@@ -382,6 +392,9 @@
 
     .card-body {
       padding: 14px 16px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-category {
@@ -399,6 +412,7 @@
       color: var(--text);
       margin-bottom: 10px;
       line-height: 1.4;
+      flex: 1;
     }
 
     .card-footer {
@@ -406,6 +420,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      margin-top: auto;
     }
 
     .card-price {
@@ -425,6 +440,7 @@
       font-weight: 700;
       transition: all var(--transition);
       white-space: nowrap;
+      border: none;
     }
 
     .add-to-cart-btn:hover {
@@ -581,6 +597,7 @@
       box-shadow: var(--shadow-sm);
       transition: all var(--transition);
       display: flex; align-items: center; justify-content: center; gap: 8px;
+      border: none;
     }
 
     .detail-add-btn:hover {
@@ -633,7 +650,7 @@
     .cart-item {
       background: var(--white);
       border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
+      border: 1px solid var(--border);
       padding: 16px;
       display: flex;
       gap: 16px;
@@ -723,8 +740,8 @@
     /* Cart Summary */
     .cart-summary {
       background: var(--white);
-      border-radius: 18px;
-      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
       padding: 24px;
       position: sticky;
       top: calc(var(--nav-h) + 20px);
@@ -737,7 +754,7 @@
       color: var(--text);
       margin-bottom: 20px;
       padding-bottom: 14px;
-      border-bottom: 1.5px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .summary-row {
@@ -754,7 +771,7 @@
       font-weight: 800;
       color: var(--text);
       padding-top: 14px;
-      border-top: 1.5px solid var(--border);
+      border-top: 1px solid var(--border);
       margin-top: 8px;
     }
 
@@ -795,6 +812,7 @@
       box-shadow: var(--shadow-sm);
       transition: all var(--transition);
       display: flex; align-items: center; justify-content: center; gap: 8px;
+      border: none;
     }
 
     .checkout-btn:hover {
@@ -920,7 +938,7 @@
     .trust-item {
       background: var(--white);
       border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
+      border: 1px solid var(--border);
       padding: 30px 20px;
       text-align: center;
       transition: all var(--transition);
@@ -945,10 +963,33 @@
       line-height: 1.5;
     }
 
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: var(--radius-xl);
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 9999;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* FOOTER */
     footer {
       background: var(--white);
-      border-top: 1.5px solid var(--border);
+      border-top: 1px solid var(--border);
       padding: 40px 20px 30px;
       margin-top: 30px;
     }
@@ -1020,7 +1061,7 @@
     .footer-bottom {
       text-align: center;
       padding-top: 20px;
-      border-top: 1.5px solid var(--border);
+      border-top: 1px solid var(--border);
       font-size: 13px;
       color: var(--text-muted);
     }
@@ -1238,6 +1279,9 @@
     </div>
   </div>
 
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -1331,10 +1375,18 @@
     }
     function isInWishlist(id) { return wishlist.includes(id); }
 
+    // Toast notification
+    let toastTimer;
     function showToast(msg) {
-      console.log('Toast:', msg);
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
     }
 
+    // Navigation & History API
     async function navigate(page, productId, replace = false) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
@@ -1437,8 +1489,13 @@
     }
 
     function handleAddToCart(btn, id) {
-      addToCart(id); btn.textContent = 'تم'; btn.classList.add('added');
-      setTimeout(() => { btn.textContent = '+ السلة'; btn.classList.remove('added'); }, 1800);
+      addToCart(id);
+      btn.textContent = 'تم';
+      btn.classList.add('added');
+      setTimeout(() => {
+        btn.textContent = '+ السلة';
+        btn.classList.remove('added');
+      }, 1800);
     }
 
     function renderDetail(id) {
