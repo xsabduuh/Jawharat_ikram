@@ -43,6 +43,7 @@
       min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
     }
 
     img { max-width: 100%; display: block; }
@@ -94,14 +95,14 @@
 
     .logo-text {
       font-family: var(--font-logo);
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 700;
       background: linear-gradient(135deg, #e07898 0%, #c94b6c 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: -0.5px;
       line-height: 1.4;
-      padding: 4px 0;
+      padding: 2px 0;
       transition: all var(--transition);
     }
 
@@ -186,6 +187,8 @@
     #app {
       padding-top: var(--nav-h);
       min-height: 100vh;
+      opacity: 1;
+      transition: opacity 0.2s ease;
     }
 
     .page { display: none; animation: fadeIn .4s ease; }
@@ -430,7 +433,7 @@
       background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
       color: var(--white);
       border-radius: var(--radius-xl);
-      padding: 8px 14px;
+      padding: 8px 18px;
       font-size: 13px;
       font-weight: 700;
       transition: all var(--transition);
@@ -448,12 +451,11 @@
 
     .buy-btn.in-cart {
       background: #6dbb8a;
-      cursor: default;
+      pointer-events: none;
     }
 
-    .buy-btn.in-cart:hover {
-      transform: none;
-      box-shadow: none;
+    .buy-btn.in-cart::before {
+      content: "✓ ";
     }
 
     /* FILTER BAR */
@@ -990,7 +992,7 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* FOOTER الجديد */
+    /* FOOTER */
     .site-footer {
       background: #fffafc;
       border-top: 1px solid var(--border);
@@ -1006,7 +1008,7 @@
 
     .footer-links-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr); /* عمودين فقط */
       gap: 30px;
       margin-bottom: 40px;
       text-align: center;
@@ -1023,9 +1025,7 @@
       gap: 5px;
     }
 
-    .toggle-icon {
-      display: none;
-    }
+    .toggle-icon { display: none; }
 
     .link-list {
       list-style: none;
@@ -1066,22 +1066,19 @@
       align-items: center;
       justify-content: center;
       transition: all var(--transition);
+      color: var(--pink-deep);
     }
 
     .social-circle svg {
       width: 20px;
       height: 20px;
-      fill: var(--pink-deep);
+      fill: currentColor;
     }
 
     .social-circle:hover {
       background: var(--pink-soft);
       transform: scale(1.1);
       border-color: var(--pink-deep);
-    }
-
-    .social-circle:hover svg {
-      fill: #c94b6c;
     }
 
     .footer-bottom-bar {
@@ -1101,24 +1098,20 @@
       color: var(--text-muted);
     }
 
-    /* استجابة الموبايل للفوتر */
     @media (max-width: 768px) {
       .footer-links-grid {
         grid-template-columns: 1fr;
         gap: 0;
         text-align: right;
       }
-
       .link-group {
         border-bottom: 1px solid var(--border);
       }
-
       .link-group-title {
         justify-content: space-between;
         padding: 16px 0;
         cursor: pointer;
       }
-
       .toggle-icon {
         display: inline-block;
         font-size: 20px;
@@ -1126,19 +1119,16 @@
         color: var(--pink-deep);
         transition: transform 0.3s ease;
       }
-
       .link-list {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s ease, padding 0.4s ease;
         padding: 0;
       }
-
       .link-list.open {
         max-height: 300px;
         padding-bottom: 10px;
       }
-
       .link-list li {
         margin-bottom: 10px;
       }
@@ -1152,14 +1142,25 @@
       .cart-wrap {
         grid-template-columns: 1fr;
       }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .about-img-block { display: none; }
       .detail-img-wrap { max-height: 360px; }
     }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .footer-inner { grid-template-columns: 1fr; gap: 24px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
       .trust-features { grid-template-columns: repeat(2, 1fr); }
+      .cart-item {
+        flex-direction: row;
+        align-items: center;
+      }
+      .cart-item-img {
+        width: 70px;
+        height: 85px;
+      }
     }
 
     @media (max-width: 380px) {
@@ -1200,7 +1201,7 @@
     </div>
   </nav>
 
-  <!-- MOBILE MENU (بدون المتجر) -->
+  <!-- MOBILE MENU (بدون "المتجر") -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#" onclick="navigate('home'); closeMobileMenu()">الرئيسية</a>
     <a href="#" onclick="navigate('about'); closeMobileMenu()">من نحن</a>
@@ -1307,7 +1308,7 @@
 
   <div class="toast" id="toast"></div>
 
-  <!-- FOOTER الجديد -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-links-grid">
@@ -1331,20 +1332,25 @@
       </div>
 
       <div class="footer-social">
+        <!-- Instagram -->
         <a href="#" class="social-circle" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
+        <!-- TikTok -->
         <a href="#" class="social-circle" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
         </a>
+        <!-- Facebook -->
         <a href="#" class="social-circle" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
+        <!-- Snapchat -->
         <a href="#" class="social-circle" aria-label="Snapchat">
-          <svg viewBox="0 0 24 24"><path d="M12 2c-2.95 0-5.37 1.75-6.61 4.27-.89 1.8-.85 3.87.15 5.6.7 1.2 2.03 2.04 3.38 2.54.6.22.96.42 1.15.63.25.28.29.74.17 1.16-.13.47-.4.89-.73 1.24-.35.37-.77.65-1.22.81-.58.2-1.17.25-1.76.15-.59-.1-1.13-.34-1.58-.7-.45-.36-.8-.83-1.01-1.37-.21-.54-.29-1.12-.21-1.69.04-.31.15-.6.33-.84.19-.24.44-.43.73-.54.28-.1.58-.11.87-.02.29.1.54.28.73.52.19.24.31.53.35.84.03.19.01.39-.04.58-.05.2-.15.38-.28.54-.13.16-.29.29-.48.39.12.15.28.27.46.36.32.16.68.23 1.04.18.36-.04.7-.19.98-.42.28-.23.49-.54.6-.89.12-.35.15-.73.09-1.09-.12-.76-.57-1.45-1.22-1.89-.65-.44-1.46-.69-2.29-.74-.83-.04-1.66.11-2.39.45-1.2.56-2.18 1.48-2.82 2.64-.64 1.16-.9 2.5-.72 3.81.18 1.31.72 2.52 1.55 3.5.83.98 1.92 1.72 3.13 2.11 1.21.39 2.51.43 3.76.13 1.25-.3 2.4-.92 3.3-1.78.9-.86 1.53-1.95 1.79-3.15.26-1.2.15-2.46-.33-3.61-.48-1.15-1.31-2.15-2.38-2.86-1.07-.71-2.35-1.11-3.66-1.14z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-2.95 0-5.37 1.75-6.61 4.27-.89 1.8-.85 3.87.15 5.6.7 1.2 2.03 2.04 3.38 2.54.6.22.96.42 1.15.63.25.28.29.74.17 1.16-.13.47-.4.89-.73 1.24-.35.37-.77.65-1.22.81-.58.2-1.17.25-1.76.15-.59-.1-1.13-.34-1.58-.7-.45-.36-.8-.83-1.01-1.37-.21-.54-.29-1.12-.21-1.69.04-.31.15-.6.33-.84.19-.24.44-.43.73-.54.28-.1.58-.11.87-.02.29.1.54.28.73.52.19.24.31.53.35.84.03.19.01.39-.04.58-.05.2-.15.38-.28.54-.13.16-.29.29-.48.39.12.15.28.27.46.36.32.16.68.23 1.04.18.36-.04.7-.19.98-.42.28-.23.49-.54.6-.89.12-.35.15-.73.09-1.09-.12-.76-.57-1.45-1.22-1.89-.65-.44-1.46-.69-2.29-.74-.83-.04-1.66.11-2.39.45-1.2.56-2.18 1.48-2.82 2.64-.64 1.16-.9 2.5-.72 3.81.18 1.31.72 2.52 1.55 3.5.83.98 1.92 1.72 3.13 2.11 1.21.39 2.51.43 3.76.13 1.25-.3 2.4-.92 3.3-1.78.9-.86 1.53-1.95 1.79-3.15.26-1.2.15-2.46-.33-3.61-.48-1.15-1.31-2.15-2.38-2.86-1.07-.71-2.35-1.11-3.66-1.14z"/></svg>
         </a>
+        <!-- Pinterest -->
         <a href="#" class="social-circle" aria-label="Pinterest">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.085 3.163 9.426 7.627 11.174-.104-.949-.199-2.405.042-3.441.217-.938 1.402-5.963 1.402-5.963s-.359-.72-.359-1.782c0-1.669.968-2.917 2.174-2.917 1.024 0 1.518.77 1.518 1.694 0 1.032-.658 2.575-.998 4.005-.284 1.199.601 2.177 1.783 2.177 2.14 0 3.785-2.257 3.785-5.516 0-2.884-2.072-4.901-5.034-4.901-3.428 0-5.441 2.572-5.441 5.232 0 1.036.399 2.147.897 2.751.098.119.112.223.083.345l-.334 1.373c-.054.224-.179.271-.41.163-1.53-.713-2.487-2.947-2.487-4.743 0-3.863 2.807-7.41 8.092-7.41 4.249 0 7.552 3.027 7.552 7.074 0 4.222-2.662 7.619-6.356 7.619-1.24 0-2.408-.645-2.808-1.406 0 0-.615 2.341-.764 2.914-.277 1.066-1.023 2.401-1.523 3.216C14.112 23.755 16.017 24 18 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.085 3.163 9.426 7.627 11.174-.104-.949-.199-2.405.042-3.441.217-.938 1.402-5.963 1.402-5.963s-.359-.72-.359-1.782c0-1.669.968-2.917 2.174-2.917 1.024 0 1.518.77 1.518 1.694 0 1.032-.658 2.575-.998 4.005-.284 1.199.601 2.177 1.783 2.177 2.14 0 3.785-2.257 3.785-5.516 0-2.884-2.072-4.901-5.034-4.901-3.428 0-5.441 2.572-5.441 5.232 0 1.036.399 2.147.897 2.751.098.119.112.223.083.345l-.334 1.373c-.054.224-.179.271-.41.163-1.53-.713-2.487-2.947-2.487-4.743 0-3.863 2.807-7.41 8.092-7.41 4.249 0 7.552 3.027 7.552 7.074 0 4.222-2.662 7.619-6.356 7.619-1.24 0-2.408-.645-2.808-1.406 0 0-.615 2.341-.764 2.914-.277 1.066-1.023 2.401-1.523 3.216C14.112 23.755 16.017 24 18 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
         </a>
       </div>
 
@@ -1355,23 +1361,145 @@
     </div>
   </footer>
 
-  <!-- منتجات -->
+  <!-- بيانات المنتجات -->
   <script>
     var products = [
-      { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر...', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
-      { id: 2, name: 'جلابة تقليدية بتطريز ملكي', category: 'جلابيات', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة...', img: 'images/جلابة-تطريز-ملكي.jpg', sizes: ['XS','S','M','L'] },
-      // باقي المنتجات موجودة في النسخة السابقة، اختصرناها هنا للتوضيح
+      { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 8, name: 'بيجامة قطيفة شتوية', category: 'بيجامات', price: 275, badge: null, isNew: false, desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.', img: 'images/بيجامة-قطيفة.jpg', sizes: ['S','M','L','XL'] },
+      { id: 2, name: 'جلابة تقليدية بتطريز ملكي', category: 'جلابيات', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.', img: 'images/جلابة-تطريز-ملكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 7, name: 'جلابة مطرزة بالعقيق', category: 'جلابيات', price: 590, badge: null, isNew: false, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.', img: 'images/جلابة-عقيق.jpg', sizes: ['S','M','L','XL'] },
+      { id: 9, name: 'جلابة كروشيه صيفية', category: 'جلابيات', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.', img: 'images/جلابة-كروشيه.jpg', sizes: ['S','M','L'] },
+      { id: 6, name: 'فستان سهرة طويل', category: 'فساتين', price: 720, badge: null, isNew: false, desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.', img: 'images/فستان-سهرة.jpg', sizes: ['36','38','40','42'] },
+      { id: 11, name: 'فستان نهاري بنقشة الأزهار', category: 'فساتين', price: 310, badge: null, isNew: false, desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.', img: 'images/فستان-نهاري.jpg', sizes: ['28','30','32','34'] },
+      { id: 3, name: 'عباءة سوداء بتطريز فاخر', category: 'عبايات', price: 520, badge: 'الأكثر مبيعاً', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'images/عباءة-ذهبي.jpg', sizes: ['S','M','L','XL','XXL'] },
+      { id: 10, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: false, desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.', img: 'images/عباءة-كريمية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 4, name: 'بدلة رياضية نسائية كاجوال', category: 'معاطف', price: 180, badge: 'جديد', isNew: true, desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.', img: 'images/بدلة-رياضية.jpg', sizes: ['S','M','L'] },
+      { id: 5, name: 'معطف شتوي كلاسيكي', category: 'معاطف', price: 680, badge: 'حصري', isNew: false, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.', img: 'images/معطف-كلاسيكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 12, name: 'معطف ترنش أنيق', category: 'معاطف', price: 530, badge: 'جديد', isNew: false, desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.', img: 'images/معطف-ترنش.jpg', sizes: ['XS','S','M','L'] },
+      { id: 13, name: 'حقيبة يد جلدية فاخرة', category: 'إكسسوارات', price: 420, badge: null, isNew: false, desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.', img: 'images/حقيبة-جلدية.jpg', sizes: ['One Size'] },
+      { id: 14, name: 'وشاح حرير منقوش', category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.', img: 'images/وشاح-حرير.jpg', sizes: ['One Size'] },
+      { id: 15, name: 'حزام جلد مطرز', category: 'إكسسوارات', price: 230, badge: null, isNew: false, desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.', img: 'images/حزام-مطرز.jpg', sizes: ['S','M','L'] }
     ];
+
     var categories = [
       { name: 'بيجامات', filter: 'بيجامات' },
-      { name: 'جلابيات', filter: 'جلابيات' }
+      { name: 'جلابيات', filter: 'جلابيات' },
+      { name: 'فساتين', filter: 'فساتين' },
+      { name: 'عبايات', filter: 'عبايات' },
+      { name: 'معاطف', filter: 'معاطف' },
+      { name: 'إكسسوارات', filter: 'إكسسوارات' }
     ];
+
     var whatsappNumber = '212600000000';
   </script>
+
   <script src="cart.js"></script>
   <script>
-    // ... الوظائف السابقة (navigate, renderHomeCategories, إلخ) ...
-    // زر الشراء: عند الضغط ينفذ addToCart(id) ويحول الزر إلى "في السلة"
+    let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
+    function saveWishlist() { localStorage.setItem('warda_wishlist', JSON.stringify(wishlist)); }
+    function toggleWishlist(id, btn) {
+      const index = wishlist.indexOf(id);
+      if (index === -1) { wishlist.push(id); if(btn) { btn.textContent = 'محفوظ'; btn.style.color = '#e07898'; } showToast('تمت الإضافة للمفضلة'); }
+      else { wishlist.splice(index,1); if(btn) { btn.textContent = 'حفظ'; btn.style.color = ''; } showToast('تمت الإزالة من المفضلة'); }
+      saveWishlist();
+    }
+    function isInWishlist(id) { return wishlist.includes(id); }
+
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Navigation & History API
+    async function navigate(page, productId, replace = false) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+
+      // الصفحات الخارجية
+      const externalPages = ['about', 'contact', 'terms', 'faq', 'refund', 'privacy', 'shipping'];
+      if (externalPages.includes(page)) {
+        const app = document.getElementById('app');
+        app.innerHTML = '<div class="page active" style="text-align:center;padding:80px 20px;"><p>جاري التحميل...</p></div>';
+        try {
+          const response = await fetch(`${page}.html`);
+          if (!response.ok) throw new Error('Page not found');
+          const html = await response.text();
+          app.innerHTML = html;
+          document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+        } catch (error) {
+          app.innerHTML = '<div class="page active" style="text-align:center;padding:80px 20px;"><h2>عذراً، الصفحة غير موجودة</h2></div>';
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const state = { page };
+        const url = `#${page}`;
+        if (replace) history.replaceState(state, '', url);
+        else history.pushState(state, '', url);
+        return;
+      }
+
+      currentPage = page;
+      if (page === 'detail' && productId) renderDetail(productId);
+      else if (page === 'cart') renderCart();
+      else if (page === 'products') renderProducts();
+
+      const pageEl = document.getElementById('page-' + page);
+      if (pageEl) pageEl.classList.add('active');
+
+      const state = { page, productId };
+      const url = productId ? `#${page}/${productId}` : `#${page}`;
+      if (replace) history.replaceState(state, '', url);
+      else history.pushState(state, '', url);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('popstate', (event) => {
+      const state = event.state;
+      if (state) { navigate(state.page, state.productId, true); }
+      else { navigate('home', null, true); }
+    });
+
+    let currentPage = 'home';
+    let activeFilter = 'الكل';
+
+    function renderHomeCategories() {
+      const container = document.getElementById('home-categories');
+      const pills = ['كل المنتجات', 'بيجامات', 'جلابيات', 'فساتين', 'عبايات', 'معاطف', 'إكسسوارات'];
+      container.innerHTML = pills.map(cat => {
+        const filterValue = cat === 'كل المنتجات' ? 'الكل' : cat;
+        return `<button class="pill-btn" onclick="filterAndGo('${filterValue}')">${cat}</button>`;
+      }).join('');
+    }
+
+    function renderNewArrivals() {
+      const grid = document.getElementById('new-arrivals-grid');
+      const newProducts = products.filter(p => p.isNew).slice(0, 4);
+      grid.innerHTML = newProducts.map(p => productCard(p)).join('');
+    }
+
+    const filterCategories = ['الكل', 'بيجامات', 'جلابيات', 'فساتين', 'عبايات', 'معاطف', 'إكسسوارات'];
+    function renderFilterBar() {
+      const bar = document.getElementById('filter-bar');
+      bar.innerHTML = '<span class="filter-label">الفلتر:</span>' +
+        filterCategories.map(c => `<button class="filter-btn ${c === activeFilter ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`).join('');
+    }
+
+    function setFilter(cat) { activeFilter = cat; renderProducts(); }
+
+    function renderProducts() {
+      renderFilterBar();
+      const grid = document.getElementById('all-products-grid');
+      const filtered = activeFilter === 'الكل' ? products : products.filter(p => p.category === activeFilter);
+      grid.innerHTML = filtered.length ? filtered.map(p => productCard(p)).join('') : '<p style="text-align:center;color:var(--text-muted);padding:40px 0;grid-column:1/-1">لا توجد منتجات في هذا القسم حالياً.</p>';
+    }
+
+    function filterAndGo(cat) { activeFilter = cat; navigate('products'); }
+
+    // بطاقة المنتج مع زر "شراء"
     function productCard(p) {
       const inCart = cart.some(i => i.id === p.id);
       return `
@@ -1385,7 +1513,7 @@
             <div class="card-name">${p.name}</div>
             <div class="card-footer">
               <div class="card-price">${p.price} <span>درهم</span></div>
-              <button class="buy-btn ${inCart ? 'in-cart' : ''}" onclick="event.stopPropagation(); buyNow(${p.id}, this)" ${inCart ? 'disabled' : ''}>
+              <button class="buy-btn ${inCart ? 'in-cart' : ''}" onclick="event.stopPropagation(); handleBuyClick(this, ${p.id})">
                 ${inCart ? 'في السلة' : 'شراء'}
               </button>
             </div>
@@ -1393,26 +1521,107 @@
         </div>`;
     }
 
-    function buyNow(id, btn) {
-      if (!cart.some(i => i.id === id)) {
-        addToCart(id);
-        btn.textContent = 'في السلة';
-        btn.classList.add('in-cart');
-        btn.disabled = true;
+    function handleBuyClick(btn, id) {
+      if (cart.some(i => i.id === id)) return;
+      addToCart(id);
+      btn.textContent = 'في السلة';
+      btn.classList.add('in-cart');
+      showToast('تمت إضافة المنتج إلى السلة');
+    }
+
+    // تعديل addToCart و removeFromCart من cart.js لتحديث البطاقات
+    const originalAddToCart = addToCart;
+    addToCart = function(id) {
+      originalAddToCart(id);
+      updateAllProductCards();
+    };
+
+    const originalRemoveFromCart = removeFromCart;
+    removeFromCart = function(id) {
+      originalRemoveFromCart(id);
+      updateAllProductCards();
+    };
+
+    function updateAllProductCards() {
+      document.querySelectorAll('.buy-btn').forEach(btn => {
+        const id = parseInt(btn.getAttribute('onclick')?.match(/\d+/)?.[0]);
+        if (!id) return;
+        const inCart = cart.some(i => i.id === id);
+        btn.textContent = inCart ? 'في السلة' : 'شراء';
+        if (inCart) btn.classList.add('in-cart');
+        else btn.classList.remove('in-cart');
+      });
+    }
+
+    function renderDetail(id) {
+      const p = products.find(x => x.id === id); if (!p) return;
+      const inWishlist = isInWishlist(id);
+      document.getElementById('detail-wrap').innerHTML = `
+        <div class="detail-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy" /></div>
+        <div class="detail-body">
+          <div class="detail-category">${p.category}</div>
+          <h1 class="detail-name">${p.name}</h1>
+          <div class="detail-price">${p.price} درهم</div>
+          <p class="detail-desc">${p.desc}</p>
+          <div class="detail-sizes"><label>المقاس</label><div class="sizes-row">${p.sizes.map((s,i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this)">${s}</button>`).join('')}</div></div>
+          <div class="detail-actions">
+            <button class="detail-add-btn" onclick="addToCart(${p.id}); this.textContent='تمت الإضافة للسلة!';">أضف للسلة</button>
+            <button class="wishlist-btn" id="wishlist-btn-${p.id}" onclick="toggleWishlist(${p.id}, this)" style="color:${inWishlist?'var(--pink-deep)':''}">${inWishlist ? 'محفوظ' : 'حفظ'}</button>
+          </div>
+        </div>`;
+    }
+
+    function selectSize(btn) {
+      btn.closest('.sizes-row').querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    function openCheckoutModal() { document.getElementById('checkout-modal').classList.add('open'); }
+    function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('open'); }
+    function confirmCheckout() {
+      const name = document.getElementById('checkout-name').value.trim();
+      const city = document.getElementById('checkout-city').value.trim();
+      const phone = document.getElementById('checkout-phone').value.trim();
+      if (!name || !city || !phone) { showToast('يرجى ملء جميع البيانات'); return; }
+      const { subtotal, shipping, total } = calculateTotals();
+      let message = `طلب من متجر جوهرة إكرام%0A%0Aالاسم: ${encodeURIComponent(name)}%0Aالمدينة: ${encodeURIComponent(city)}%0Aالهاتف: ${encodeURIComponent(phone)}%0A%0A`;
+      cart.forEach((item, idx) => { message += `${idx+1}- ${encodeURIComponent(item.name)} (الكمية: ${item.qty}) - ${item.price * item.qty} درهم%0A`; });
+      message += `%0Aالمجموع: ${subtotal} درهم%0Aالتوصيل: ${shipping === 0 ? 'مجاني' : shipping + ' درهم'}%0Aالإجمالي: ${total} درهم`;
+      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+      closeCheckoutModal();
+    }
+
+    function toggleFooterLinks(titleElement) {
+      if (window.innerWidth <= 768) {
+        const linkList = titleElement.nextElementSibling;
+        const icon = titleElement.querySelector('.toggle-icon');
+        if (linkList.classList.contains('open')) {
+          linkList.classList.remove('open');
+          icon.textContent = '+';
+        } else {
+          linkList.classList.add('open');
+          icon.textContent = '−';
+        }
       }
     }
 
-    // عند حذف المنتج من السلة، نعيد زر الشراء للبطاقة إن وجدت
-    const originalRemove = removeFromCart;
-    removeFromCart = function(id) {
-      originalRemove(id);
-      // تحديث جميع البطاقات التي تحمل نفس id
-      document.querySelectorAll(`.buy-btn[onclick*="buyNow(${id}"]`).forEach(btn => {
-        btn.textContent = 'شراء';
-        btn.classList.remove('in-cart');
-        btn.disabled = false;
-      });
-    };
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartBadge();
+      renderHomeCategories();
+      renderNewArrivals();
+      renderFilterBar();
+    });
   </script>
 </body>
 </html>
