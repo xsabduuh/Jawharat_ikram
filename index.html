@@ -1256,125 +1256,16 @@
     ];
 
     // ===================== الحالة العامة =====================
-    let cart     = JSON.parse(localStorage.getItem('warda_cart')     || '[]');
     let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
     let activeFilter   = 'الكل';
     let currentPage    = 'home';
     let toastTimer     = null;
 
-    // ===================== السلة =====================
-    function saveCart() {
-      localStorage.setItem('warda_cart', JSON.stringify(cart));
-      updateCartBadge();
-    }
-
-    function updateCartBadge() {
-      const badge = document.getElementById('cart-count');
-      if (!badge) return;
-      const total = cart.reduce((s, i) => s + i.qty, 0);
-      badge.textContent = total;
-      badge.classList.remove('bump');
-      // force reflow لإعادة الأنيميشن
-      void badge.offsetWidth;
-      if (total > 0) badge.classList.add('bump');
-    }
-
-    function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      if (!product) return;
-      const existing = cart.find(i => i.id === id);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({ id, name: product.name, price: product.price, qty: 1, img: product.img });
-      }
-      saveCart();
-      // تحديث الـ detail page لو مفتوحة
-      if (currentPage === 'detail') {
-        const addBtn = document.querySelector('.detail-add-btn');
-        if (addBtn) { addBtn.textContent = '✓ تمت الإضافة للسلة'; addBtn.classList.add('in-cart'); }
-      }
-    }
-
-    function removeFromCart(id) {
-      cart = cart.filter(i => i.id !== id);
-      saveCart();
-      renderCart();
-    }
-
-    function updateQuantity(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) removeFromCart(id);
-      else { saveCart(); renderCart(); }
-    }
-
-    function calculateTotals() {
-      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-      const shipping  = subtotal >= 300 ? 0 : 20;
-      return { subtotal, shipping, total: subtotal + shipping };
-    }
-
-    // ===================== عرض صفحة السلة =====================
-    function renderCart() {
-      const container = document.getElementById('cart-content');
-      if (!container) return;
-
-      if (cart.length === 0) {
-        container.innerHTML = `
-          <div class="empty-cart">
-            <h3>سلة التسوق فارغة</h3>
-            <p>أضيفي بعض المنتجات الرائعة إلى سلتكِ</p>
-            <button class="btn-primary" onclick="navigate('products')">تسوقي الآن</button>
-          </div>`;
-        return;
-      }
-
-      const { subtotal, shipping, total } = calculateTotals();
-      const freeShippingText = subtotal >= 300
-        ? '🎉 تهانينا! أنت مؤهلة للتوصيل المجاني'
-        : `أضيفي ${300 - subtotal} درهماً للحصول على توصيل مجاني`;
-      const fillPercent = Math.min(100, (subtotal / 300) * 100);
-
-      const itemsHtml = cart.map(item => {
-        const product = products.find(p => p.id === item.id);
-        return `
-          <div class="cart-item">
-            <div class="cart-item-img"><img src="${product.img}" alt="${item.name}" onerror="this.style.background='var(--pink-soft)'"></div>
-            <div class="cart-item-info">
-              <div class="cart-item-name">${item.name}</div>
-              <div class="cart-item-price">${item.price} درهم</div>
-              <div class="qty-ctrl">
-                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
-                <span class="qty-num">${item.qty}</span>
-                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                <button class="remove-btn" onclick="removeFromCart(${item.id})">🗑 حذف</button>
-              </div>
-            </div>
-          </div>`;
-      }).join('');
-
-      container.innerHTML = `
-        <div class="cart-wrap">
-          <div class="cart-items-list">${itemsHtml}</div>
-          <div class="cart-summary">
-            <div class="summary-title">ملخص الطلب</div>
-            <div class="free-shipping-text">${freeShippingText}</div>
-            <div class="free-shipping-bar"><div class="free-shipping-fill" style="width:${fillPercent}%"></div></div>
-            <div class="summary-row"><span>المجموع الفرعي</span><span>${subtotal} درهم</span></div>
-            <div class="summary-row"><span>رسوم التوصيل</span><span>${shipping === 0 ? 'مجاني 🎁' : shipping + ' درهم'}</span></div>
-            <div class="summary-row total"><span>الإجمالي</span><span>${total} درهم</span></div>
-            <button class="checkout-btn" onclick="openCheckoutModal()">إتمام الطلب 🛍️</button>
-          </div>
-        </div>`;
-    }
-
     // ===================== Toast =====================
     function showToast(msg) {
       const t = document.getElementById('toast');
       if (!t) return;
-      t.textContent = msg;
+      t.innerHTML = msg;
       t.classList.add('show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
@@ -1419,12 +1310,11 @@
 
         case 'cart':
           showPage('page-cart');
-          renderCart();
+          if (typeof renderCart === 'function') renderCart();
           history.pushState({ page: 'cart' }, '', '#cart');
           break;
 
         default:
-          // صفحات خارجية: about, contact, terms, faq, refund, privacy, shipping
           loadExternalPage(page);
           break;
       }
@@ -1505,7 +1395,7 @@
     }
 
     function productCard(p) {
-      const inCart = cart.some(i => i.id === p.id);
+      const inCart = (typeof cart !== 'undefined') && cart.some(i => i.id === p.id);
       return `
         <div class="product-card" onclick="navigate('detail', ${p.id})">
           <div class="card-img-wrap">
@@ -1526,19 +1416,18 @@
         </div>`;
     }
 
-    // FIX: toast مرة واحدة بس، بدون تكرار
     function handleBuyClick(btn, id) {
-      if (cart.some(i => i.id === id)) return;
-      addToCart(id);
+      if (typeof addToCart === 'function') {
+        addToCart(id);
+      }
       btn.textContent = '✓ في السلة';
       btn.classList.add('in-cart');
-      showToast('✓ تمت إضافة المنتج إلى السلة');
     }
 
     function renderDetail(id) {
       const p = products.find(x => x.id === id);
       if (!p) { navigate('products'); return; }
-      const inCart     = cart.some(i => i.id === p.id);
+      const inCart     = (typeof cart !== 'undefined') && cart.some(i => i.id === p.id);
       const inWishlist = wishlist.includes(id);
 
       document.getElementById('detail-wrap').innerHTML = `
@@ -1568,11 +1457,11 @@
     }
 
     function detailAddToCart(id, btn) {
-      if (cart.some(i => i.id === id)) return;
-      addToCart(id);
+      if (typeof addToCart === 'function') {
+        addToCart(id);
+      }
       btn.textContent = '✓ تمت الإضافة للسلة';
       btn.classList.add('in-cart');
-      showToast('✓ تمت إضافة المنتج إلى السلة');
     }
 
     function selectSize(btn) {
@@ -1586,7 +1475,7 @@
         wishlist.push(id);
         btn.textContent = '❤️';
         btn.classList.add('active');
-        showToast('❤️ تمت الإضافة للمفضلة');
+        showToast('<i class="fas fa-heart"></i> تمت الإضافة للمفضلة');
       } else {
         wishlist.splice(idx, 1);
         btn.textContent = '🤍';
@@ -1607,14 +1496,21 @@
       const name  = document.getElementById('checkout-name').value.trim();
       const city  = document.getElementById('checkout-city').value.trim();
       const phone = document.getElementById('checkout-phone').value.trim();
-      if (!name || !city || !phone) { showToast('⚠️ يرجى ملء جميع البيانات'); return; }
+      if (!name || !city || !phone) {
+        showToast('<i class="fas fa-exclamation-triangle"></i> يرجى ملء جميع البيانات');
+        return;
+      }
 
+      if (typeof calculateTotals !== 'function') {
+        showToast('حدث خطأ، يرجى تحديث الصفحة');
+        return;
+      }
       const { subtotal, shipping, total } = calculateTotals();
       let msg = `طلب من متجر جوهرة إكرام\n\n`;
       msg += `الاسم: ${name}\nالمدينة: ${city}\nالهاتف: ${phone}\n\n`;
       cart.forEach((item, idx) => {
         const p = products.find(x => x.id === item.id);
-        msg += `${idx + 1}- ${p.name} (الكمية: ${item.qty}) - ${item.price * item.qty} درهم\n`;
+        msg += `${idx + 1}- ${p ? p.name : item.name} (الكمية: ${item.qty}) - ${item.price * item.qty} درهم\n`;
       });
       msg += `\nالمجموع: ${subtotal} درهم\nالتوصيل: ${shipping === 0 ? 'مجاني' : shipping + ' درهم'}\nالإجمالي: ${total} درهم`;
 
@@ -1634,7 +1530,6 @@
       hamburger.classList.toggle('open', !isOpen);
       hamburger.setAttribute('aria-expanded', String(!isOpen));
 
-      // منع scroll خلف القائمة
       document.body.style.overflow = isOpen ? '' : 'hidden';
     }
 
@@ -1649,7 +1544,6 @@
     document.getElementById('mobile-overlay').addEventListener('click', closeMobileMenu);
     document.getElementById('hamburger').addEventListener('click', toggleMobileMenu);
 
-    // إغلاق القائمة بـ Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMobileMenu();
     });
@@ -1660,10 +1554,15 @@
     }, { passive: true });
 
     // ===================== تهيئة أولية =====================
-    updateCartBadge();
+    // ربط products مع window ليتمكن cart.js من الوصول إليها
+    window.products = products;
+
     renderHomeCategories();
     renderNewArrivals();
     renderProducts();
   </script>
+
+  <!-- تحميل سلة التسوق من ملف خارجي -->
+  <script src="cart.js"></script>
 </body>
 </html>
