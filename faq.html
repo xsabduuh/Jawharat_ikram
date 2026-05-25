@@ -1,16 +1,68 @@
+<!-- ========== FAQ PAGE ========== -->
 <div class="page active" id="page-faq">
-  <section class="section">
+  <section class="section faq-section">
     <div class="container">
+
       <div class="section-header">
         <span class="tag">مساعدة</span>
         <h2>الأسئلة الشائعة</h2>
         <p>إجابات على أكثر الأسئلة تداولاً</p>
       </div>
-      <div style="background:var(--white); border-radius:var(--radius-lg); padding:30px; border:1px solid var(--border); line-height:2; color:var(--text-light);">
-        <h3>ما مدة التوصيل؟</h3><p>نوصل الطلبات خلال 24 إلى 48 ساعة عمل لجميع المدن المغربية.</p>
-        <h3>هل يمكنني استبدال المنتج؟</h3><p>نعم، يمكنكِ استبدال المنتج خلال 14 يوماً من تاريخ الاستلام.</p>
-        <h3>ما هي طرق الدفع؟</h3><p>الدفع عند الاستلام.</p>
-        <h3>هل يوجد توصيل مجاني؟</h3><p>التوصيل مجاني للطلبات فوق 300 درهم.</p>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-icon">🚚</span>
+            <span>ما مدة التوصيل؟</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>نوصل الطلبات خلال <strong>24 إلى 48 ساعة عمل</strong> لجميع المدن المغربية.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-icon">🔄</span>
+            <span>هل يمكنني استبدال المنتج؟</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>نعم، يمكنكِ استبدال المنتج خلال <strong>14 يوماً</strong> من تاريخ الاستلام بدون أي شروط.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-icon">💳</span>
+            <span>ما هي طرق الدفع المتاحة؟</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>ندعم حالياً <strong>الدفع عند الاستلام</strong> — ادفع فقط حين تصلك طلبيتك على بابك.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-icon">🎁</span>
+            <span>هل يوجد توصيل مجاني؟</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>نعم! التوصيل <strong>مجاني تماماً</strong> لجميع الطلبات التي تتجاوز <strong>300 درهم</strong>.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
