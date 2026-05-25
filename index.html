@@ -427,7 +427,8 @@
 
     .card-price span { font-size: 12px; font-weight: 500; }
 
-    .add-to-cart-btn {
+    /* زر الإضافة الجديد */
+    .add-btn {
       background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
       color: var(--white);
       border-radius: var(--radius-xl);
@@ -437,15 +438,50 @@
       transition: all var(--transition);
       white-space: nowrap;
       border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .add-to-cart-btn:hover {
+    .add-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 14px rgba(224,120,152,.4);
     }
 
-    .add-to-cart-btn.added {
-      background: #6dbb8a;
+    .qty-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border-radius: 30px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+    }
+
+    .qty-widget button {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--pink-dark);
+      background: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--pink-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .qty-widget button:hover {
+      background: var(--pink-soft);
+      color: var(--pink-deep);
+    }
+
+    .qty-widget .qty-val {
+      min-width: 22px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--text);
     }
 
     /* FILTER BAR */
@@ -690,7 +726,7 @@
       gap: 8px;
     }
 
-    .qty-btn {
+    .qty-ctrl .qty-btn {
       width: 32px; height: 32px;
       border-radius: 50%;
       border: 2px solid var(--pink-dark);
@@ -704,13 +740,13 @@
       justify-content: center;
     }
 
-    .qty-btn:hover {
+    .qty-ctrl .qty-btn:hover {
       background: var(--pink);
       color: var(--white);
       border-color: var(--pink);
     }
 
-    .qty-num {
+    .qty-ctrl .qty-num {
       width: 36px;
       text-align: center;
       font-size: 16px;
@@ -982,7 +1018,7 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* FOOTER (تصميم جديد) */
+    /* FOOTER الجديد - محسن */
     .site-footer {
       background: #fffafc;
       border-top: 1px solid var(--border);
@@ -996,33 +1032,10 @@
       padding: 0 30px;
     }
 
-    .footer-about {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .footer-heading {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--pink-deep);
-      margin-bottom: 18px;
-      letter-spacing: -0.3px;
-    }
-
-    .footer-description {
-      font-size: 15px;
-      color: var(--text-light);
-      line-height: 1.9;
-      max-width: 550px;
-      margin: 0 auto;
-    }
-
     .footer-links-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      border-top: 1px solid var(--border);
-      padding-top: 40px;
       margin-bottom: 40px;
       text-align: center;
     }
@@ -1039,7 +1052,7 @@
     }
 
     .toggle-icon {
-      display: none; /* مخفية على سطح المكتب */
+      display: none;
     }
 
     .link-list {
@@ -1080,15 +1093,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--pink-deep);
       transition: all var(--transition);
+    }
+
+    .social-circle svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--pink-deep);
+      transition: fill 0.3s;
     }
 
     .social-circle:hover {
       background: var(--pink-soft);
       transform: scale(1.1);
+      border-color: var(--pink-deep);
+    }
+
+    .social-circle:hover svg {
+      fill: #c94b6c;
     }
 
     .footer-bottom-bar {
@@ -1108,7 +1130,7 @@
       color: var(--text-muted);
     }
 
-    /* استجابة الموبايل: إظهار علامة + وجعل القوائم قابلة للطي */
+    /* استجابة الموبايل للفوتر */
     @media (max-width: 768px) {
       .footer-links-grid {
         grid-template-columns: 1fr;
@@ -1192,7 +1214,6 @@
   </style>
 </head>
 <body>
-
   <!-- NAVBAR -->
   <nav id="navbar">
     <div class="container">
@@ -1219,10 +1240,9 @@
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
+  <!-- MOBILE MENU - تم حذف المتجر منها -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#" onclick="navigate('home'); closeMobileMenu()">الرئيسية</a>
-    <a href="#" onclick="navigate('products'); closeMobileMenu()">المتجر</a>
     <a href="#" onclick="navigate('about'); closeMobileMenu()">من نحن</a>
     <a href="#" onclick="navigate('contact'); closeMobileMenu()">تواصل معنا</a>
     <a href="#" onclick="navigate('cart'); closeMobileMenu()">السلة</a>
@@ -1230,13 +1250,9 @@
 
   <!-- APP ROOT -->
   <div id="app">
-
-    <!-- HOME PAGE -->
     <div class="page active" id="page-home">
-
-      <!-- Hero -->
       <section class="hero">
-        <div class="hero-badge">تشكيلة صيف 2025 الحصرية</div>
+        <div class="hero-badge">تشكيلة صيف 2026 الحصرية</div>
         <h1>تألقي بأسلوبك <span>الخاص</span></h1>
         <p>اكتشفي أحدث صيحات الملابس النسائية، بتصاميم تجمع بين الذوق العصري واللمسة المغربية الأصيلة. جودة عالية وأثمنة مناسبة.</p>
         <div class="hero-btns">
@@ -1245,7 +1261,6 @@
         </div>
       </section>
 
-      <!-- Categories Pills -->
       <section class="section">
         <div class="container">
           <div class="section-header">
@@ -1257,7 +1272,6 @@
         </div>
       </section>
 
-      <!-- New Arrivals -->
       <section class="section" style="background: var(--white); padding-top: 10px;">
         <div class="container">
           <div class="section-header">
@@ -1272,32 +1286,18 @@
         </div>
       </section>
 
-      <!-- Trust Features -->
       <section class="section">
         <div class="container">
           <div class="trust-features">
-            <div class="trust-item">
-              <div class="trust-title">توصيل سريع</div>
-              <div class="trust-desc">خلال 24 إلى 48 ساعة لجميع المدن</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-title">الدفع عند الاستلام</div>
-              <div class="trust-desc">تسوّقي بأمان وادفعي نقداً عند الاستلام</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-title">استبدال مرن</div>
-              <div class="trust-desc">إمكانية الاستبدال والاسترجاع خلال 7 أيام</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-title">دعم متواصل</div>
-              <div class="trust-desc">فريقنا في خدمتكِ للإجابة على استفساراتكِ</div>
-            </div>
+            <div class="trust-item"><div class="trust-title">توصيل سريع</div><div class="trust-desc">خلال 24 إلى 48 ساعة لجميع المدن</div></div>
+            <div class="trust-item"><div class="trust-title">الدفع عند الاستلام</div><div class="trust-desc">تسوّقي بأمان وادفعي نقداً عند الاستلام</div></div>
+            <div class="trust-item"><div class="trust-title">استبدال مرن</div><div class="trust-desc">إمكانية الاستبدال والاسترجاع خلال 7 أيام</div></div>
+            <div class="trust-item"><div class="trust-title">دعم متواصل</div><div class="trust-desc">فريقنا في خدمتكِ للإجابة على استفساراتكِ</div></div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- PRODUCTS PAGE -->
     <div class="page" id="page-products">
       <section class="section">
         <div class="container">
@@ -1306,15 +1306,12 @@
             <h2>جميع المنتجات</h2>
             <p>اكتشفي مجموعتنا الكاملة من الأزياء العصرية</p>
           </div>
-          <div class="filter-bar" id="filter-bar">
-            <span class="filter-label">الفلتر:</span>
-          </div>
+          <div class="filter-bar" id="filter-bar"><span class="filter-label">الفلتر:</span></div>
           <div class="products-grid" id="all-products-grid"></div>
         </div>
       </section>
     </div>
 
-    <!-- PRODUCT DETAIL PAGE -->
     <div class="page" id="page-detail">
       <section class="section">
         <div class="container">
@@ -1324,14 +1321,10 @@
       </section>
     </div>
 
-    <!-- CART PAGE -->
     <div class="page" id="page-cart">
       <section class="section">
         <div class="container">
-          <div class="section-header">
-            <span class="tag">السلة</span>
-            <h2>سلة التسوق</h2>
-          </div>
+          <div class="section-header"><span class="tag">السلة</span><h2>سلة التسوق</h2></div>
           <div id="cart-content"></div>
         </div>
       </section>
@@ -1342,18 +1335,9 @@
   <div class="checkout-modal" id="checkout-modal">
     <div class="modal-box">
       <h3>إتمام الطلب</h3>
-      <div class="form-group">
-        <label>الاسم الكامل</label>
-        <input type="text" id="checkout-name" placeholder="أدخلي اسمكِ الكامل" />
-      </div>
-      <div class="form-group">
-        <label>المدينة</label>
-        <input type="text" id="checkout-city" placeholder="أدخلي مدينتكِ" />
-      </div>
-      <div class="form-group">
-        <label>رقم الهاتف</label>
-        <input type="tel" id="checkout-phone" placeholder="مثال: 0612345678" />
-      </div>
+      <div class="form-group"><label>الاسم الكامل</label><input type="text" id="checkout-name" placeholder="أدخلي اسمكِ الكامل"></div>
+      <div class="form-group"><label>المدينة</label><input type="text" id="checkout-city" placeholder="أدخلي مدينتكِ"></div>
+      <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="checkout-phone" placeholder="مثال: 0612345678"></div>
       <div class="modal-actions">
         <button class="modal-cancel" onclick="closeCheckoutModal()">إلغاء</button>
         <button class="modal-confirm" onclick="confirmCheckout()">تأكيد وإرسال للواتساب</button>
@@ -1361,256 +1345,94 @@
     </div>
   </div>
 
-  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
-  <!-- FOOTER الجديد -->
+  <!-- FOOTER الجديد كامل بالعربية مع أيقونات SVG -->
   <footer class="site-footer">
     <div class="footer-container">
-      <div class="footer-about">
-        <h3 class="footer-heading">About Store</h3>
-        <p class="footer-description">
-          متجر أزياء نسائية يقدم تصاميم عصرية وأنيقة تجمع بين الجودة والأنوثة والتفاصيل الحديثة لإبراز أسلوب المرأة اليومي.
-        </p>
-      </div>
-
       <div class="footer-links-grid">
         <div class="link-group">
-          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">
-            About <span class="toggle-icon">+</span>
-          </h4>
+          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">عن المتجر <span class="toggle-icon">+</span></h4>
           <ul class="link-list">
-            <li><a onclick="navigate('about')">About Us</a></li>
-            <li><a onclick="navigate('contact')">Contact</a></li>
-            <li><a onclick="navigate('terms')">Terms & Conditions</a></li>
+            <li><a onclick="navigate('about')">من نحن</a></li>
+            <li><a onclick="navigate('contact')">تواصل معنا</a></li>
+            <li><a onclick="navigate('terms')">الشروط والأحكام</a></li>
           </ul>
         </div>
         <div class="link-group">
-          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">
-            Customer Services <span class="toggle-icon">+</span>
-          </h4>
+          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">خدمة العملاء <span class="toggle-icon">+</span></h4>
           <ul class="link-list">
-            <li><a onclick="navigate('faq')">FAQs</a></li>
-            <li><a onclick="navigate('refund')">Refund Policy</a></li>
-            <li><a onclick="navigate('privacy')">Privacy Policy</a></li>
-            <li><a onclick="navigate('shipping')">Shipping Policy</a></li>
+            <li><a onclick="navigate('faq')">الأسئلة الشائعة</a></li>
+            <li><a onclick="navigate('refund')">سياسة الاسترجاع</a></li>
+            <li><a onclick="navigate('privacy')">سياسة الخصوصية</a></li>
+            <li><a onclick="navigate('shipping')">سياسة الشحن</a></li>
           </ul>
         </div>
         <div class="link-group">
-          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">
-            My Account <span class="toggle-icon">+</span>
-          </h4>
+          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">حسابي <span class="toggle-icon">+</span></h4>
           <ul class="link-list">
-            <li><a onclick="navigate('cart')">Cart</a></li>
-            <li><a onclick="navigate('orders')">Orders</a></li>
+            <li><a onclick="navigate('cart')">السلة</a></li>
+            <li><a onclick="navigate('orders')">الطلبات</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-social">
-        <a href="#" class="social-circle" aria-label="Instagram">Ig</a>
-        <a href="#" class="social-circle" aria-label="TikTok">Tk</a>
-        <a href="#" class="social-circle" aria-label="Facebook">Fb</a>
-        <a href="#" class="social-circle" aria-label="Snapchat">Sn</a>
-        <a href="#" class="social-circle" aria-label="Pinterest">Pi</a>
+        <!-- Instagram -->
+        <a href="#" class="social-circle" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="#" class="social-circle" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" class="social-circle" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <!-- Snapchat -->
+        <a href="#" class="social-circle" aria-label="Snapchat">
+          <svg viewBox="0 0 24 24"><path d="M12 2c-2.95 0-5.37 1.75-6.61 4.27-.89 1.8-.85 3.87.15 5.6.7 1.2 2.03 2.04 3.38 2.54.6.22.96.42 1.15.63.25.28.29.74.17 1.16-.13.47-.4.89-.73 1.24-.35.37-.77.65-1.22.81-.58.2-1.17.25-1.76.15-.59-.1-1.13-.34-1.58-.7-.45-.36-.8-.83-1.01-1.37-.21-.54-.29-1.12-.21-1.69.04-.31.15-.6.33-.84.19-.24.44-.43.73-.54.28-.1.58-.11.87-.02.29.1.54.28.73.52.19.24.31.53.35.84.03.19.01.39-.04.58-.05.2-.15.38-.28.54-.13.16-.29.29-.48.39.12.15.28.27.46.36.32.16.68.23 1.04.18.36-.04.7-.19.98-.42.28-.23.49-.54.6-.89.12-.35.15-.73.09-1.09-.12-.76-.57-1.45-1.22-1.89-.65-.44-1.46-.69-2.29-.74-.83-.04-1.66.11-2.39.45-1.2.56-2.18 1.48-2.82 2.64-.64 1.16-.9 2.5-.72 3.81.18 1.31.72 2.52 1.55 3.5.83.98 1.92 1.72 3.13 2.11 1.21.39 2.51.43 3.76.13 1.25-.3 2.4-.92 3.3-1.78.9-.86 1.53-1.95 1.79-3.15.26-1.2.15-2.46-.33-3.61-.48-1.15-1.31-2.15-2.38-2.86-1.07-.71-2.35-1.11-3.66-1.14z"/></svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="#" class="social-circle" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.085 3.163 9.426 7.627 11.174-.104-.949-.199-2.405.042-3.441.217-.938 1.402-5.963 1.402-5.963s-.359-.72-.359-1.782c0-1.669.968-2.917 2.174-2.917 1.024 0 1.518.77 1.518 1.694 0 1.032-.658 2.575-.998 4.005-.284 1.199.601 2.177 1.783 2.177 2.14 0 3.785-2.257 3.785-5.516 0-2.884-2.072-4.901-5.034-4.901-3.428 0-5.441 2.572-5.441 5.232 0 1.036.399 2.147.897 2.751.098.119.112.223.083.345l-.334 1.373c-.054.224-.179.271-.41.163-1.53-.713-2.487-2.947-2.487-4.743 0-3.863 2.807-7.41 8.092-7.41 4.249 0 7.552 3.027 7.552 7.074 0 4.222-2.662 7.619-6.356 7.619-1.24 0-2.408-.645-2.808-1.406 0 0-.615 2.341-.764 2.914-.277 1.066-1.023 2.401-1.523 3.216C14.112 23.755 16.017 24 18 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        </a>
       </div>
 
       <div class="footer-bottom-bar">
-        <p class="copyright">© 2026 جوهرة إكرام — All Rights Reserved</p>
-        <p class="business-info">Commercial Number | Tax Number</p>
+        <p class="copyright">© 2026 جوهرة إكرام — جميع الحقوق محفوظة</p>
+        <p class="business-info">الرقم التجاري | الرقم الضريبي</p>
       </div>
     </div>
   </footer>
 
-  <!-- ===========================
-       قائمة المنتجات
-       =========================== -->
+  <!-- بيانات المنتجات -->
   <script>
     var products = [
-      // ---------- بيجامات ----------
-      {
-        id: 1,
-        name: 'طقم بيجامة حريرية ناعمة',
-        category: 'بيجامات',
-        price: 349,
-        badge: 'جديد',
-        isNew: true,
-        desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.',
-        img: 'images/بيجامة-حريرية.jpg',
-        sizes: ['S','M','L','XL']
-      },
-      {
-        id: 8,
-        name: 'بيجامة قطيفة شتوية',
-        category: 'بيجامات',
-        price: 275,
-        badge: null,
-        isNew: false,
-        desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.',
-        img: 'images/بيجامة-قطيفة.jpg',
-        sizes: ['S','M','L','XL']
-      },
-
-      // ---------- جلابيات ----------
-      {
-        id: 2,
-        name: 'جلابة تقليدية بتطريز ملكي',
-        category: 'جلابيات',
-        price: 450,
-        badge: null,
-        isNew: true,
-        desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.',
-        img: 'images/جلابة-تطريز-ملكي.jpg',
-        sizes: ['XS','S','M','L']
-      },
-      {
-        id: 7,
-        name: 'جلابة مطرزة بالعقيق',
-        category: 'جلابيات',
-        price: 590,
-        badge: null,
-        isNew: false,
-        desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.',
-        img: 'images/جلابة-عقيق.jpg',
-        sizes: ['S','M','L','XL']
-      },
-      {
-        id: 9,
-        name: 'جلابة كروشيه صيفية',
-        category: 'جلابيات',
-        price: 390,
-        badge: 'ترند',
-        isNew: false,
-        desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.',
-        img: 'images/جلابة-كروشيه.jpg',
-        sizes: ['S','M','L']
-      },
-
-      // ---------- فساتين ----------
-      {
-        id: 6,
-        name: 'فستان سهرة طويل',
-        category: 'فساتين',
-        price: 720,
-        badge: null,
-        isNew: false,
-        desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.',
-        img: 'images/فستان-سهرة.jpg',
-        sizes: ['36','38','40','42']
-      },
-      {
-        id: 11,
-        name: 'فستان نهاري بنقشة الأزهار',
-        category: 'فساتين',
-        price: 310,
-        badge: null,
-        isNew: false,
-        desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.',
-        img: 'images/فستان-نهاري.jpg',
-        sizes: ['28','30','32','34']
-      },
-
-      // ---------- عبايات ----------
-      {
-        id: 3,
-        name: 'عباءة سوداء بتطريز فاخر',
-        category: 'عبايات',
-        price: 520,
-        badge: 'الأكثر مبيعاً',
-        isNew: true,
-        desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.',
-        img: 'images/عباءة-ذهبي.jpg',
-        sizes: ['S','M','L','XL','XXL']
-      },
-      {
-        id: 10,
-        name: 'عباءة كريمية بحزام',
-        category: 'عبايات',
-        price: 449,
-        badge: 'جديد',
-        isNew: false,
-        desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.',
-        img: 'images/عباءة-كريمية.jpg',
-        sizes: ['S','M','L','XL']
-      },
-
-      // ---------- معاطف ----------
-      {
-        id: 4,
-        name: 'بدلة رياضية نسائية كاجوال',
-        category: 'معاطف',
-        price: 180,
-        badge: 'جديد',
-        isNew: true,
-        desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.',
-        img: 'images/بدلة-رياضية.jpg',
-        sizes: ['S','M','L']
-      },
-      {
-        id: 5,
-        name: 'معطف شتوي كلاسيكي',
-        category: 'معاطف',
-        price: 680,
-        badge: 'حصري',
-        isNew: false,
-        desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.',
-        img: 'images/معطف-كلاسيكي.jpg',
-        sizes: ['XS','S','M','L']
-      },
-      {
-        id: 12,
-        name: 'معطف ترنش أنيق',
-        category: 'معاطف',
-        price: 530,
-        badge: 'جديد',
-        isNew: false,
-        desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.',
-        img: 'images/معطف-ترنش.jpg',
-        sizes: ['XS','S','M','L']
-      },
-
-      // ---------- إكسسوارات ----------
-      {
-        id: 13,
-        name: 'حقيبة يد جلدية فاخرة',
-        category: 'إكسسوارات',
-        price: 420,
-        badge: null,
-        isNew: false,
-        desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.',
-        img: 'images/حقيبة-جلدية.jpg',
-        sizes: ['One Size']
-      },
-      {
-        id: 14,
-        name: 'وشاح حرير منقوش',
-        category: 'إكسسوارات',
-        price: 180,
-        badge: 'جديد',
-        isNew: true,
-        desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.',
-        img: 'images/وشاح-حرير.jpg',
-        sizes: ['One Size']
-      },
-      {
-        id: 15,
-        name: 'حزام جلد مطرز',
-        category: 'إكسسوارات',
-        price: 230,
-        badge: null,
-        isNew: false,
-        desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.',
-        img: 'images/حزام-مطرز.jpg',
-        sizes: ['S','M','L']
-      }
+      { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 8, name: 'بيجامة قطيفة شتوية', category: 'بيجامات', price: 275, badge: null, isNew: false, desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.', img: 'images/بيجامة-قطيفة.jpg', sizes: ['S','M','L','XL'] },
+      { id: 2, name: 'جلابة تقليدية بتطريز ملكي', category: 'جلابيات', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.', img: 'images/جلابة-تطريز-ملكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 7, name: 'جلابة مطرزة بالعقيق', category: 'جلابيات', price: 590, badge: null, isNew: false, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.', img: 'images/جلابة-عقيق.jpg', sizes: ['S','M','L','XL'] },
+      { id: 9, name: 'جلابة كروشيه صيفية', category: 'جلابيات', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.', img: 'images/جلابة-كروشيه.jpg', sizes: ['S','M','L'] },
+      { id: 6, name: 'فستان سهرة طويل', category: 'فساتين', price: 720, badge: null, isNew: false, desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.', img: 'images/فستان-سهرة.jpg', sizes: ['36','38','40','42'] },
+      { id: 11, name: 'فستان نهاري بنقشة الأزهار', category: 'فساتين', price: 310, badge: null, isNew: false, desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.', img: 'images/فستان-نهاري.jpg', sizes: ['28','30','32','34'] },
+      { id: 3, name: 'عباءة سوداء بتطريز فاخر', category: 'عبايات', price: 520, badge: 'الأكثر مبيعاً', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'images/عباءة-ذهبي.jpg', sizes: ['S','M','L','XL','XXL'] },
+      { id: 10, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: false, desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.', img: 'images/عباءة-كريمية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 4, name: 'بدلة رياضية نسائية كاجوال', category: 'معاطف', price: 180, badge: 'جديد', isNew: true, desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.', img: 'images/بدلة-رياضية.jpg', sizes: ['S','M','L'] },
+      { id: 5, name: 'معطف شتوي كلاسيكي', category: 'معاطف', price: 680, badge: 'حصري', isNew: false, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.', img: 'images/معطف-كلاسيكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 12, name: 'معطف ترنش أنيق', category: 'معاطف', price: 530, badge: 'جديد', isNew: false, desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.', img: 'images/معطف-ترنش.jpg', sizes: ['XS','S','M','L'] },
+      { id: 13, name: 'حقيبة يد جلدية فاخرة', category: 'إكسسوارات', price: 420, badge: null, isNew: false, desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.', img: 'images/حقيبة-جلدية.jpg', sizes: ['One Size'] },
+      { id: 14, name: 'وشاح حرير منقوش', category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.', img: 'images/وشاح-حرير.jpg', sizes: ['One Size'] },
+      { id: 15, name: 'حزام جلد مطرز', category: 'إكسسوارات', price: 230, badge: null, isNew: false, desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.', img: 'images/حزام-مطرز.jpg', sizes: ['S','M','L'] }
     ];
 
     var categories = [
-      { name: 'بيجامات',   filter: 'بيجامات' },
-      { name: 'جلابيات',   filter: 'جلابيات' },
-      { name: 'فساتين',    filter: 'فساتين' },
-      { name: 'عبايات',    filter: 'عبايات' },
-      { name: 'معاطف',     filter: 'معاطف' },
+      { name: 'بيجامات', filter: 'بيجامات' },
+      { name: 'جلابيات', filter: 'جلابيات' },
+      { name: 'فساتين', filter: 'فساتين' },
+      { name: 'عبايات', filter: 'عبايات' },
+      { name: 'معاطف', filter: 'معاطف' },
       { name: 'إكسسوارات', filter: 'إكسسوارات' }
     ];
 
@@ -1618,7 +1440,6 @@
   </script>
 
   <script src="cart.js"></script>
-
   <script>
     let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
     function saveWishlist() { localStorage.setItem('warda_wishlist', JSON.stringify(wishlist)); }
@@ -1640,6 +1461,7 @@
       toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
     }
 
+    // Navigation & History API
     async function navigate(page, productId, replace = false) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
@@ -1721,7 +1543,10 @@
 
     function filterAndGo(cat) { activeFilter = cat; navigate('products'); }
 
+    // --- بطاقة المنتج مع زر الإضافة الذكي ---
     function productCard(p) {
+      const qty = getCartItemQuantity(p.id);
+      const hasQty = qty > 0;
       return `
         <div class="product-card" onclick="navigate('detail', ${p.id})">
           <div class="card-img-wrap">
@@ -1733,20 +1558,83 @@
             <div class="card-name">${p.name}</div>
             <div class="card-footer">
               <div class="card-price">${p.price} <span>درهم</span></div>
-              <button class="add-to-cart-btn" onclick="event.stopPropagation(); handleAddToCart(this, ${p.id})">+ السلة</button>
+              <div class="card-action" id="action-${p.id}" onclick="event.stopPropagation();">
+                ${hasQty ? `
+                  <div class="qty-widget">
+                    <button onclick="changeCartQty(${p.id}, -1, this)">−</button>
+                    <span class="qty-val">${qty}</span>
+                    <button onclick="changeCartQty(${p.id}, 1, this)">+</button>
+                  </div>
+                ` : `
+                  <button class="add-btn" onclick="addToCart(${p.id}); updateCardAction(${p.id})">+ السلة</button>
+                `}
+              </div>
             </div>
           </div>
         </div>`;
     }
 
+    // دوال مساعدة للتحكم بكمية المنتج من البطاقة
+    function getCartItemQuantity(id) {
+      const item = cart.find(i => i.id === id);
+      return item ? item.qty : 0;
+    }
+
+    function updateCardAction(id) {
+      const container = document.getElementById('action-' + id);
+      if (!container) return;
+      const qty = getCartItemQuantity(id);
+      container.innerHTML = qty > 0 ? `
+        <div class="qty-widget">
+          <button onclick="changeCartQty(${id}, -1, this)">−</button>
+          <span class="qty-val">${qty}</span>
+          <button onclick="changeCartQty(${id}, 1, this)">+</button>
+        </div>
+      ` : `
+        <button class="add-btn" onclick="addToCart(${id}); updateCardAction(${id})">+ السلة</button>
+      `;
+    }
+
+    function changeCartQty(id, delta, btn) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      const newQty = item.qty + delta;
+      if (newQty < 1) {
+        removeFromCart(id);
+      } else {
+        updateQty(id, delta);
+      }
+      updateCardAction(id);
+      // إذا تم حذف المنتج، نعيد زر الإضافة
+      if (newQty < 1) {
+        const container = document.getElementById('action-' + id);
+        if (container) {
+          container.innerHTML = `<button class="add-btn" onclick="addToCart(${id}); updateCardAction(${id})">+ السلة</button>`;
+        }
+      }
+    }
+
+    // تعديل addToCart من cart.js ليستدعي updateCardAction
+    const originalAddToCart = addToCart;
+    addToCart = function(id) {
+      originalAddToCart(id);
+      updateCardAction(id);
+    };
+
+    const originalRemoveFromCart = removeFromCart;
+    removeFromCart = function(id) {
+      originalRemoveFromCart(id);
+      updateCardAction(id);
+    };
+
+    const originalUpdateQty = updateQty;
+    updateQty = function(id, delta) {
+      originalUpdateQty(id, delta);
+      updateCardAction(id);
+    };
+
     function handleAddToCart(btn, id) {
       addToCart(id);
-      btn.textContent = 'تم';
-      btn.classList.add('added');
-      setTimeout(() => {
-        btn.textContent = '+ السلة';
-        btn.classList.remove('added');
-      }, 1800);
     }
 
     function renderDetail(id) {
@@ -1798,9 +1686,8 @@
       closeCheckoutModal();
     }
 
-    // وظيفة طي الروابط في الفوتر على الجوال
+    // فتح/إغلاق روابط الفوتر على الجوال
     function toggleFooterLinks(titleElement) {
-      // التحقق من أننا في وضع الجوال (يمكن استخدام matchMedia أو فحص حجم النافذة)
       if (window.innerWidth <= 768) {
         const linkList = titleElement.nextElementSibling;
         const icon = titleElement.querySelector('.toggle-icon');
