@@ -386,10 +386,6 @@
       border-radius: var(--radius-xl);
     }
 
-    .stock-badge {
-      background: #e05050 !important;
-    }
-
     .card-body {
       padding: 14px 16px 16px;
       flex: 1;
@@ -1330,26 +1326,190 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- ===========================
+       قائمة المنتجات (يمكن تعديلها بسهولة)
+       =========================== -->
   <script>
     var products = [
-      { id: 1,  name: 'طقم بيجامة حريرية ناعمة',       category: 'بيجامات',   price: 349, badge: 'جديد', isNew: true,  stock: 5, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 2,  name: 'جلابة تقليدية بتطريز ملكي',      category: 'جلابيات',   price: 450, badge: null, isNew: true,  stock: 3, desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.', img: 'https://images.unsplash.com/photo-1551163943-3f7253a97941?w=500&q=80', sizes: ['XS','S','M','L'] },
-      { id: 3,  name: 'عباءة سوداء بتطريز فاخر',        category: 'عبايات',    price: 520, badge: 'الأكثر مبيعاً', isNew: true, stock: 2, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=500&q=80', sizes: ['S','M','L','XL','XXL'] },
-      { id: 4,  name: 'بدلة رياضية نسائية كاجوال',      category: 'معاطف',     price: 180, badge: 'جديد', isNew: true,  stock: 8, desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80', sizes: ['S','M','L'] },
-      { id: 5,  name: 'معطف شتوي كلاسيكي',              category: 'معاطف',     price: 680, badge: 'حصري', isNew: false, stock: 1, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80', sizes: ['XS','S','M','L'] },
-      { id: 6,  name: 'فستان سهرة طويل',               category: 'فساتين',    price: 720, badge: null, isNew: false, stock: 4, desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.', img: 'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=500&q=80', sizes: ['36','38','40','42'] },
-      { id: 7,  name: 'جلابة مطرزة بالعقيق',            category: 'جلابيات',   price: 590, badge: null, isNew: false, stock: 2, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.', img: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 8,  name: 'بيجامة قطيفة شتوية',            category: 'بيجامات',   price: 275, badge: null, isNew: false, stock: 6, desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.', img: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 9,  name: 'جلابة كروشيه صيفية',            category: 'جلابيات',   price: 390, badge: 'ترند', isNew: false, stock: 1, desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=80', sizes: ['S','M','L'] },
-      { id: 10, name: 'عباءة كريمية بحزام',            category: 'عبايات',    price: 449, badge: 'جديد', isNew: false, stock: 3, desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.', img: 'https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 11, name: 'فستان نهاري بنقشة الأزهار',      category: 'فساتين',    price: 310, badge: null, isNew: false, stock: 7, desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.', img: 'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&q=80', sizes: ['28','30','32','34'] },
-      { id: 12, name: 'معطف ترنش أنيق',                category: 'معاطف',     price: 530, badge: 'جديد', isNew: false, stock: 2, desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=80', sizes: ['XS','S','M','L'] },
-      { id: 13, name: 'حقيبة يد جلدية فاخرة',           category: 'إكسسوارات', price: 420, badge: null, isNew: false, stock: 1, desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.', img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&q=80', sizes: ['One Size'] },
-      { id: 14, name: 'وشاح حرير منقوش',               category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, stock: 3, desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.', img: 'https://images.unsplash.com/photo-1559563458-527698bb8bf1?w=500&q=80', sizes: ['One Size'] },
-      { id: 15, name: 'حزام جلد مطرز',                category: 'إكسسوارات', price: 230, badge: null, isNew: false, stock: 2, desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80', sizes: ['S','M','L'] }
+      // ---------- بيجامات ----------
+      {
+        id: 1,
+        name: 'طقم بيجامة حريرية ناعمة',
+        category: 'بيجامات',
+        price: 349,
+        badge: 'جديد',
+        isNew: true,
+        desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.',
+        img: 'images/بيجامة-حريرية.jpg',  // <-- غيري اسم الصورة هنا
+        sizes: ['S','M','L','XL']
+      },
+      {
+        id: 8,
+        name: 'بيجامة قطيفة شتوية',
+        category: 'بيجامات',
+        price: 275,
+        badge: null,
+        isNew: false,
+        desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.',
+        img: 'images/بيجامة-قطيفة.jpg',
+        sizes: ['S','M','L','XL']
+      },
+
+      // ---------- جلابيات ----------
+      {
+        id: 2,
+        name: 'جلابة تقليدية بتطريز ملكي',
+        category: 'جلابيات',
+        price: 450,
+        badge: null,
+        isNew: true,
+        desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.',
+        img: 'images/جلابة-تطريز-ملكي.jpg',
+        sizes: ['XS','S','M','L']
+      },
+      {
+        id: 7,
+        name: 'جلابة مطرزة بالعقيق',
+        category: 'جلابيات',
+        price: 590,
+        badge: null,
+        isNew: false,
+        desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.',
+        img: 'images/جلابة-عقيق.jpg',
+        sizes: ['S','M','L','XL']
+      },
+      {
+        id: 9,
+        name: 'جلابة كروشيه صيفية',
+        category: 'جلابيات',
+        price: 390,
+        badge: 'ترند',
+        isNew: false,
+        desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.',
+        img: 'images/جلابة-كروشيه.jpg',
+        sizes: ['S','M','L']
+      },
+
+      // ---------- فساتين ----------
+      {
+        id: 6,
+        name: 'فستان سهرة طويل',
+        category: 'فساتين',
+        price: 720,
+        badge: null,
+        isNew: false,
+        desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.',
+        img: 'images/فستان-سهرة.jpg',
+        sizes: ['36','38','40','42']
+      },
+      {
+        id: 11,
+        name: 'فستان نهاري بنقشة الأزهار',
+        category: 'فساتين',
+        price: 310,
+        badge: null,
+        isNew: false,
+        desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.',
+        img: 'images/فستان-نهاري.jpg',
+        sizes: ['28','30','32','34']
+      },
+
+      // ---------- عبايات ----------
+      {
+        id: 3,
+        name: 'عباءة سوداء بتطريز فاخر',
+        category: 'عبايات',
+        price: 520,
+        badge: 'الأكثر مبيعاً',
+        isNew: true,
+        desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.',
+        img: 'images/عباءة-ذهبي.jpg',
+        sizes: ['S','M','L','XL','XXL']
+      },
+      {
+        id: 10,
+        name: 'عباءة كريمية بحزام',
+        category: 'عبايات',
+        price: 449,
+        badge: 'جديد',
+        isNew: false,
+        desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.',
+        img: 'images/عباءة-كريمية.jpg',
+        sizes: ['S','M','L','XL']
+      },
+
+      // ---------- معاطف ----------
+      {
+        id: 4,
+        name: 'بدلة رياضية نسائية كاجوال',
+        category: 'معاطف',
+        price: 180,
+        badge: 'جديد',
+        isNew: true,
+        desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.',
+        img: 'images/بدلة-رياضية.jpg',
+        sizes: ['S','M','L']
+      },
+      {
+        id: 5,
+        name: 'معطف شتوي كلاسيكي',
+        category: 'معاطف',
+        price: 680,
+        badge: 'حصري',
+        isNew: false,
+        desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.',
+        img: 'images/معطف-كلاسيكي.jpg',
+        sizes: ['XS','S','M','L']
+      },
+      {
+        id: 12,
+        name: 'معطف ترنش أنيق',
+        category: 'معاطف',
+        price: 530,
+        badge: 'جديد',
+        isNew: false,
+        desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.',
+        img: 'images/معطف-ترنش.jpg',
+        sizes: ['XS','S','M','L']
+      },
+
+      // ---------- إكسسوارات ----------
+      {
+        id: 13,
+        name: 'حقيبة يد جلدية فاخرة',
+        category: 'إكسسوارات',
+        price: 420,
+        badge: null,
+        isNew: false,
+        desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.',
+        img: 'images/حقيبة-جلدية.jpg',
+        sizes: ['One Size']
+      },
+      {
+        id: 14,
+        name: 'وشاح حرير منقوش',
+        category: 'إكسسوارات',
+        price: 180,
+        badge: 'جديد',
+        isNew: true,
+        desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.',
+        img: 'images/وشاح-حرير.jpg',
+        sizes: ['One Size']
+      },
+      {
+        id: 15,
+        name: 'حزام جلد مطرز',
+        category: 'إكسسوارات',
+        price: 230,
+        badge: null,
+        isNew: false,
+        desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.',
+        img: 'images/حزام-مطرز.jpg',
+        sizes: ['S','M','L']
+      }
     ];
 
+    // الأقسام المستخدمة في الفلاتر والقوائم
     var categories = [
       { name: 'بيجامات',   filter: 'بيجامات' },
       { name: 'جلابيات',   filter: 'جلابيات' },
@@ -1359,7 +1519,7 @@
       { name: 'إكسسوارات', filter: 'إكسسوارات' }
     ];
 
-    var whatsappNumber = '212600000000';
+    var whatsappNumber = '212600000000'; // غيري الرقم إلى رقمك
   </script>
 
   <script src="cart.js"></script>
@@ -1375,7 +1535,6 @@
     }
     function isInWishlist(id) { return wishlist.includes(id); }
 
-    // Toast notification
     let toastTimer;
     function showToast(msg) {
       const t = document.getElementById('toast');
@@ -1386,7 +1545,6 @@
       toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
     }
 
-    // Navigation & History API
     async function navigate(page, productId, replace = false) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
@@ -1469,13 +1627,11 @@
     function filterAndGo(cat) { activeFilter = cat; navigate('products'); }
 
     function productCard(p) {
-      const stockBadge = p.stock < 3 ? 'سارعي! آخر قطع متوفرة' : p.badge;
-      const badgeClass = p.stock < 3 ? 'stock-badge' : '';
       return `
         <div class="product-card" onclick="navigate('detail', ${p.id})">
           <div class="card-img-wrap">
             <img src="${p.img}" alt="${p.name}" loading="lazy" />
-            ${stockBadge ? `<span class="card-badge ${badgeClass}">${stockBadge}</span>` : ''}
+            ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}
           </div>
           <div class="card-body">
             <div class="card-category">${p.category}</div>
