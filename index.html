@@ -7,8 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
-  <!-- Font Awesome للأيقونات الاحترافية -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
   <style>
     /* ============================
@@ -93,21 +91,11 @@
       cursor: pointer;
     }
 
-    .nav-logo .logo-icon {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      box-shadow: var(--shadow-sm);
-      color: #fff; /* أيقونة الجوهرة بيضاء */
-    }
-
     .nav-logo .logo-text {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--pink-deep);
-      letter-spacing: -.5px;
+      letter-spacing: -0.5px;
       font-family: 'Tajawal', sans-serif;
       background: linear-gradient(135deg, #e07898, #f0a0c0);
       -webkit-background-clip: text;
@@ -254,26 +242,6 @@
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(248,200,220,.5) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; left: -60px;
-      width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(240,160,192,.35) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
     .hero-badge {
       display: inline-block;
       background: var(--pink);
@@ -335,28 +303,6 @@
     .btn-secondary:hover {
       background: var(--pink-soft);
       transform: translateY(-3px);
-    }
-
-    /* Floating bubbles in hero */
-    .bubbles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(248,200,220,.25);
-      animation: float linear infinite;
-    }
-
-    @keyframes float {
-      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: .5; }
-      100% { transform: translateY(-120px) scale(1); opacity: 0; }
     }
 
     /* ============================
@@ -504,39 +450,53 @@
     }
 
     /* ============================
-       FILTER BAR
+       FILTER BAR (تصميم جديد مبسط)
     ============================ */
     .filter-bar {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      gap: 4px;
       flex-wrap: wrap;
       margin-bottom: 30px;
+      padding: 12px 0;
+      border-bottom: 2px solid var(--border);
     }
 
     .filter-label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-light);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-left: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .filter-btn {
-      padding: 8px 18px;
-      border-radius: var(--radius-xl);
+      padding: 8px 20px;
+      border-radius: 0;
       font-size: 13px;
       font-weight: 600;
-      background: var(--white);
+      background: transparent;
       color: var(--text-light);
-      border: 1.5px solid var(--border);
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
       transition: all var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
     }
 
-    .filter-btn:hover { border-color: var(--pink-dark); color: var(--pink-deep); }
+    .filter-btn:hover {
+      color: var(--pink-deep);
+      border-bottom-color: var(--pink);
+    }
 
     .filter-btn.active {
-      background: var(--pink-deep);
-      color: var(--white);
-      border-color: var(--pink-deep);
+      color: var(--pink-deep);
+      border-bottom-color: var(--pink-deep);
+      font-weight: 700;
     }
 
     /* ============================
@@ -565,7 +525,6 @@
       box-shadow: var(--shadow-md);
     }
 
-    .cat-card .cat-icon { font-size: 30px; margin-bottom: 8px; }
     .cat-card .cat-name { font-size: 14px; font-weight: 700; color: var(--text); }
     .cat-card .cat-count { font-size: 12px; color: var(--text-muted); }
 
@@ -1088,7 +1047,6 @@
       box-shadow: var(--shadow-lg);
       transition: transform .35s cubic-bezier(.34,1.56,.64,1);
       white-space: nowrap;
-      display: flex; align-items: center; gap: 8px;
     }
 
     .toast.show { transform: translateX(-50%) translateY(0); }
@@ -1173,11 +1131,6 @@
     .footer-bottom span { color: var(--pink-deep); }
 
     /* ============================
-       CHECKOUT SUCCESS MODAL (hidden, replaced by WhatsApp)
-    ============================ */
-    /* لا يوجد موديل حالياً */
-
-    /* ============================
        RESPONSIVE
     ============================ */
     @media (max-width: 900px) {
@@ -1220,7 +1173,6 @@
     <div class="container">
       <div class="nav-inner">
         <div class="nav-logo" onclick="navigate('home')">
-          <div class="logo-icon"><i class="fas fa-gem"></i></div>
           <span class="logo-text">جوهرة اكرام</span>
         </div>
 
@@ -1233,7 +1185,7 @@
 
         <div class="nav-actions">
           <button class="cart-btn" onclick="navigate('cart')">
-            <i class="fas fa-shopping-cart"></i> السلة
+            السلة
             <span class="cart-count" id="cart-count">0</span>
           </button>
           <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
@@ -1246,11 +1198,11 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#" onclick="navigate('home'); closeMobileMenu()" data-page="home"><i class="fas fa-home"></i> الرئيسية</a>
-    <a href="#" onclick="navigate('products'); closeMobileMenu()" data-page="products"><i class="fas fa-tshirt"></i> المنتجات</a>
-    <a href="#" onclick="navigate('about'); closeMobileMenu()" data-page="about"><i class="fas fa-info-circle"></i> عن المتجر</a>
-    <a href="#" onclick="navigate('contact'); closeMobileMenu()" data-page="contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
-    <a href="#" onclick="navigate('cart'); closeMobileMenu()" data-page="cart"><i class="fas fa-shopping-cart"></i> السلة</a>
+    <a href="#" onclick="navigate('home'); closeMobileMenu()" data-page="home">الرئيسية</a>
+    <a href="#" onclick="navigate('products'); closeMobileMenu()" data-page="products">المنتجات</a>
+    <a href="#" onclick="navigate('about'); closeMobileMenu()" data-page="about">عن المتجر</a>
+    <a href="#" onclick="navigate('contact'); closeMobileMenu()" data-page="contact">تواصل معنا</a>
+    <a href="#" onclick="navigate('cart'); closeMobileMenu()" data-page="cart">السلة</a>
   </div>
 
   <!-- ============================
@@ -1263,12 +1215,11 @@
 
       <!-- Hero -->
       <section class="hero">
-        <div class="bubbles" id="bubbles"></div>
-        <div class="hero-badge"><i class="fas fa-sparkles"></i> مجموعة صيف 2025 الجديدة</div>
+        <div class="hero-badge">مجموعة صيف 2025 الجديدة</div>
         <h1>أزياء تُعبّر<br>عن <span>أناقتكِ</span></h1>
         <p>اكتشفي أحدث صيحات الموضة النسائية — تصاميم عصرية بلمسة مغربية راقية.</p>
         <div class="hero-btns">
-          <button class="btn-primary" onclick="navigate('products')"><i class="fas fa-shopping-bag"></i> تسوقي الآن</button>
+          <button class="btn-primary" onclick="navigate('products')">تسوقي الآن</button>
           <button class="btn-secondary" onclick="navigate('about')">اعرفي أكثر</button>
         </div>
       </section>
@@ -1305,32 +1256,26 @@
         <div class="container">
           <div class="categories-row">
             <div class="cat-card">
-              <div class="cat-icon"><i class="fas fa-truck"></i></div>
               <div class="cat-name">توصيل سريع</div>
               <div class="cat-count">خلال 24-48 ساعة</div>
             </div>
             <div class="cat-card">
-              <div class="cat-icon"><i class="fas fa-undo-alt"></i></div>
               <div class="cat-name">إرجاع مجاني</div>
               <div class="cat-count">خلال 14 يوم</div>
             </div>
             <div class="cat-card">
-              <div class="cat-icon"><i class="fas fa-lock"></i></div>
               <div class="cat-name">دفع آمن</div>
               <div class="cat-count">100% مضمون</div>
             </div>
             <div class="cat-card">
-              <div class="cat-icon"><i class="fas fa-award"></i></div>
               <div class="cat-name">جودة عالية</div>
               <div class="cat-count">أقمشة مختارة</div>
             </div>
             <div class="cat-card">
-              <div class="cat-icon"><i class="fas fa-star"></i></div>
               <div class="cat-name">تصاميم حصرية</div>
               <div class="cat-count">مجموعات موسمية</div>
             </div>
             <div class="cat-card">
-              <div class="cat-icon"><i class="fas fa-headset"></i></div>
               <div class="cat-name">دعم دائم</div>
               <div class="cat-count">7/7 أيام</div>
             </div>
@@ -1364,7 +1309,7 @@
     <div class="page" id="page-detail">
       <section class="section">
         <div class="container">
-          <div class="back-btn" onclick="navigate('products')"><i class="fas fa-arrow-right"></i> العودة للمنتجات</div>
+          <div class="back-btn" onclick="navigate('products')">← العودة للمنتجات</div>
           <div class="detail-wrap" id="detail-wrap"></div>
         </div>
       </section>
@@ -1375,7 +1320,7 @@
       <section class="section">
         <div class="container">
           <div class="section-header">
-            <span class="tag"><i class="fas fa-shopping-cart"></i></span>
+            <span class="tag">السلة</span>
             <h2>سلة التسوق</h2>
           </div>
           <div id="cart-content"></div>
@@ -1388,7 +1333,7 @@
       <section class="section">
         <div class="container">
           <div class="about-grid">
-            <div class="about-img-block"><i class="fas fa-gem"></i></div>
+            <div class="about-img-block" style="font-size: 80px; font-weight: 900; color: var(--pink-deep);">جوهرة اكرام</div>
             <div class="about-content">
               <div class="section-header" style="text-align:right; margin-bottom:20px;">
                 <span class="tag">قصتنا</span>
@@ -1408,7 +1353,7 @@
                   <div class="stat-label">عميلة سعيدة</div>
                 </div>
                 <div class="stat-box">
-                  <div class="stat-num">4.9⭐</div>
+                  <div class="stat-num">4.9</div>
                   <div class="stat-label">تقييم العملاء</div>
                 </div>
               </div>
@@ -1422,28 +1367,24 @@
           </div>
           <div class="values-list">
             <div class="value-item">
-              <div class="value-icon"><i class="fas fa-gem"></i></div>
               <div class="value-text">
                 <h4>الجودة قبل كل شيء</h4>
                 <p>نختار أفضل الأقمشة والمواد لنضمن لكِ راحة ومتانة في كل قطعة.</p>
               </div>
             </div>
             <div class="value-item">
-              <div class="value-icon"><i class="fas fa-leaf"></i></div>
               <div class="value-text">
                 <h4>الاستدامة</h4>
                 <p>نلتزم بممارسات أخلاقية في التصنيع ونسعى للتقليل من أثرنا البيئي.</p>
               </div>
             </div>
             <div class="value-item">
-              <div class="value-icon"><i class="fas fa-tshirt"></i></div>
               <div class="value-text">
                 <h4>الموضة للجميع</h4>
                 <p>نوفر تصاميم متنوعة لكل الأجسام والأذواق — لأن كل امرأة تستحق الأناقة.</p>
               </div>
             </div>
             <div class="value-item">
-              <div class="value-icon"><i class="fas fa-heart"></i></div>
               <div class="value-text">
                 <h4>خدمة من القلب</h4>
                 <p>فريقنا دائماً هنا لمساعدتكِ في اختيار ما يناسبكِ تماماً.</p>
@@ -1468,28 +1409,24 @@
               <h2>نحن هنا لمساعدتكِ</h2>
               <p>هل لديكِ سؤال حول طلبك؟ أو تريدين المساعدة في اختيار المقاس المناسب؟ لا تترددي في التواصل معنا!</p>
               <div class="contact-item">
-                <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="ci-text">
                   <h4>العنوان</h4>
                   <p>الدار البيضاء، المغرب</p>
                 </div>
               </div>
               <div class="contact-item">
-                <div class="ci-icon"><i class="fas fa-phone"></i></div>
                 <div class="ci-text">
                   <h4>الهاتف</h4>
                   <p>+212 6 00 00 00 00</p>
                 </div>
               </div>
               <div class="contact-item">
-                <div class="ci-icon"><i class="fas fa-envelope"></i></div>
                 <div class="ci-text">
                   <h4>البريد الإلكتروني</h4>
                   <p>contact@warda.ma</p>
                 </div>
               </div>
               <div class="contact-item">
-                <div class="ci-icon"><i class="fas fa-clock"></i></div>
                 <div class="ci-text">
                   <h4>ساعات العمل</h4>
                   <p>الاثنين – السبت: 9ص – 9م</p>
@@ -1516,11 +1453,10 @@
                   <textarea class="form-control" id="c-message" rows="5" placeholder="اكتبي رسالتكِ هنا..."></textarea>
                 </div>
                 <button class="submit-btn" onclick="submitContact()">
-                  <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                  إرسال الرسالة
                 </button>
               </div>
               <div class="form-success" id="form-success">
-                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
                 <h3>تم الإرسال بنجاح!</h3>
                 <p>شكراً لتواصلكِ معنا. سنرد عليكِ في أقرب وقت.</p>
               </div>
@@ -1539,13 +1475,13 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="logo-text"><i class="fas fa-gem"></i> جوهرة اكرام</div>
+          <div class="logo-text">جوهرة اكرام</div>
           <p>متجرك الأول للأزياء النسائية العصرية. نجمع بين الأناقة والجودة لنقدم لكِ تجربة تسوق استثنائية.</p>
           <div class="social-links">
-            <a class="social-link" href="#"><i class="fab fa-facebook"></i></a>
-            <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
-            <a class="social-link" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="social-link" href="#"><i class="fab fa-whatsapp"></i></a>
+            <a class="social-link" href="#">ف</a>
+            <a class="social-link" href="#">ان</a>
+            <a class="social-link" href="#">ت</a>
+            <a class="social-link" href="#">و</a>
           </div>
         </div>
         <div class="footer-col">
@@ -1573,7 +1509,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        جميع الحقوق محفوظة &copy; 2025 <span>جوهرة اكرام</span> — صُنع بـ <i class="fas fa-heart"></i> في المغرب
+        جميع الحقوق محفوظة &copy; 2025 <span>جوهرة اكرام</span> — صُنع بـ حب في المغرب
       </div>
     </div>
   </footer>
@@ -1601,22 +1537,21 @@
       { id: 12, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: true, desc: 'عباءة كريمية ناعمة بحزام متقن يمنحكِ قوامًا مثاليًا. تناسب المناسبات الرسمية.', img: 'https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=500&q=80', sizes: ['S','M','L','XL'] }
     ];
 
-    // أيقونات الأقسام (لن نستخدم الإيموجي)
     const categories = [
-      { name: 'بيجامة',    icon: '<i class="fas fa-moon"></i>', filter: 'بيجامة' },
-      { name: 'جلابة',    icon: '<i class="fas fa-female"></i>', filter: 'جلابة' },
-      { name: 'جينز',     icon: '<i class="fas fa-tshirt"></i>', filter: 'جينز' },
-      { name: 'ليكات',    icon: '<i class="fas fa-walking"></i>', filter: 'ليكات' },
-      { name: 'مونطو',    icon: '<i class="fas fa-cloud-sun"></i>', filter: 'مونطو' },
-      { name: 'سبرديلات', icon: '<i class="fas fa-shoe-prints"></i>', filter: 'سبرديلات' },
-      { name: 'عبايات',   icon: '<i class="fas fa-vest"></i>', filter: 'عبايات' },
-      { name: 'صايات',    icon: '<i class="fas fa-dress"></i>', filter: 'صايات' }
+      { name: 'بيجامة',    filter: 'بيجامة' },
+      { name: 'جلابة',    filter: 'جلابة' },
+      { name: 'جينز',     filter: 'جينز' },
+      { name: 'ليكات',    filter: 'ليكات' },
+      { name: 'مونطو',    filter: 'مونطو' },
+      { name: 'سبرديلات', filter: 'سبرديلات' },
+      { name: 'عبايات',   filter: 'عبايات' },
+      { name: 'صايات',    filter: 'صايات' }
     ];
 
-    const whatsappNumber = '212600000000'; // رقم الواتساب للتوجيه
+    const whatsappNumber = '212600000000';
   </script>
 
-  <!-- ملف السلة المنفصل (قوي ومطور) -->
+  <!-- ملف السلة المنفصل -->
   <script src="cart.js"></script>
 
   <!-- سكريبت الموقع الرئيسي -->
@@ -1635,14 +1570,14 @@
       if (index === -1) {
         wishlist.push(id);
         if (btn) {
-          btn.innerHTML = '<i class="fas fa-heart"></i>';
+          btn.textContent = 'محفوظ';
           btn.style.color = '#e07898';
         }
         showToast('تمت الإضافة للمفضلة');
       } else {
         wishlist.splice(index, 1);
         if (btn) {
-          btn.innerHTML = '<i class="far fa-heart"></i>';
+          btn.textContent = 'حفظ';
           btn.style.color = '';
         }
         showToast('تمت الإزالة من المفضلة');
@@ -1658,13 +1593,9 @@
        HELPER: TOAST
     ============================ */
     let toastTimer;
-    function showToast(msg, iconClass) {
+    function showToast(msg) {
       const t = document.getElementById('toast');
-      if (iconClass) {
-        t.innerHTML = `<i class="${iconClass}"></i> ${msg}`;
-      } else {
-        t.textContent = msg;
-      }
+      t.textContent = msg;
       t.classList.add('show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
@@ -1704,7 +1635,6 @@
         const count = products.filter(p => p.category === c.filter).length;
         return `
           <div class="cat-card" onclick="filterAndGo('${c.filter}')">
-            <div class="cat-icon">${c.icon}</div>
             <div class="cat-name">${c.name}</div>
             <div class="cat-count">${count} منتج</div>
           </div>`;
@@ -1721,7 +1651,7 @@
     }
 
     /* ============================
-       FILTER BAR (الأقسام المطلوبة فقط)
+       FILTER BAR
     ============================ */
     const filterCategories = ['الكل', 'بيجامة', 'جلابة', 'جينز', 'ليكات', 'مونطو', 'سبرديلات', 'عبايات', 'صايات'];
 
@@ -1767,7 +1697,7 @@
             <div class="card-name">${p.name}</div>
             <div class="card-footer">
               <div class="card-price">${p.price} <span>درهم</span></div>
-              <button class="add-to-cart-btn" onclick="event.stopPropagation(); handleAddToCart(this, ${p.id})"><i class="fas fa-cart-plus"></i> السلة</button>
+              <button class="add-to-cart-btn" onclick="event.stopPropagation(); handleAddToCart(this, ${p.id})">+ السلة</button>
             </div>
           </div>
         </div>`;
@@ -1775,10 +1705,10 @@
 
     function handleAddToCart(btn, id) {
       addToCart(id);
-      btn.innerHTML = '<i class="fas fa-check"></i> تمت';
+      btn.textContent = 'تم';
       btn.classList.add('added');
       setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-cart-plus"></i> السلة';
+        btn.textContent = '+ السلة';
         btn.classList.remove('added');
       }, 1800);
     }
@@ -1809,11 +1739,11 @@
             </div>
           </div>
           <div class="detail-actions">
-            <button class="detail-add-btn" onclick="addToCart(${p.id}); this.innerHTML='<i class=\\'fas fa-check\\'></i> تمت الإضافة للسلة!';">
-              <i class="fas fa-cart-plus"></i> أضف للسلة
+            <button class="detail-add-btn" onclick="addToCart(${p.id}); this.textContent='تمت الإضافة للسلة!';">
+              أضف للسلة
             </button>
             <button class="wishlist-btn" id="wishlist-btn-${p.id}" onclick="toggleWishlist(${p.id}, this)" style="color:${inWishlist ? 'var(--pink-deep)' : ''}">
-              ${inWishlist ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}
+              ${inWishlist ? 'محفوظ' : 'حفظ'}
             </button>
           </div>
         </div>`;
@@ -1830,34 +1760,13 @@
     function submitContact() {
       const name    = document.getElementById('c-name').value.trim();
       const email   = document.getElementById('c-email').value.trim();
-      const subject = document.getElementById('c-subject').value.trim();
       const message = document.getElementById('c-message').value.trim();
       if (!name || !email || !message) {
-        showToast('يرجى ملء جميع الحقول المطلوبة', 'fas fa-exclamation-circle');
+        showToast('يرجى ملء جميع الحقول المطلوبة');
         return;
       }
       document.getElementById('contact-form-inner').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
-    }
-
-    /* ============================
-       HERO BUBBLES
-    ============================ */
-    function createBubbles() {
-      const container = document.getElementById('bubbles');
-      if (!container) return;
-      for (let i = 0; i < 12; i++) {
-        const b = document.createElement('div');
-        b.className = 'bubble';
-        const size = Math.random() * 50 + 15;
-        b.style.cssText = `
-          width:${size}px; height:${size}px;
-          left:${Math.random()*100}%;
-          animation-duration:${Math.random()*8+6}s;
-          animation-delay:${Math.random()*6}s;
-        `;
-        container.appendChild(b);
-      }
     }
 
     /* ============================
@@ -1890,7 +1799,6 @@
       renderHomeCategories();
       renderNewArrivals();
       renderFilterBar();
-      createBubbles();
     });
   </script>
 </body>
