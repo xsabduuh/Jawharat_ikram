@@ -1,5 +1,5 @@
 /* ============================
-   cart.js - سلة التسوق المتطورة (مُحدَّثة)
+   cart.js - سلة التسوق المتطورة
    ============================ */
 
 let cart = JSON.parse(localStorage.getItem('warda_cart') || '[]');
@@ -31,7 +31,7 @@ function addToCart(id) {
       price: product.price,
       img: product.img,
       qty: 1,
-      stock: product.stock // لتتبّع المخزون
+      stock: product.stock
     });
   }
   saveCart();
@@ -72,7 +72,7 @@ function updateQty(id, delta) {
 
 function calculateTotals() {
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const shipping = subtotal > 500 ? 0 : 35;
+  const shipping = subtotal >= 300 ? 0 : 20;  // تغيير: 300 درهم للتوصيل المجاني، وإلا 20 درهم
   const total = subtotal + shipping;
   return { subtotal, shipping, total };
 }
@@ -93,9 +93,9 @@ function renderCart() {
 
   const { subtotal, shipping, total } = calculateTotals();
 
-  // شريط التوصيل المجاني
-  const progressPercent = Math.min((subtotal / 500) * 100, 100);
-  const remaining = subtotal >= 500 ? 0 : 500 - subtotal;
+  // شريط التوصيل المجاني (الهدف 300 درهم)
+  const progressPercent = Math.min((subtotal / 300) * 100, 100);
+  const remaining = subtotal >= 300 ? 0 : 300 - subtotal;
   const freeShippingMsg = remaining > 0
     ? `بقي لكِ ${remaining} درهم للشحن المجاني`
     : 'لقد حصلتِ على توصيل مجاني!';
@@ -184,6 +184,7 @@ function renderCart() {
           <span>التوصيل</span>
           <span class="val">${shipping === 0 ? 'مجاني' : shipping + ' درهم'}</span>
         </div>
+        ${shipping > 0 ? `<div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">أضيفي ${300 - subtotal} درهم أخرى للحصول على توصيل مجاني</div>` : ''}
         <div class="summary-row total">
           <span>الإجمالي</span>
           <span class="val">${total} درهم</span>
