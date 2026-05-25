@@ -1,22 +1,406 @@
 <div class="page active" id="page-about">
-  <section class="section">
+  <style>
+    /* أنماط خاصة بصفحة من نحن فقط */
+    .about-hero {
+      background: linear-gradient(135deg, #fdf0f5 0%, #fff5f9 40%, #fce8f2 100%);
+      padding: 80px 20px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .about-hero h1 span {
+      color: var(--pink-deep);
+    }
+
+    .about-hero .hero-subtitle {
+      font-size: clamp(14px, 2.5vw, 16px);
+      color: var(--text-light);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* قسم الإحصائيات */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 50px 0;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 24px 16px;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .stat-card:hover {
+      border-color: var(--pink);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--pink-deep);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* قسم القصة */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin: 50px 0;
+    }
+
+    .story-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--pink-soft), var(--pink));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-image-inner {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .story-image-inner .brand-name {
+      font-family: var(--font-logo);
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e07898, #c94b6c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .story-image-inner .brand-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .story-content h2 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .story-content h2 span {
+      color: var(--pink-deep);
+    }
+
+    .story-content p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 2;
+      margin-bottom: 14px;
+    }
+
+    /* قسم القيم */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+      margin: 40px 0;
+    }
+
+    .value-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 28px 22px;
+      transition: all var(--transition);
+      text-align: center;
+    }
+
+    .value-card:hover {
+      border-color: var(--pink);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .value-card .value-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 22px;
+      color: var(--pink-deep);
+      font-weight: 800;
+    }
+
+    .value-card h4 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .value-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* قسم الفريق */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .team-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .team-card:hover {
+      border-color: var(--pink);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .team-avatar {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--pink-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: var(--pink-deep);
+      font-weight: 800;
+    }
+
+    .team-info {
+      padding: 16px;
+    }
+
+    .team-info h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .team-info .team-role {
+      font-size: 12px;
+      color: var(--pink-deep);
+      font-weight: 600;
+    }
+
+    /* قسم التعهد */
+    .promise-section {
+      background: linear-gradient(135deg, #fdf0f5, #fff5f9);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 40px 30px;
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .promise-section h2 {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .promise-section p {
+      font-size: 14px;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+
+    /* استجابة الجوال */
+    @media (max-width: 768px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .story-image {
+        aspect-ratio: 16/10;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Hero -->
+  <section class="about-hero">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-img-block">جوهرة اكرام</div>
-        <div class="about-content">
-          <div class="section-header" style="text-align:right; margin-bottom:20px;">
-            <span class="tag">قصتنا</span>
-          </div>
-          <h2>أزياء تُلهم <span>الثقة</span> والأناقة</h2>
-          <p>متجر <strong>جوهرة اكرام</strong> هو وجهتك الأولى للأزياء النسائية العصرية في المغرب. نؤمن بأن الملابس ليست مجرد قماش — بل هي تعبير عن هويتك وأناقتك.</p>
-          <p>منذ تأسيسنا، نحرص على تقديم أجود الأقمشة وأحدث التصاميم المستوحاة من أحدث صيحات الموضة العالمية مع لمسة مغربية أصيلة.</p>
-          <p>كل قطعة في متجرنا مختارة بعناية لتناسب المرأة العصرية — في العمل، في الخروجات، وفي كل مناسبة.</p>
-          <div class="about-stats">
-            <div class="stat-box"><div class="stat-num">+500</div><div class="stat-label">منتج متاح</div></div>
-            <div class="stat-box"><div class="stat-num">+2K</div><div class="stat-label">عميلة سعيدة</div></div>
-            <div class="stat-box"><div class="stat-num">4.9</div><div class="stat-label">تقييم العملاء</div></div>
+      <span class="tag" style="background: var(--pink); color: var(--pink-deep); padding: 4px 14px; border-radius: 40px; font-size: 12px; font-weight: 700;">قصتنا</span>
+      <h1 style="margin-top: 18px;">من نحن <span>جوهرة إكرام</span></h1>
+      <p class="hero-subtitle">حيث تلتقي الأناقة المغربية الأصيلة بأحدث صيحات الموضة العالمية</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 50px;">
+    <div class="container">
+      <!-- إحصائيات -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-number">+500</span>
+          <span class="stat-label">منتج في متجرنا</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">+2000</span>
+          <span class="stat-label">عميلة سعيدة</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">4.9</span>
+          <span class="stat-label">تقييم العملاء</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">3</span>
+          <span class="stat-label">سنوات من الخبرة</span>
+        </div>
+      </div>
+
+      <!-- القصة -->
+      <div class="story-grid">
+        <div class="story-image">
+          <div class="story-image-inner">
+            <div class="brand-name">جوهرة إكرام</div>
+            <div class="brand-tagline">أناقة مغربية بلمسة عصرية</div>
           </div>
         </div>
+        <div class="story-content">
+          <h2>قصتنا بدأت <span>من حلم</span></h2>
+          <p>انطلق متجر <strong>جوهرة إكرام</strong> من شغف عميق بالأزياء والتراث المغربي. آمنّا بأن كل امرأة تستحق أن تشعر بالأناقة والثقة في كل إطلالة، دون أن تضطر للاختيار بين الجودة والسعر المناسب.</p>
+          <p>من غرفة صغيرة في الدار البيضاء، بدأنا باختيار أقمشة بعناية، والحرص على أدق تفاصيل التطريز والخياطة. كنا نؤمن بأن الملابس ليست مجرد قماش، بل هي انعكاس لشخصية المرأة وهويتها.</p>
+          <p>اليوم، ومع أكثر من <strong>500 منتج</strong> و<strong>أكثر من 2000 عميلة</strong>، ما زلنا نعمل بنفس الشغف والالتزام. كل قطعة نختارها تحكي قصة، وكل تصميم يعكس ذوقاً رفيعاً يمزج بين الأصالة المغربية والأناقة العصرية.</p>
+        </div>
+      </div>
+
+      <!-- قيمنا -->
+      <div class="section-header" style="margin-top: 60px;">
+        <span class="tag">قيمنا</span>
+        <h2>ما يميّزنا</h2>
+        <p>القيم التي نبني عليها علاقتنا مع عميلاتنا</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">Q</div>
+          <h4>جودة لا نقبل المساومة عليها</h4>
+          <p>نختار أرقى أنواع الأقمشة ونراقب كل مراحل التصنيع لضمان حصولكِ على قطع تدوم طويلاً وتحافظ على رونقها.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">S</div>
+          <h4>أناقة بأسعار مناسبة</h4>
+          <p>نؤمن بأن الأناقة حق للجميع. نوفر تصاميم عصرية راقية بأسعار تناسب مختلف الميزانيات دون التنازل عن الجودة.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">M</div>
+          <h4>لمسة مغربية أصيلة</h4>
+          <p>نفخر بتراثنا المغربي ونمزجه بأحدث صيحات الموضة العالمية لنقدم لكِ تصاميم فريدة لا تجدينها في أي مكان آخر.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">H</div>
+          <h4>خدمة عملاء من القلب</h4>
+          <p>فريقنا موجود دائماً للإجابة على استفساراتكِ ومساعدتكِ في اختيار القطع التي تناسب ذوقكِ وتليق بإطلالتكِ.</p>
+        </div>
+      </div>
+
+      <!-- الفريق -->
+      <div class="section-header" style="margin-top: 60px;">
+        <span class="tag">فريقنا</span>
+        <h2>خلف كل قطعة فريق شغوف</h2>
+        <p>تعرفي على فريق جوهرة إكرام الذي يعمل يومياً ليصلكِ الأفضل</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">إ</div>
+          <div class="team-info">
+            <h4>إكرام</h4>
+            <p class="team-role">المؤسسة والمديرة</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">ف</div>
+          <div class="team-info">
+            <h4>فاطمة</h4>
+            <p class="team-role">مصممة أزياء</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">م</div>
+          <div class="team-info">
+            <h4>مريم</h4>
+            <p class="team-role">خدمة العملاء</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">س</div>
+          <div class="team-info">
+            <h4>سعاد</h4>
+            <p class="team-role">الشحن والتوصيل</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعهدنا -->
+      <div class="promise-section">
+        <h2>تعهدنا لكِ</h2>
+        <p>نلتزم في <strong>جوهرة إكرام</strong> بتقديم أجود المنتجات وأفضل خدمة. نسعى لأن تكون كل تجربة تسوق معنا ممتعة وسلسة، بدءاً من لحظة تصفحكِ للمتجر وحتى وصول طلبكِ إلى باب منزلكِ. رضاكِ هو مقياس نجاحنا.</p>
       </div>
     </div>
   </section>
