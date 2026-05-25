@@ -173,74 +173,9 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .form-success {
-      text-align: center;
-      padding: 40px 20px;
-      display: none;
-    }
-
-    .form-success .success-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .form-success h3 {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .form-success p {
-      font-size: 14px;
-      color: var(--text-light);
-      max-width: 400px;
-      margin: 0 auto 20px;
-    }
-
-    /* قسم الأسئلة الشائعة */
-    .faq-section {
-      margin-top: 60px;
-    }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
-
-    .faq-item {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      padding: 18px 20px;
-      transition: all var(--transition);
-    }
-
-    .faq-item:hover {
-      border-color: var(--pink);
-    }
-
-    .faq-item .faq-question {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .faq-item .faq-answer {
-      font-size: 13px;
-      color: var(--text-light);
-      line-height: 1.7;
-    }
-
     /* استجابة الجوال */
     @media (max-width: 768px) {
       .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .faq-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -261,15 +196,15 @@
         <!-- معلومات التواصل -->
         <div class="contact-details">
           <div class="contact-card">
-            <div class="cc-icon">P</div>
+            <div class="cc-icon">📞</div>
             <div class="cc-info">
               <h4>رقم الهاتف</h4>
-              <p>+212 6 00 00 00 00</p>
+              <p>+212 727-726891</p>
             </div>
           </div>
 
           <div class="contact-card">
-            <div class="cc-icon">@</div>
+            <div class="cc-icon">✉️</div>
             <div class="cc-info">
               <h4>البريد الإلكتروني</h4>
               <p>contact@warda.ma</p>
@@ -277,7 +212,7 @@
           </div>
 
           <div class="contact-card">
-            <div class="cc-icon">A</div>
+            <div class="cc-icon">📍</div>
             <div class="cc-info">
               <h4>العنوان</h4>
               <p>الدار البيضاء، المغرب</p>
@@ -285,144 +220,88 @@
           </div>
 
           <div class="contact-card">
-            <div class="cc-icon">T</div>
-            <div class="cc-info">
-              <h4>ساعات العمل</h4>
-              <p>الاثنين – السبت: 9 صباحاً – 9 مساءً</p>
-            </div>
-          </div>
-
-          <div class="contact-card">
-            <div class="cc-icon">W</div>
+            <div class="cc-icon">💬</div>
             <div class="cc-info">
               <h4>واتساب</h4>
-              <p>+212 6 00 00 00 00</p>
+              <p>+212 727-726891</p>
             </div>
           </div>
 
-          <!-- روابط سريعة -->
+          <!-- روابط سريعة مع أيقونات social media -->
           <div class="contact-card" style="flex-direction: column; align-items: flex-start; gap: 12px;">
             <p style="font-size:14px; color: var(--text-light);">يمكنكِ أيضاً متابعتنا على:</p>
-            <div style="display:flex; gap:10px;">
-              <a href="#" style="width:40px; height:40px; border-radius:50%; background:var(--pink-soft); display:flex; align-items:center; justify-content:center; color:var(--pink-deep); font-weight:700; text-decoration:none;">ف</a>
-              <a href="#" style="width:40px; height:40px; border-radius:50%; background:var(--pink-soft); display:flex; align-items:center; justify-content:center; color:var(--pink-deep); font-weight:700; text-decoration:none;">ان</a>
-              <a href="#" style="width:40px; height:40px; border-radius:50%; background:var(--pink-soft); display:flex; align-items:center; justify-content:center; color:var(--pink-deep); font-weight:700; text-decoration:none;">ت</a>
-              <a href="#" style="width:40px; height:40px; border-radius:50%; background:var(--pink-soft); display:flex; align-items:center; justify-content:center; color:var(--pink-deep); font-weight:700; text-decoration:none;">و</a>
+            <div style="display: flex; gap: 12px;">
+              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
+                <i class="fab fa-tiktok"></i>
+              </a>
+              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
+                <i class="fab fa-facebook-f"></i>
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- نموذج التواصل -->
+        <!-- نموذج التواصل (معدل: بدون بريد إلكتروني ولا هاتف، يرسل واتساب) -->
         <div class="contact-form-card">
-          <div id="contact-form-inner">
-            <h3>أرسلي لنا رسالة</h3>
-            <p class="form-subtitle">املئي النموذج أدناه وسنرد عليكِ في أقرب وقت</p>
+          <h3>أرسلي لنا رسالة</h3>
+          <p class="form-subtitle">املئي النموذج وسنتواصل معكِ عبر واتساب مباشرة</p>
 
-            <div class="form-group">
-              <label>الاسم الكامل <span class="required">*</span></label>
-              <input type="text" class="form-control" id="c-name" placeholder="أدخلي اسمكِ الكامل" />
-            </div>
-
-            <div class="form-group">
-              <label>البريد الإلكتروني <span class="required">*</span></label>
-              <input type="email" class="form-control" id="c-email" placeholder="example@email.com" />
-            </div>
-
-            <div class="form-group">
-              <label>رقم الهاتف</label>
-              <input type="tel" class="form-control" id="c-phone" placeholder="مثال: 0612345678" />
-            </div>
-
-            <div class="form-group">
-              <label>الموضوع</label>
-              <input type="text" class="form-control" id="c-subject" placeholder="موضوع رسالتكِ" />
-            </div>
-
-            <div class="form-group">
-              <label>الرسالة <span class="required">*</span></label>
-              <textarea class="form-control" id="c-message" rows="5" placeholder="اكتبي رسالتكِ هنا..."></textarea>
-            </div>
-
-            <button class="submit-contact-btn" onclick="submitContactForm()">
-              إرسال الرسالة
-            </button>
+          <div class="form-group">
+            <label>الاسم الكامل <span class="required">*</span></label>
+            <input type="text" class="form-control" id="c-name" placeholder="أدخلي اسمكِ الكامل" />
           </div>
 
-          <div class="form-success" id="contact-form-success">
-            <div class="success-icon">OK</div>
-            <h3>تم إرسال رسالتكِ بنجاح!</h3>
-            <p>شكراً لتواصلكِ معنا. سنقوم بمراجعة رسالتكِ والرد عليكِ خلال 24 ساعة عمل.</p>
-            <button class="submit-contact-btn" onclick="resetContactForm()" style="max-width: 200px; margin: 0 auto;">
-              إرسال رسالة جديدة
-            </button>
+          <div class="form-group">
+            <label>الموضوع</label>
+            <input type="text" class="form-control" id="c-subject" placeholder="مثل: استفسار عن منتج" />
           </div>
-        </div>
-      </div>
 
-      <!-- الأسئلة الشائعة -->
-      <div class="faq-section">
-        <div class="section-header">
-          <span class="tag">مساعدة</span>
-          <h2>أسئلة متكررة</h2>
-          <p>إجابات سريعة على الأسئلة الأكثر شيوعاً</p>
-        </div>
+          <div class="form-group">
+            <label>الرسالة <span class="required">*</span></label>
+            <textarea class="form-control" id="c-message" rows="5" placeholder="اكتبي رسالتكِ هنا..."></textarea>
+          </div>
 
-        <div class="faq-grid">
-          <div class="faq-item">
-            <p class="faq-question">ما مدة التوصيل؟</p>
-            <p class="faq-answer">نوصل الطلبات خلال 24 إلى 48 ساعة عمل لجميع المدن المغربية.</p>
-          </div>
-          <div class="faq-item">
-            <p class="faq-question">هل يمكنني استبدال أو إرجاع المنتج؟</p>
-            <p class="faq-answer">نعم، يمكنكِ استبدال المنتج خلال 14 يوماً وإرجاعه خلال 7 أيام من تاريخ الاستلام.</p>
-          </div>
-          <div class="faq-item">
-            <p class="faq-question">ما هي طرق الدفع المتاحة؟</p>
-            <p class="faq-answer">نوفر حالياً خدمة الدفع عند الاستلام لجميع الطلبات.</p>
-          </div>
-          <div class="faq-item">
-            <p class="faq-question">هل التوصيل مجاني؟</p>
-            <p class="faq-answer">التوصيل مجاني للطلبات التي تتجاوز 300 درهم. للطلبات الأقل، رسوم التوصيل 20 درهماً فقط.</p>
-          </div>
-          <div class="faq-item">
-            <p class="faq-question">كيف أتأكد من المقاس المناسب؟</p>
-            <p class="faq-answer">يوجد دليل مقاسات مفصل مع كل منتج. يمكنكِ أيضاً التواصل معنا لمساعدتكِ في اختيار المقاس المثالي.</p>
-          </div>
-          <div class="faq-item">
-            <p class="faq-question">هل يمكنني تتبع طلبيتي؟</p>
-            <p class="faq-answer">نعم، بعد تأكيد طلبكِ، سنرسل لكِ رقم تتبع الشحنة لمتابعة حالة التوصيل.</p>
-          </div>
+          <button class="submit-contact-btn" onclick="submitContactForm()">
+            إرسال عبر واتساب <i class="fab fa-whatsapp"></i>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Font Awesome 6 (أيقونات احترافية) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <script>
+    // رقم الواتساب المطلوب (بدون + أو مع +)
+    const whatsappNumber = '212727726891'; // بدون + لتكون صالحة للرابط
+
     function submitContactForm() {
       const name = document.getElementById('c-name').value.trim();
-      const email = document.getElementById('c-email').value.trim();
-      const phone = document.getElementById('c-phone').value.trim();
       const subject = document.getElementById('c-subject').value.trim();
       const message = document.getElementById('c-message').value.trim();
 
-      if (!name || !email || !message) {
-        alert('يرجى ملء جميع الحقول المطلوبة (الاسم، البريد الإلكتروني، الرسالة)');
+      if (!name || !message) {
+        alert('يرجى ملء الاسم الكامل والرسالة');
         return;
       }
 
-      // محاكاة إرسال النموذج (يمكن ربطه بخدمة بريد حقيقية)
-      document.getElementById('contact-form-inner').style.display = 'none';
-      document.getElementById('contact-form-success').style.display = 'block';
-    }
+      // بناء نص الرسالة
+      let fullMessage = `مرحباً،\nأنا ${name}`;
+      if (subject) fullMessage += `\nالموضوع: ${subject}`;
+      fullMessage += `\n\nالرسالة:\n${message}`;
+      fullMessage += `\n\nأرسلت من صفحة التواصل في متجر جوهرة إكرام.`;
 
-    function resetContactForm() {
-      document.getElementById('c-name').value = '';
-      document.getElementById('c-email').value = '';
-      document.getElementById('c-phone').value = '';
-      document.getElementById('c-subject').value = '';
-      document.getElementById('c-message').value = '';
-      document.getElementById('contact-form-inner').style.display = 'block';
-      document.getElementById('contact-form-success').style.display = 'none';
+      // ترميز النص للرابط
+      const encodedMsg = encodeURIComponent(fullMessage);
+      const waLink = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
+      window.open(waLink, '_blank');
     }
   </script>
 </div>
