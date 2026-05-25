@@ -199,7 +199,7 @@
             <div class="cc-icon">📞</div>
             <div class="cc-info">
               <h4>رقم الهاتف</h4>
-              <p>+212 727-726891</p>
+              <p>+212 727726891</p>
             </div>
           </div>
 
@@ -223,7 +223,7 @@
             <div class="cc-icon">💬</div>
             <div class="cc-info">
               <h4>واتساب</h4>
-              <p>+212 727-726891</p>
+              <p>+212 727726891</p>
             </div>
           </div>
 
@@ -231,15 +231,19 @@
           <div class="contact-card" style="flex-direction: column; align-items: flex-start; gap: 12px;">
             <p style="font-size:14px; color: var(--text-light);">يمكنكِ أيضاً متابعتنا على:</p>
             <div style="display: flex; gap: 12px;">
-              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
+              <!-- WhatsApp -->
+              <a href="https://wa.me/212727726891" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
                 <i class="fab fa-whatsapp"></i>
               </a>
-              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/jawharat_ikram1" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
                 <i class="fab fa-instagram"></i>
               </a>
+              <!-- TikTok -->
               <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
                 <i class="fab fa-tiktok"></i>
               </a>
+              <!-- Facebook -->
               <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
                 <i class="fab fa-facebook-f"></i>
               </a>
@@ -275,12 +279,11 @@
     </div>
   </section>
 
-  <!-- Font Awesome 6 (أيقونات احترافية) -->
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <script>
-    // رقم الواتساب المطلوب (بدون + أو مع +)
-    const whatsappNumber = '212727726891'; // بدون + لتكون صالحة للرابط
+    const whatsappNumber = '212727726891';
 
     function submitContactForm() {
       const name = document.getElementById('c-name').value.trim();
@@ -292,13 +295,11 @@
         return;
       }
 
-      // بناء نص الرسالة
       let fullMessage = `مرحباً،\nأنا ${name}`;
       if (subject) fullMessage += `\nالموضوع: ${subject}`;
       fullMessage += `\n\nالرسالة:\n${message}`;
       fullMessage += `\n\nأرسلت من صفحة التواصل في متجر جوهرة إكرام.`;
 
-      // ترميز النص للرابط
       const encodedMsg = encodeURIComponent(fullMessage);
       const waLink = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
       window.open(waLink, '_blank');
