@@ -82,10 +82,18 @@
       margin-bottom: 4px;
     }
 
-    .contact-card .cc-info p {
+    .contact-card .cc-info p,
+    .contact-card .cc-info a {
       font-size: 14px;
       font-weight: 700;
       color: var(--text);
+      text-decoration: none;
+    }
+
+    .phone-number {
+      direction: ltr;
+      display: inline-block;
+      unicode-bidi: embed;
     }
 
     /* نموذج التواصل */
@@ -195,14 +203,18 @@
       <div class="contact-grid">
         <!-- معلومات التواصل -->
         <div class="contact-details">
+          <!-- رقم الهاتف -->
           <div class="contact-card">
             <div class="cc-icon">📞</div>
             <div class="cc-info">
               <h4>رقم الهاتف</h4>
-              <p>+212 727726891</p>
+              <a href="tel:+212727726891" class="phone-number" dir="ltr" style="text-decoration: none;">
+                +212 727-726891
+              </a>
             </div>
           </div>
 
+          <!-- البريد الإلكتروني -->
           <div class="contact-card">
             <div class="cc-icon">✉️</div>
             <div class="cc-info">
@@ -211,6 +223,7 @@
             </div>
           </div>
 
+          <!-- العنوان -->
           <div class="contact-card">
             <div class="cc-icon">📍</div>
             <div class="cc-info">
@@ -219,15 +232,18 @@
             </div>
           </div>
 
+          <!-- واتساب -->
           <div class="contact-card">
             <div class="cc-icon">💬</div>
             <div class="cc-info">
               <h4>واتساب</h4>
-              <p>+212 727726891</p>
+              <a href="https://wa.me/212727726891" target="_blank" class="phone-number" dir="ltr" style="text-decoration: none;">
+                +212 727-726891
+              </a>
             </div>
           </div>
 
-          <!-- روابط سريعة مع أيقونات social media -->
+          <!-- متابعة على وسائل التواصل -->
           <div class="contact-card" style="flex-direction: column; align-items: flex-start; gap: 12px;">
             <p style="font-size:14px; color: var(--text-light);">يمكنكِ أيضاً متابعتنا على:</p>
             <div style="display: flex; gap: 12px;">
@@ -251,7 +267,7 @@
           </div>
         </div>
 
-        <!-- نموذج التواصل (معدل: بدون بريد إلكتروني ولا هاتف، يرسل واتساب) -->
+        <!-- نموذج التواصل (يرسل إلى واتساب مباشرة) -->
         <div class="contact-form-card">
           <h3>أرسلي لنا رسالة</h3>
           <p class="form-subtitle">املئي النموذج وسنتواصل معكِ عبر واتساب مباشرة</p>
