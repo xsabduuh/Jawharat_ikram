@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (للأيقونات) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     :root {
       --pink:        #f8c8dc;
@@ -172,17 +174,122 @@
       100%{ transform: scale(1); }
     }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; padding: 5px; }
-    .hamburger span { display: block; width: 24px; height: 2.5px; background: var(--pink-deep); border-radius: 2px; transition: all var(--transition); }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    /* ===== HAMBURGER BUTTON (محسّن وثابت) ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      padding: 0;
+      border-radius: var(--radius-md);
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+    .hamburger:hover {
+      background-color: var(--pink-soft);
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--pink-deep);
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
 
-    .mobile-menu { display: none; position: fixed; top: var(--nav-h); right: 0; left: 0; background: rgba(255,255,255,.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 20px; z-index: 999; flex-direction: column; gap: 8px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { padding: 12px 16px; border-radius: var(--radius-md); font-size: 15px; font-weight: 600; color: var(--text-light); transition: all var(--transition); }
-    .mobile-menu a:hover, .mobile-menu a.active { background: var(--pink-soft); color: var(--pink-deep); }
+    /* ===== OVERLAY (الطبقة الخلفية) ===== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
 
+    /* ===== MOBILE MENU DRAWER (الدرج الجانبي) ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 280px;
+      max-width: 85vw;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-left: 1px solid var(--border);
+      z-index: 999;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.05);
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    .mobile-menu a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: all 0.25s ease;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .mobile-menu a i {
+      width: 24px;
+      font-size: 18px;
+      color: var(--pink-deep);
+      transition: transform 0.2s;
+    }
+    .mobile-menu a:hover {
+      background: var(--pink-soft);
+      color: var(--pink-deep);
+      transform: translateX(-6px); /* RTL: تحرك لليسار */
+    }
+    .mobile-menu a:hover i {
+      transform: translateX(-2px);
+    }
+    .mobile-menu a.active {
+      background: var(--pink-soft);
+      color: var(--pink-deep);
+      font-weight: 800;
+      border-right: 4px solid var(--pink-deep); /* شريط جانبي */
+    }
+    .mobile-menu a.active i {
+      color: var(--pink-deep);
+    }
+
+    /* باقي الأنماط (نفسها من الكود الأصلي) */
     /* PAGE WRAPPER */
     #app {
       padding-top: var(--nav-h);
@@ -1023,11 +1130,11 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* FOOTER - تنسيق متناسق */
+    /* FOOTER */
     .site-footer {
       background: #fffafc;
       border-top: 1px solid var(--border);
-      padding: 60px 0 30px;
+      padding: 70px 0 40px;
       margin-top: 60px;
     }
 
@@ -1040,33 +1147,40 @@
     .footer-links-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
+      gap: 30px;
       margin-bottom: 40px;
-    }
-
-    .link-group {
       text-align: center;
     }
 
     .link-group-title {
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--text);
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--pink);
-      display: inline-block;
-      padding-bottom: 5px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
     }
 
-    /* قائمة عمودية بسيطة لقسم "عن المتجر" (متناسقة) */
+    .toggle-icon {
+      display: none;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--pink-deep);
+      transition: transform 0.3s ease;
+    }
+
     .link-list {
       list-style: none;
       padding: 0;
       margin: 0;
     }
+
     .link-list li {
       margin-bottom: 12px;
     }
+
     .link-list li a {
       font-size: 14px;
       color: var(--text-light);
@@ -1074,26 +1188,8 @@
       cursor: pointer;
       text-decoration: none;
     }
-    .link-list li a:hover {
-      color: var(--pink-deep);
-    }
 
-    /* شبكة 2x2 لقسم "خدمة العملاء" (كما أعجبك) */
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px 24px;
-      max-width: 280px;
-      margin: 0 auto;
-    }
-    .links-grid a {
-      font-size: 14px;
-      color: var(--text-light);
-      transition: color var(--transition);
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .links-grid a:hover {
+    .link-list li a:hover {
       color: var(--pink-deep);
     }
 
@@ -1101,7 +1197,7 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .social-circle {
@@ -1112,6 +1208,7 @@
       align-items: center;
       justify-content: center;
       transition: all var(--transition);
+      border: none;
     }
 
     .social-circle svg {
@@ -1132,46 +1229,130 @@
 
     .footer-bottom-bar {
       border-top: 1px solid var(--border);
-      padding: 25px 0 10px;
+      padding: 30px 0 20px;
       text-align: center;
     }
 
+    .copyright-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
     .copyright-text {
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
       color: var(--text-muted);
+      letter-spacing: 0.3px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .credit-line {
+      font-size: 13px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .site-link {
+      font-weight: 600;
+      color: var(--pink-deep);
+      text-decoration: none;
+      transition: all var(--transition);
+      border-bottom: 1px dashed var(--pink);
+      padding-bottom: 2px;
+    }
+
+    .site-link:hover {
+      color: var(--pink-dark);
+      border-bottom-style: solid;
+      transform: translateY(-1px);
+    }
+
+    .copyright-symbol {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .year {
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.5px;
     }
 
     @media (max-width: 768px) {
       .footer-links-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 0;
+        text-align: center;
       }
-      .links-grid {
-        max-width: 260px;
+      .link-group {
+        border-bottom: 1px solid var(--border);
+      }
+      .link-group-title {
+        justify-content: space-between;
+        padding: 16px 0;
+        cursor: pointer;
+      }
+      .toggle-icon {
+        display: inline-block;
+      }
+      .link-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        padding: 0;
+      }
+      .link-list.open {
+        max-height: 300px;
+        padding-bottom: 10px;
+      }
+      .link-list li {
+        margin-bottom: 10px;
       }
     }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .footer-inner { grid-template-columns: 1fr; gap: 24px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-      .trust-features {
-        flex-direction: column;
+      .trust-features { grid-template-columns: repeat(2, 1fr); }
+      .cart-item {
+        flex-direction: row;
         align-items: center;
-        gap: 1.2rem;
       }
-      .trust-item {
-        max-width: 200px;
+      .cart-item-img {
+        width: 70px;
+        height: 85px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .credit-line {
+        font-size: 12px;
+        gap: 5px;
+      }
+      .copyright-text {
+        font-size: 13px;
       }
     }
 
     @media (max-width: 380px) {
       .products-grid { grid-template-columns: 1fr; }
+      .trust-features { grid-template-columns: 1fr; }
     }
 
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--pink-bg); }
     ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--pink-dark); }
   </style>
 </head>
 <body>
@@ -1193,7 +1374,7 @@
             السلة
             <span class="cart-count" id="cart-count">0</span>
           </button>
-          <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <button class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -1201,15 +1382,28 @@
     </div>
   </nav>
 
+  <!-- OVERLAY (طبقة خلف القائمة) -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+
+  <!-- MOBILE MENU DRAWER (محسّن) -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#" onclick="navigate('home'); closeMobileMenu()">الرئيسية</a>
-    <a href="#" onclick="navigate('about'); closeMobileMenu()">من نحن</a>
-    <a href="#" onclick="navigate('contact'); closeMobileMenu()">تواصل معنا</a>
-    <a href="#" onclick="navigate('cart'); closeMobileMenu()">السلة</a>
+    <a href="#" onclick="navigate('home'); closeMobileMenu()" data-page="home">
+      <i class="fas fa-home"></i> الرئيسية
+    </a>
+    <a href="#" onclick="navigate('about'); closeMobileMenu()" data-page="about">
+      <i class="fas fa-user"></i> من نحن
+    </a>
+    <a href="#" onclick="navigate('contact'); closeMobileMenu()" data-page="contact">
+      <i class="fas fa-envelope"></i> تواصل معنا
+    </a>
+    <a href="#" onclick="navigate('cart'); closeMobileMenu()" data-page="cart">
+      <i class="fas fa-shopping-cart"></i> السلة
+    </a>
   </div>
 
+  <!-- APP ROOT -->
   <div id="app">
-    <!-- HOME PAGE -->
+    <!-- HOME PAGE (مختصر) -->
     <div class="page active" id="page-home">
       <section class="hero">
         <div class="hero-badge">تشكيلة صيف 2026 الحصرية</div>
@@ -1249,32 +1443,16 @@
       <section class="section">
         <div class="container">
           <div class="trust-features">
-            <div class="trust-item">
-              <div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12h4l2-3 3 3 3-3 2 3h4" /><circle cx="6" cy="18" r="2" /><circle cx="18" cy="18" r="2" /><path d="M12 12v4h6" /></svg></div>
-              <div class="trust-title">توصيل سريع</div>
-              <div class="trust-desc">خلال 24 إلى 48 ساعة لجميع المدن</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1" /><path d="M8 12h8" /></svg></div>
-              <div class="trust-title">الدفع عند الاستلام</div>
-              <div class="trust-desc">تسوّقي بأمان وادفعي نقداً عند الاستلام</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 2L22 4L20 6" /><path d="M4 2L2 4L4 6" /><path d="M7 21L10 18L7 15" /><path d="M17 21L14 18L17 15" /><path d="M2 14h8l2 2 2-2h8" /></svg></div>
-              <div class="trust-title">استبدال مرن</div>
-              <div class="trust-desc">إمكانية الاستبدال والاسترجاع خلال 7 أيام</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /><path d="M8 10h0" /><path d="M12 10h0" /><path d="M16 10h0" /></svg></div>
-              <div class="trust-title">دعم متواصل</div>
-              <div class="trust-desc">فريقنا في خدمتكِ للإجابة على استفساراتكِ</div>
-            </div>
+            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12h4l2-3 3 3 3-3 2 3h4"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M12 12v4h6"/></svg></div><div class="trust-title">توصيل سريع</div><div class="trust-desc">خلال 24 إلى 48 ساعة لجميع المدن</div></div>
+            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1"/><path d="M8 12h8"/></svg></div><div class="trust-title">الدفع عند الاستلام</div><div class="trust-desc">تسوّقي بأمان وادفعي نقداً عند الاستلام</div></div>
+            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 2L22 4L20 6"/><path d="M4 2L2 4L4 6"/><path d="M7 21L10 18L7 15"/><path d="M17 21L14 18L17 15"/><path d="M2 14h8l2 2 2-2h8"/></svg></div><div class="trust-title">استبدال مرن</div><div class="trust-desc">إمكانية الاستبدال والاسترجاع خلال 7 أيام</div></div>
+            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h0"/><path d="M12 10h0"/><path d="M16 10h0"/></svg></div><div class="trust-title">دعم متواصل</div><div class="trust-desc">فريقنا في خدمتكِ للإجابة على استفساراتكِ</div></div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- PRODUCTS PAGE -->
+    <!-- PRODUCTS PAGE, DETAIL, CART (نفسها) -->
     <div class="page" id="page-products">
       <section class="section">
         <div class="container">
@@ -1285,7 +1463,6 @@
       </section>
     </div>
 
-    <!-- PRODUCT DETAIL PAGE -->
     <div class="page" id="page-detail">
       <section class="section">
         <div class="container">
@@ -1295,7 +1472,6 @@
       </section>
     </div>
 
-    <!-- CART PAGE -->
     <div class="page" id="page-cart">
       <section class="section">
         <div class="container">
@@ -1322,53 +1498,45 @@
 
   <div class="toast" id="toast"></div>
 
-  <!-- FOOTER المعدل (قسم عن المتجر عمودي، قسم خدمة العملاء شبكة 2x2) -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-links-grid">
-        <!-- قسم عن المتجر (قائمة عمودية متناسقة) -->
         <div class="link-group">
-          <div class="link-group-title">عن المتجر</div>
+          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">عن المتجر <span class="toggle-icon">+</span></h4>
           <ul class="link-list">
             <li><a onclick="navigate('about')">من نحن</a></li>
             <li><a onclick="navigate('contact')">تواصل معنا</a></li>
             <li><a onclick="navigate('terms')">الشروط والأحكام</a></li>
           </ul>
         </div>
-        <!-- قسم خدمة العملاء (شبكة 2x2 كما تريد) -->
         <div class="link-group">
-          <div class="link-group-title">خدمة العملاء</div>
-          <div class="links-grid">
-            <a onclick="navigate('faq')">الأسئلة الشائعة</a>
-            <a onclick="navigate('refund')">سياسة الاسترجاع</a>
-            <a onclick="navigate('privacy')">سياسة الخصوصية</a>
-            <a onclick="navigate('shipping')">سياسة الشحن</a>
-          </div>
+          <h4 class="link-group-title" onclick="toggleFooterLinks(this)">خدمة العملاء <span class="toggle-icon">+</span></h4>
+          <ul class="link-list">
+            <li><a onclick="navigate('faq')">الأسئلة الشائعة</a></li>
+            <li><a onclick="navigate('refund')">سياسة الاسترجاع</a></li>
+            <li><a onclick="navigate('privacy')">سياسة الخصوصية</a></li>
+            <li><a onclick="navigate('shipping')">سياسة الشحن</a></li>
+          </ul>
         </div>
       </div>
 
       <div class="footer-social">
-        <a href="#" class="social-circle tiktok" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-        </a>
-        <a href="#" class="social-circle facebook" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a href="#" class="social-circle instagram" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="#" class="social-circle whatsapp" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
+        <a href="#" class="social-circle tiktok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <a href="#" class="social-circle facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="#" class="social-circle instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="#" class="social-circle whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
       </div>
 
       <div class="footer-bottom-bar">
-        <div class="copyright-text">جميع الحقوق محفوظة © 2026</div>
+        <div class="copyright-wrapper">
+          <p class="copyright-text">جميع الحقوق محفوظة © 2026</p>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- JavaScript (نفسه مع جميع الوظائف) -->
+  <!-- بيانات المنتجات وسلة التسوق -->
   <script>
     var products = [
       { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
@@ -1387,8 +1555,10 @@
       { id: 14, name: 'وشاح حرير منقوش', category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.', img: 'images/وشاح-حرير.jpg', sizes: ['One Size'] },
       { id: 15, name: 'حزام جلد مطرز', category: 'إكسسوارات', price: 230, badge: null, isNew: false, desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.', img: 'images/حزام-مطرز.jpg', sizes: ['S','M','L'] }
     ];
+
     var whatsappNumber = '212600000000';
   </script>
+
   <script src="cart.js"></script>
   <script>
     let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
@@ -1422,6 +1592,7 @@
         const url = '#home';
         if (replace) history.replaceState(state, '', url);
         else history.pushState(state, '', url);
+        updateMobileMenuActive(page);
         return;
       }
 
@@ -1446,6 +1617,7 @@
         const url = `#${page}`;
         if (replace) history.replaceState(state, '', url);
         else history.pushState(state, '', url);
+        updateMobileMenuActive(page);
         return;
       }
 
@@ -1462,6 +1634,16 @@
       if (replace) history.replaceState(state, '', url);
       else history.pushState(state, '', url);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateMobileMenuActive(page);
+    }
+
+    function updateMobileMenuActive(page) {
+      const mobileLinks = document.querySelectorAll('.mobile-menu a');
+      mobileLinks.forEach(link => {
+        const linkPage = link.getAttribute('onclick').match(/navigate\('([^']+)'/)[1];
+        if (linkPage === page) link.classList.add('active');
+        else link.classList.remove('active');
+      });
     }
 
     window.addEventListener('popstate', (event) => {
@@ -1583,14 +1765,35 @@
 
     window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });
 
+    // إدارة القائمة الجانبية والـ Overlay
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('menu-overlay');
+
     function toggleMobileMenu() {
-      document.getElementById('mobile-menu').classList.toggle('open');
-      document.getElementById('hamburger').classList.toggle('open');
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        overlay.classList.remove('open');
+      } else {
+        mobileMenu.classList.add('open');
+        hamburger.classList.add('open');
+        overlay.classList.add('open');
+      }
     }
+
     function closeMobileMenu() {
-      document.getElementById('mobile-menu').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      overlay.classList.remove('open');
     }
+
+    // ربط النقر على الهامبرغر
+    hamburger.addEventListener('click', toggleMobileMenu);
+    // إغلاق عند الضغط على الـ overlay
+    overlay.addEventListener('click', closeMobileMenu);
+    // إغلاق عند الضغط على رابط في القائمة (تم إضافة closeMobileMenu داخل onclick)
 
     function openCheckoutModal() { document.getElementById('checkout-modal').classList.add('open'); }
     function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('open'); }
@@ -1607,11 +1810,28 @@
       closeCheckoutModal();
     }
 
+    function toggleFooterLinks(titleElement) {
+      if (window.innerWidth <= 768) {
+        const linkList = titleElement.nextElementSibling;
+        const icon = titleElement.querySelector('.toggle-icon');
+        if (linkList.classList.contains('open')) {
+          linkList.classList.remove('open');
+          icon.textContent = '+';
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          linkList.classList.add('open');
+          icon.textContent = '−';
+          icon.style.transform = 'rotate(180deg)';
+        }
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       updateCartBadge();
       renderHomeCategories();
       renderNewArrivals();
       renderFilterBar();
+      updateMobileMenuActive('home');
     });
   </script>
 </body>
