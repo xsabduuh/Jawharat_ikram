@@ -1,5 +1,5 @@
 /* ============================
-   cart_final.js - سلة التسوق الاحترافية الذكية
+   cart_final_v2.js - النسخة النهائية المصححة
    ============================ */
 
 let cart = JSON.parse(localStorage.getItem('warda_cart_v2') || '[]');
@@ -40,7 +40,6 @@ function addToCart(id) {
   updateCartBadge();
   showToast(`تمت إضافة "${product.name}" إلى سلتكِ بنجاح ✨`);
   
-  // إذا كان المستخدم في صفحة السلة، أعد الرندرة
   if (window.location.hash === '#cart') renderCart();
 }
 
@@ -98,7 +97,6 @@ function renderCart() {
 
   root.innerHTML = `
     <div class="cart-layout">
-      <!-- قائمة المنتجات -->
       <div class="cart-items-container">
         ${cart.map(item => `
           <div class="cart-item">
@@ -116,7 +114,6 @@ function renderCart() {
           </div>
         `).join('')}
 
-        <!-- قسم التوصيات الذكي -->
         <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--pink-soft);">
           <h4 style="font-size: 20px; font-weight: 900; margin-bottom: 25px;">أكملي إطلالتكِ ✨</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
@@ -134,11 +131,9 @@ function renderCart() {
         </div>
       </div>
 
-      <!-- ملخص الطلب -->
       <div class="summary-box">
         <h3 class="summary-title">ملخص الطلب</h3>
         
-        <!-- شريط التوصيل المجاني -->
         <div class="shipping-progress-container">
           <div class="shipping-msg">
             ${shipping === 0 
@@ -181,7 +176,7 @@ function renderCart() {
 
 function getSmartRecommendations() {
   const inCartIds = cart.map(item => item.id);
-  // اختيار منتجات عشوائية ليست في السلة
+  // Using actual product IDs from the list to ensure images are not broken
   return window.products
     .filter(p => !inCartIds.includes(p.id))
     .sort(() => Math.random() - 0.5)
