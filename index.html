@@ -84,9 +84,7 @@
       height: var(--nav-h);
     }
 
-    .nav-logo {
-      cursor: pointer;
-    }
+    .nav-logo { cursor: pointer; }
 
     .logo-text {
       font-size: 24px;
@@ -179,7 +177,6 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    /* Mobile menu overlay */
     .mobile-menu {
       display: none;
       position: fixed;
@@ -284,7 +281,7 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .btn-secondary {
+    .btn-outline {
       background: var(--white);
       color: var(--pink-deep);
       padding: 13px 28px;
@@ -295,7 +292,7 @@
       transition: all var(--transition);
     }
 
-    .btn-secondary:hover {
+    .btn-outline:hover {
       background: var(--pink-soft);
       transform: translateY(-3px);
     }
@@ -334,6 +331,35 @@
       color: var(--text-light);
       max-width: 480px;
       margin: 0 auto;
+    }
+
+    /* ============================
+       CATEGORY PILLS (تسوقي حسب الفئة)
+    ============================ */
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .pill-btn {
+      background: var(--white);
+      border: 2px solid var(--pink);
+      color: var(--pink-deep);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .pill-btn:hover,
+    .pill-btn.active {
+      background: var(--pink-deep);
+      color: var(--white);
+      border-color: var(--pink-deep);
     }
 
     /* ============================
@@ -445,595 +471,41 @@
     }
 
     /* ============================
-       FILTER BAR (تصميم جديد مبسط)
+       TRUST FEATURES
     ============================ */
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-      padding: 12px 0;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .filter-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      margin-left: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .filter-btn {
-      padding: 8px 20px;
-      border-radius: 0;
-      font-size: 13px;
-      font-weight: 600;
-      background: transparent;
-      color: var(--text-light);
-      border: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-      transition: all var(--transition);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-    }
-
-    .filter-btn:hover {
-      color: var(--pink-deep);
-      border-bottom-color: var(--pink);
-    }
-
-    .filter-btn.active {
-      color: var(--pink-deep);
-      border-bottom-color: var(--pink-deep);
-      font-weight: 700;
-    }
-
-    /* ============================
-       CATEGORIES BANNER
-    ============================ */
-    .categories-row {
+    .trust-features {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 14px;
-      margin-bottom: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
     }
 
-    .cat-card {
+    .trust-item {
       background: var(--white);
       border-radius: var(--radius-md);
       border: 1.5px solid var(--border);
-      padding: 22px 16px;
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .cat-card:hover {
-      border-color: var(--pink-dark);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .cat-card .cat-name { font-size: 14px; font-weight: 700; color: var(--text); }
-    .cat-card .cat-count { font-size: 12px; color: var(--text-muted); }
-
-    /* ============================
-       PRODUCT DETAIL PAGE
-    ============================ */
-    .detail-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .detail-img-wrap {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .detail-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-    .detail-body { padding: 10px 0; }
-
-    .detail-category {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-    }
-
-    .detail-name {
-      font-size: clamp(22px, 4vw, 32px);
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-
-    .detail-price {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--pink-deep);
-      margin-bottom: 18px;
-    }
-
-    .detail-desc {
-      font-size: 15px;
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 24px;
-    }
-
-    .detail-sizes {
-      margin-bottom: 24px;
-    }
-
-    .detail-sizes label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .sizes-row { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .size-btn {
-      width: 42px; height: 42px;
-      border-radius: var(--radius-sm);
-      border: 1.5px solid var(--border);
-      background: var(--white);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-light);
-      transition: all var(--transition);
-    }
-
-    .size-btn:hover, .size-btn.selected {
-      border-color: var(--pink-deep);
-      background: var(--pink-soft);
-      color: var(--pink-deep);
-    }
-
-    .detail-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    .detail-add-btn {
-      flex: 1;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-      color: var(--white);
-      padding: 14px 24px;
-      border-radius: var(--radius-xl);
-      font-size: 16px;
-      font-weight: 700;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition);
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-
-    .detail-add-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .wishlist-btn {
-      width: 52px; height: 52px;
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      background: var(--white);
-      font-size: 14px;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      transition: all var(--transition);
-      color: var(--text-muted);
-    }
-
-    .wishlist-btn:hover {
-      border-color: var(--pink-dark);
-      background: var(--pink-soft);
-      color: var(--pink-deep);
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-light);
-      margin-bottom: 24px;
-      cursor: pointer;
-      transition: color var(--transition);
-    }
-
-    .back-btn:hover { color: var(--pink-deep); }
-
-    /* ============================
-       CART PAGE
-    ============================ */
-    .cart-wrap {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 30px;
-      align-items: start;
-    }
-
-    .cart-items-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .cart-item {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      padding: 16px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      transition: all var(--transition);
-    }
-
-    .cart-item:hover { box-shadow: var(--shadow-sm); }
-
-    .cart-item-img {
-      width: 80px; height: 100px;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .cart-item-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-    .cart-item-info { flex: 1; }
-
-    .cart-item-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .cart-item-price {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--pink-deep);
-      margin-bottom: 12px;
-    }
-
-    .qty-ctrl {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-    }
-
-    .qty-btn {
-      width: 32px; height: 32px;
-      background: var(--pink-soft);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--pink-deep);
-      transition: background var(--transition);
-    }
-
-    .qty-btn:hover { background: var(--pink); }
-
-    .qty-num {
-      width: 36px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .remove-btn {
-      background: none;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      padding: 4px 8px;
-      border-radius: var(--radius-sm);
-      transition: all var(--transition);
-    }
-
-    .remove-btn:hover { color: #e05050; background: #fff0f3; }
-
-    /* Cart Summary */
-    .cart-summary {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      border: 1.5px solid var(--border);
-      padding: 24px;
-      position: sticky;
-      top: calc(var(--nav-h) + 20px);
-    }
-
-    .summary-title {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 20px;
-      padding-bottom: 14px;
-      border-bottom: 1.5px solid var(--border);
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      color: var(--text-light);
-      margin-bottom: 12px;
-    }
-
-    .summary-row.total {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--text);
-      padding-top: 14px;
-      border-top: 1.5px solid var(--border);
-      margin-top: 8px;
-    }
-
-    .summary-row .val { font-weight: 700; color: var(--text); }
-    .summary-row.total .val { color: var(--pink-deep); font-size: 20px; }
-
-    .checkout-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-      color: var(--white);
-      padding: 14px;
-      border-radius: var(--radius-xl);
-      font-size: 16px;
-      font-weight: 800;
-      margin-top: 20px;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition);
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-
-    .checkout-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .empty-cart {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .empty-cart h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-    .empty-cart p  { font-size: 14px; color: var(--text-light); margin-bottom: 24px; }
-
-    /* ============================
-       ABOUT PAGE
-    ============================ */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .about-img-block {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      background: var(--pink-soft);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 80px;
-      font-weight: 900;
-      color: var(--pink-deep);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .about-content h2 {
-      font-size: clamp(24px, 4vw, 36px);
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 16px;
-      line-height: 1.3;
-    }
-
-    .about-content h2 span { color: var(--pink-deep); }
-
-    .about-content p {
-      font-size: 15px;
-      color: var(--text-light);
-      line-height: 1.9;
-      margin-bottom: 16px;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 30px;
-    }
-
-    .stat-box {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      padding: 20px 16px;
-      text-align: center;
-    }
-
-    .stat-num {
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--pink-deep);
-      margin-bottom: 4px;
-    }
-
-    .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-
-    .values-list { margin-top: 30px; }
-
-    .value-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px;
-      background: var(--white);
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      margin-bottom: 12px;
-      transition: all var(--transition);
-    }
-
-    .value-item:hover {
-      border-color: var(--pink);
-      transform: translateX(-4px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .value-text h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .value-text p  { font-size: 13px; color: var(--text-light); line-height: 1.6; }
-
-    /* ============================
-       CONTACT PAGE
-    ============================ */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .contact-info h2 {
-      font-size: clamp(22px, 4vw, 30px);
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-
-    .contact-info p {
-      font-size: 15px;
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 30px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px;
-      background: var(--white);
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      margin-bottom: 12px;
-    }
-
-    .contact-item .ci-text h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); }
-    .contact-item .ci-text p  { font-size: 15px; font-weight: 700; color: var(--text); }
-
-    /* Form */
-    .contact-form {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      border: 1.5px solid var(--border);
-      padding: 30px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .form-group { margin-bottom: 18px; }
-
-    .form-group label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 7px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      background: var(--pink-bg);
-      font-family: var(--font-main);
-      font-size: 14px;
-      color: var(--text);
-      transition: all var(--transition);
-      resize: none;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--pink-dark);
-      background: var(--white);
-      box-shadow: 0 0 0 3px rgba(240,160,192,.15);
-    }
-
-    .form-control::placeholder { color: var(--text-muted); }
-
-    .submit-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-      color: var(--white);
-      padding: 14px;
-      border-radius: var(--radius-xl);
-      font-size: 16px;
-      font-weight: 700;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition);
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .form-success {
-      text-align: center;
       padding: 30px 20px;
-      display: none;
+      text-align: center;
+      transition: all var(--transition);
     }
 
-    .form-success h3 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
-    .form-success p  { font-size: 14px; color: var(--text-light); }
-
-    /* ============================
-       TOAST NOTIFICATION
-    ============================ */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--text);
-      color: var(--white);
-      padding: 13px 24px;
-      border-radius: var(--radius-xl);
-      font-size: 14px;
-      font-weight: 600;
-      z-index: 9999;
-      box-shadow: var(--shadow-lg);
-      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
-      white-space: nowrap;
+    .trust-item:hover {
+      border-color: var(--pink);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
     }
 
-    .toast.show { transform: translateX(-50%) translateY(0); }
+    .trust-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--pink-deep);
+      margin-bottom: 8px;
+    }
+
+    .trust-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
 
     /* ============================
        FOOTER
@@ -1068,19 +540,23 @@
 
     .social-links { display: flex; gap: 10px; }
 
-    .social-link {
-      width: 38px; height: 38px;
-      border-radius: var(--radius-sm);
+    .social-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
       background: var(--pink-soft);
-      border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--pink-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all var(--transition);
     }
 
-    .social-link:hover {
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--pink-deep);
+    }
+
+    .social-icon:hover {
       background: var(--pink);
       transform: translateY(-2px);
     }
@@ -1119,12 +595,7 @@
        RESPONSIVE
     ============================ */
     @media (max-width: 900px) {
-      .detail-wrap, .about-grid, .contact-grid, .cart-wrap {
-        grid-template-columns: 1fr;
-      }
       .footer-inner { grid-template-columns: 1fr 1fr; }
-      .about-img-block { display: none; }
-      .detail-img-wrap { max-height: 360px; }
     }
 
     @media (max-width: 640px) {
@@ -1132,17 +603,14 @@
       .hamburger { display: flex; }
       .footer-inner { grid-template-columns: 1fr; gap: 24px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-      .cart-wrap { grid-template-columns: 1fr; }
-      .about-stats { grid-template-columns: repeat(3,1fr); }
-      .categories-row { grid-template-columns: repeat(3, 1fr); }
-      .contact-grid { grid-template-columns: 1fr; }
+      .trust-features { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 380px) {
       .products-grid { grid-template-columns: 1fr; }
+      .trust-features { grid-template-columns: 1fr; }
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--pink-bg); }
     ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 3px; }
@@ -1163,8 +631,8 @@
 
         <ul class="nav-links">
           <li><a href="#" onclick="navigate('home')" data-page="home">الرئيسية</a></li>
-          <li><a href="#" onclick="navigate('products')" data-page="products">المنتجات</a></li>
-          <li><a href="#" onclick="navigate('about')" data-page="about">عن المتجر</a></li>
+          <li><a href="#" onclick="navigate('products')" data-page="products">المتجر</a></li>
+          <li><a href="#" onclick="navigate('about')" data-page="about">من نحن</a></li>
           <li><a href="#" onclick="navigate('contact')" data-page="contact">تواصل معنا</a></li>
         </ul>
 
@@ -1184,8 +652,8 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#" onclick="navigate('home'); closeMobileMenu()" data-page="home">الرئيسية</a>
-    <a href="#" onclick="navigate('products'); closeMobileMenu()" data-page="products">المنتجات</a>
-    <a href="#" onclick="navigate('about'); closeMobileMenu()" data-page="about">عن المتجر</a>
+    <a href="#" onclick="navigate('products'); closeMobileMenu()" data-page="products">المتجر</a>
+    <a href="#" onclick="navigate('about'); closeMobileMenu()" data-page="about">من نحن</a>
     <a href="#" onclick="navigate('contact'); closeMobileMenu()" data-page="contact">تواصل معنا</a>
     <a href="#" onclick="navigate('cart'); closeMobileMenu()" data-page="cart">السلة</a>
   </div>
@@ -1201,23 +669,23 @@
       <!-- Hero -->
       <section class="hero">
         <div class="hero-badge">مجموعة صيف 2025 الجديدة</div>
-        <h1>أزياء تُعبّر<br>عن <span>أناقتكِ</span></h1>
-        <p>اكتشفي أحدث صيحات الموضة النسائية — تصاميم عصرية بلمسة مغربية راقية.</p>
+        <h1>أزياء تُعبِّر<br>عن <span>أناقتكِ</span></h1>
+        <p>اكتشفي أحدث صيحات الموضة النسائية بتصاميم تجمع بين العصرية واللمسة المغربية الراقية.</p>
         <div class="hero-btns">
           <button class="btn-primary" onclick="navigate('products')">تسوقي الآن</button>
-          <button class="btn-secondary" onclick="navigate('about')">اعرفي أكثر</button>
+          <button class="btn-outline" onclick="navigate('about')">اكتشفي المزيد</button>
         </div>
       </section>
 
-      <!-- Categories -->
+      <!-- Categories Pills -->
       <section class="section">
         <div class="container">
           <div class="section-header">
             <span class="tag">الأقسام</span>
-            <h2>تسوقي حسب القسم</h2>
-            <p>اختاري ما يناسب ذوقك وأسلوبك</p>
+            <h2>تسوقي حسب الفئة</h2>
+            <p>اختارِي ما يناسب ذوقكِ وأسلوبكِ الفريد</p>
           </div>
-          <div class="categories-row" id="home-categories"></div>
+          <div class="category-pills" id="home-categories"></div>
         </div>
       </section>
 
@@ -1226,12 +694,36 @@
         <div class="container">
           <div class="section-header">
             <span class="tag">جديد</span>
-            <h2>وصلنا حديثاً</h2>
-            <p>أحدث المنتجات المضافة لمتجرنا هذا الأسبوع</p>
+            <h2>جديدنا هذا الأسبوع</h2>
+            <p>أحدث القطع التي تضفي لمسة من السحر على إطلالتكِ</p>
           </div>
           <div class="products-grid" id="new-arrivals-grid"></div>
           <div style="text-align:center; margin-top:32px;">
             <button class="btn-primary" onclick="navigate('products')">عرض جميع المنتجات ←</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Features -->
+      <section class="section">
+        <div class="container">
+          <div class="trust-features">
+            <div class="trust-item">
+              <div class="trust-title">توصيل سريع</div>
+              <div class="trust-desc">خلال 24 إلى 48 ساعة لجميع المدن</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-title">الدفع عند الاستلام</div>
+              <div class="trust-desc">تسوّقي بأمان وادفعي نقداً عند الاستلام</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-title">استبدال مرن</div>
+              <div class="trust-desc">إمكانية الاستبدال والاسترجاع خلال 7 أيام</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-title">دعم متواصل</div>
+              <div class="trust-desc">فريقنا في خدمتكِ للإجابة على استفساراتكِ</div>
+            </div>
           </div>
         </div>
       </section>
@@ -1246,13 +738,9 @@
             <h2>جميع المنتجات</h2>
             <p>اكتشفي مجموعتنا الكاملة من الأزياء العصرية</p>
           </div>
-
-          <!-- Filter Bar -->
           <div class="filter-bar" id="filter-bar">
             <span class="filter-label">الفلتر:</span>
           </div>
-
-          <!-- Grid -->
           <div class="products-grid" id="all-products-grid"></div>
         </div>
       </section>
@@ -1295,52 +783,10 @@
               <p>متجر <strong>جوهرة اكرام</strong> هو وجهتك الأولى للأزياء النسائية العصرية في المغرب. نؤمن بأن الملابس ليست مجرد قماش — بل هي تعبير عن هويتك وأناقتك.</p>
               <p>منذ تأسيسنا، نحرص على تقديم أجود الأقمشة وأحدث التصاميم المستوحاة من أحدث صيحات الموضة العالمية مع لمسة مغربية أصيلة.</p>
               <p>كل قطعة في متجرنا مختارة بعناية لتناسب المرأة العصرية — في العمل، في الخروجات، وفي كل مناسبة.</p>
-
               <div class="about-stats">
-                <div class="stat-box">
-                  <div class="stat-num">+500</div>
-                  <div class="stat-label">منتج متاح</div>
-                </div>
-                <div class="stat-box">
-                  <div class="stat-num">+2K</div>
-                  <div class="stat-label">عميلة سعيدة</div>
-                </div>
-                <div class="stat-box">
-                  <div class="stat-num">4.9</div>
-                  <div class="stat-label">تقييم العملاء</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Values -->
-          <div class="section-header" style="margin-top:60px; margin-bottom:30px;">
-            <span class="tag">قيمنا</span>
-            <h2>ما يميّزنا</h2>
-          </div>
-          <div class="values-list">
-            <div class="value-item">
-              <div class="value-text">
-                <h4>الجودة قبل كل شيء</h4>
-                <p>نختار أفضل الأقمشة والمواد لنضمن لكِ راحة ومتانة في كل قطعة.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <div class="value-text">
-                <h4>الاستدامة</h4>
-                <p>نلتزم بممارسات أخلاقية في التصنيع ونسعى للتقليل من أثرنا البيئي.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <div class="value-text">
-                <h4>الموضة للجميع</h4>
-                <p>نوفر تصاميم متنوعة لكل الأجسام والأذواق — لأن كل امرأة تستحق الأناقة.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <div class="value-text">
-                <h4>خدمة من القلب</h4>
-                <p>فريقنا دائماً هنا لمساعدتكِ في اختيار ما يناسبكِ تماماً.</p>
+                <div class="stat-box"><div class="stat-num">+500</div><div class="stat-label">منتج متاح</div></div>
+                <div class="stat-box"><div class="stat-num">+2K</div><div class="stat-label">عميلة سعيدة</div></div>
+                <div class="stat-box"><div class="stat-num">4.9</div><div class="stat-label">تقييم العملاء</div></div>
               </div>
             </div>
           </div>
@@ -1361,53 +807,18 @@
             <div class="contact-info">
               <h2>نحن هنا لمساعدتكِ</h2>
               <p>هل لديكِ سؤال حول طلبك؟ أو تريدين المساعدة في اختيار المقاس المناسب؟ لا تترددي في التواصل معنا!</p>
-              <div class="contact-item">
-                <div class="ci-text">
-                  <h4>العنوان</h4>
-                  <p>الدار البيضاء، المغرب</p>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="ci-text">
-                  <h4>الهاتف</h4>
-                  <p>+212 6 00 00 00 00</p>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="ci-text">
-                  <h4>البريد الإلكتروني</h4>
-                  <p>contact@warda.ma</p>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="ci-text">
-                  <h4>ساعات العمل</h4>
-                  <p>الاثنين – السبت: 9ص – 9م</p>
-                </div>
-              </div>
+              <div class="contact-item"><div class="ci-text"><h4>العنوان</h4><p>الدار البيضاء، المغرب</p></div></div>
+              <div class="contact-item"><div class="ci-text"><h4>الهاتف</h4><p>+212 6 00 00 00 00</p></div></div>
+              <div class="contact-item"><div class="ci-text"><h4>البريد الإلكتروني</h4><p>contact@warda.ma</p></div></div>
+              <div class="contact-item"><div class="ci-text"><h4>ساعات العمل</h4><p>الاثنين – السبت: 9ص – 9م</p></div></div>
             </div>
-
             <div class="contact-form" id="contact-form-wrap">
               <div id="contact-form-inner">
-                <div class="form-group">
-                  <label>الاسم الكامل</label>
-                  <input type="text" class="form-control" id="c-name" placeholder="ما اسمكِ؟" />
-                </div>
-                <div class="form-group">
-                  <label>البريد الإلكتروني</label>
-                  <input type="email" class="form-control" id="c-email" placeholder="example@email.com" />
-                </div>
-                <div class="form-group">
-                  <label>الموضوع</label>
-                  <input type="text" class="form-control" id="c-subject" placeholder="موضوع رسالتكِ" />
-                </div>
-                <div class="form-group">
-                  <label>الرسالة</label>
-                  <textarea class="form-control" id="c-message" rows="5" placeholder="اكتبي رسالتكِ هنا..."></textarea>
-                </div>
-                <button class="submit-btn" onclick="submitContact()">
-                  إرسال الرسالة
-                </button>
+                <div class="form-group"><label>الاسم الكامل</label><input type="text" class="form-control" id="c-name" placeholder="ما اسمكِ؟" /></div>
+                <div class="form-group"><label>البريد الإلكتروني</label><input type="email" class="form-control" id="c-email" placeholder="example@email.com" /></div>
+                <div class="form-group"><label>الموضوع</label><input type="text" class="form-control" id="c-subject" placeholder="موضوع رسالتكِ" /></div>
+                <div class="form-group"><label>الرسالة</label><textarea class="form-control" id="c-message" rows="5" placeholder="اكتبي رسالتكِ هنا..."></textarea></div>
+                <button class="submit-btn" onclick="submitContact()">إرسال الرسالة</button>
               </div>
               <div class="form-success" id="form-success">
                 <h3>تم الإرسال بنجاح!</h3>
@@ -1429,40 +840,47 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <div class="logo-text">جوهرة اكرام</div>
-          <p>متجرك الأول للأزياء النسائية العصرية. نجمع بين الأناقة والجودة لنقدم لكِ تجربة تسوق استثنائية.</p>
+          <p>منصتكِ الأولى للأزياء النسائية الراقية، نجمع لكِ بين الأناقة، الجودة العالية، وتجربة التسوق الفريدة التي تستحقينها.</p>
           <div class="social-links">
-            <a class="social-link" href="#">ف</a>
-            <a class="social-link" href="#">ان</a>
-            <a class="social-link" href="#">ت</a>
-            <a class="social-link" href="#">و</a>
+            <!-- Facebook -->
+            <a class="social-icon" href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a class="social-icon" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <!-- TikTok -->
+            <a class="social-icon" href="#" aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <!-- WhatsApp -->
+            <a class="social-icon" href="#" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
           </div>
         </div>
         <div class="footer-col">
           <h4>روابط سريعة</h4>
           <ul>
             <li><a onclick="navigate('home')">الرئيسية</a></li>
-            <li><a onclick="navigate('products')">المنتجات</a></li>
-            <li><a onclick="navigate('about')">عن المتجر</a></li>
+            <li><a onclick="navigate('products')">المتجر</a></li>
+            <li><a onclick="navigate('about')">من نحن</a></li>
             <li><a onclick="navigate('contact')">تواصل معنا</a></li>
-            <li><a onclick="navigate('cart')">السلة</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>أقسام المتجر</h4>
           <ul>
-            <li><a onclick="filterAndGo('بيجامة')">بيجامة</a></li>
-            <li><a onclick="filterAndGo('جلابة')">جلابة</a></li>
-            <li><a onclick="filterAndGo('جينز')">جينز</a></li>
-            <li><a onclick="filterAndGo('ليكات')">ليكات</a></li>
-            <li><a onclick="filterAndGo('مونطو')">مونطو</a></li>
-            <li><a onclick="filterAndGo('سبرديلات')">سبرديلات</a></li>
+            <li><a onclick="filterAndGo('بيجامات')">بيجامات</a></li>
+            <li><a onclick="filterAndGo('جلابيات')">جلابيات</a></li>
+            <li><a onclick="filterAndGo('فساتين')">فساتين</a></li>
             <li><a onclick="filterAndGo('عبايات')">عبايات</a></li>
-            <li><a onclick="filterAndGo('صايات')">صايات</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        جميع الحقوق محفوظة &copy; 2025 <span>جوهرة اكرام</span> — صُنع بـ حب في المغرب
+        جميع الحقوق محفوظة &copy; 2026 <span>جوهرة إكرام</span>
       </div>
     </div>
   </footer>
@@ -1473,106 +891,62 @@
   <!-- ============================
        SCRIPTS
   ============================ -->
-  <!-- بيانات المنتجات (متغيرات عامة صريحة) -->
+  <!-- بيانات المنتجات (متوافقة مع الفئات الجديدة) -->
   <script>
-    // استخدام var لجعلها متاحة على window للوصول إليها من ملف cart.js
     var products = [
-      { id: 1, name: 'طقم بيجامة حريرية', category: 'بيجامة', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 2, name: 'جلابة تقليدية بتطريز', category: 'جلابة', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي راقٍ. مثالية للمناسبات العائلية.', img: 'https://images.unsplash.com/photo-1551163943-3f7253a97941?w=500&q=80', sizes: ['XS','S','M','L'] },
-      { id: 3, name: 'جينز سكيني أزرق', category: 'جينز', price: 320, badge: 'الأكثر مبيعاً', isNew: false, desc: 'جينز سكيني بقصة عصرية ومريحة. خامة عالية الجودة تدوم طويلاً.', img: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=500&q=80', sizes: ['28','30','32','34','36'] },
-      { id: 4, name: 'ليقات رياضية وردية', category: 'ليكات', price: 180, badge: 'جديد', isNew: true, desc: 'ليقات رياضية مرنة ومريحة للتمارين والجيم. تصميم أنثوي عصري.', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80', sizes: ['S','M','L'] },
-      { id: 5, name: 'مونطو شتوي أنيق', category: 'مونطو', price: 680, badge: 'حصري', isNew: false, desc: 'مونطو شتوي دافئ بتصميم كلاسيكي أنيق. مناسب للعمل والخروجات الرسمية.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80', sizes: ['XS','S','M','L'] },
-      { id: 6, name: 'سبارديلات جلدية مغربية', category: 'سبرديلات', price: 260, badge: null, isNew: false, desc: 'سبارديلات جلدية تقليدية مريحة، مصنوعة يدوياً بأجود الخامات.', img: 'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=500&q=80', sizes: ['36','38','40','42'] },
-      { id: 7, name: 'عباءة سوداء بتطريز ذهبي', category: 'عبايات', price: 520, badge: 'جديد', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'https://images.unsplash.com/photo-1603344204980-4edb0ea63148?w=500&q=80', sizes: ['S','M','L','XL','XXL'] },
-      { id: 8, name: 'صاية مطرزة بالعقيق', category: 'صايات', price: 590, badge: null, isNew: false, desc: 'صاية مغربية تقليدية بتطريز العقيق الجميل. لإطلالة محتشمة وراقية.', img: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 9, name: 'بيجامة قطيفة ناعمة', category: 'بيجامة', price: 275, badge: null, isNew: true, desc: 'بيجامة شتوية من القطيفة الفاخرة. تشعرين بالدفء والأناقة.', img: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=500&q=80', sizes: ['S','M','L','XL'] },
-      { id: 10, name: 'جلابة كروشيه بيضاء', category: 'جلابة', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي. خفيفة ومثالية لفصل الصيف.', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=80', sizes: ['S','M','L'] },
-      { id: 11, name: 'جينز واسع بقصة بوي فريند', category: 'جينز', price: 335, badge: null, isNew: false, desc: 'جينز واسع مريح بقصة عصرية. يناسب الإطلالات الكاجوال اليومية.', img: 'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&q=80', sizes: ['28','30','32','34'] },
-      { id: 12, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: true, desc: 'عباءة كريمية ناعمة بحزام متقن يمنحكِ قوامًا مثاليًا. تناسب المناسبات الرسمية.', img: 'https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=500&q=80', sizes: ['S','M','L','XL'] }
+      { id: 1,  name: 'طقم بيجامة حريرية ناعمة',       category: 'بيجامات', price: 349, badge: 'جديد', isNew: true,  desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&q=80', sizes: ['S','M','L','XL'] },
+      { id: 2,  name: 'جلابة تقليدية بتطريز ملكي',      category: 'جلابيات', price: 450, badge: null, isNew: true,  desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.', img: 'https://images.unsplash.com/photo-1551163943-3f7253a97941?w=500&q=80', sizes: ['XS','S','M','L'] },
+      { id: 3,  name: 'عباءة سوداء بتطريز فاخر',        category: 'عبايات',  price: 520, badge: 'الأكثر مبيعاً', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=500&q=80', sizes: ['S','M','L','XL','XXL'] },
+      { id: 4,  name: 'بدلة رياضية نسائية كاجوال',      category: 'معاطف',   price: 180, badge: 'جديد', isNew: true,  desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80', sizes: ['S','M','L'] },
+      { id: 5,  name: 'معطف شتوي كلاسيكي',              category: 'معاطف',   price: 680, badge: 'حصري', isNew: false, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80', sizes: ['XS','S','M','L'] },
+      { id: 6,  name: 'فستان سهرة طويل',               category: 'فساتين',  price: 720, badge: null, isNew: false, desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.', img: 'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=500&q=80', sizes: ['36','38','40','42'] },
+      { id: 7,  name: 'جلابة مطرزة بالعقيق',            category: 'جلابيات', price: 590, badge: null, isNew: false, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.', img: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=500&q=80', sizes: ['S','M','L','XL'] },
+      { id: 8,  name: 'بيجامة قطيفة شتوية',            category: 'بيجامات', price: 275, badge: null, isNew: false, desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.', img: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=500&q=80', sizes: ['S','M','L','XL'] },
+      { id: 9,  name: 'جلابة كروشيه صيفية',            category: 'جلابيات', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=80', sizes: ['S','M','L'] },
+      { id: 10, name: 'عباءة كريمية بحزام',            category: 'عبايات',  price: 449, badge: 'جديد', isNew: false, desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.', img: 'https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=500&q=80', sizes: ['S','M','L','XL'] },
+      { id: 11, name: 'فستان نهاري بنقشة الأزهار',      category: 'فساتين',  price: 310, badge: null, isNew: false, desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.', img: 'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&q=80', sizes: ['28','30','32','34'] },
+      { id: 12, name: 'معطف ترنش أنيق',                category: 'معاطف',   price: 530, badge: 'جديد', isNew: false, desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=80', sizes: ['XS','S','M','L'] }
     ];
 
     var categories = [
-      { name: 'بيجامة',    filter: 'بيجامة' },
-      { name: 'جلابة',    filter: 'جلابة' },
-      { name: 'جينز',     filter: 'جينز' },
-      { name: 'ليكات',    filter: 'ليكات' },
-      { name: 'مونطو',    filter: 'مونطو' },
-      { name: 'سبرديلات', filter: 'سبرديلات' },
-      { name: 'عبايات',   filter: 'عبايات' },
-      { name: 'صايات',    filter: 'صايات' }
+      { name: 'بيجامات', filter: 'بيجامات' },
+      { name: 'جلابيات', filter: 'جلابيات' },
+      { name: 'فساتين',  filter: 'فساتين' },
+      { name: 'عبايات',  filter: 'عبايات' },
+      { name: 'معاطف',   filter: 'معاطف' }
     ];
 
-    var whatsappNumber = '212600000000'; // غيّره إلى رقمك
+    var whatsappNumber = '212600000000';
   </script>
 
-  <!-- ملف السلة المنفصل (مطور) -->
+  <!-- ملف السلة المنفصل (نفس الإصدار السابق بدون تغيير) -->
   <script src="cart.js"></script>
 
-  <!-- سكريبت الموقع الرئيسي (المنطق) -->
+  <!-- السكريبت الرئيسي للموقع -->
   <script>
-    /* ============================
-       WISHLIST (المفضلة)
-    ============================ */
     let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
-
-    function saveWishlist() {
-      localStorage.setItem('warda_wishlist', JSON.stringify(wishlist));
-    }
-
+    function saveWishlist() { localStorage.setItem('warda_wishlist', JSON.stringify(wishlist)); }
     function toggleWishlist(id, btn) {
       const index = wishlist.indexOf(id);
-      if (index === -1) {
-        wishlist.push(id);
-        if (btn) {
-          btn.textContent = 'محفوظ';
-          btn.style.color = '#e07898';
-        }
-        showToast('تمت الإضافة للمفضلة');
-      } else {
-        wishlist.splice(index, 1);
-        if (btn) {
-          btn.textContent = 'حفظ';
-          btn.style.color = '';
-        }
-        showToast('تمت الإزالة من المفضلة');
-      }
+      if (index === -1) { wishlist.push(id); if(btn) { btn.textContent = 'محفوظ'; btn.style.color = '#e07898'; } showToast('تمت الإضافة للمفضلة'); }
+      else { wishlist.splice(index,1); if(btn) { btn.textContent = 'حفظ'; btn.style.color = ''; } showToast('تمت الإزالة من المفضلة'); }
       saveWishlist();
     }
+    function isInWishlist(id) { return wishlist.includes(id); }
 
-    function isInWishlist(id) {
-      return wishlist.includes(id);
-    }
-
-    /* ============================
-       HELPER: TOAST
-    ============================ */
     let toastTimer;
     function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+      const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
     }
 
-    /* ============================
-       NAVIGATION
-    ============================ */
     function navigate(page, productId) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('[data-page]').forEach(a => {
-        a.classList.toggle('active', a.dataset.page === page);
-      });
+      document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === page));
       currentPage = page;
-
-      if (page === 'detail' && productId) {
-        renderDetail(productId);
-      } else if (page === 'cart') {
-        renderCart();
-      } else if (page === 'products') {
-        renderProducts();
-      }
-
+      if (page === 'detail' && productId) renderDetail(productId);
+      else if (page === 'cart') renderCart();
+      else if (page === 'products') renderProducts();
       document.getElementById('page-' + page).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1580,65 +954,40 @@
     let currentPage = 'home';
     let activeFilter = 'الكل';
 
-    /* ============================
-       RENDER: HOME CATEGORIES
-    ============================ */
+    // كبسولات الفئات في الصفحة الرئيسية
     function renderHomeCategories() {
-      const grid = document.getElementById('home-categories');
-      grid.innerHTML = categories.map(c => {
-        const count = products.filter(p => p.category === c.filter).length;
-        return `
-          <div class="cat-card" onclick="filterAndGo('${c.filter}')">
-            <div class="cat-name">${c.name}</div>
-            <div class="cat-count">${count} منتج</div>
-          </div>`;
+      const container = document.getElementById('home-categories');
+      const pills = ['كل المنتجات', 'بيجامات', 'جلابيات', 'فساتين', 'عبايات', 'معاطف'];
+      container.innerHTML = pills.map(cat => {
+        const filterValue = cat === 'كل المنتجات' ? 'الكل' : cat;
+        return `<button class="pill-btn" onclick="filterAndGo('${filterValue}')">${cat}</button>`;
       }).join('');
     }
 
-    /* ============================
-       RENDER: NEW ARRIVALS
-    ============================ */
     function renderNewArrivals() {
       const grid = document.getElementById('new-arrivals-grid');
       const newProducts = products.filter(p => p.isNew).slice(0, 4);
       grid.innerHTML = newProducts.map(p => productCard(p)).join('');
     }
 
-    /* ============================
-       FILTER BAR
-    ============================ */
-    const filterCategories = ['الكل', 'بيجامة', 'جلابة', 'جينز', 'ليكات', 'مونطو', 'سبرديلات', 'عبايات', 'صايات'];
-
+    const filterCategories = ['الكل', 'بيجامات', 'جلابيات', 'فساتين', 'عبايات', 'معاطف'];
     function renderFilterBar() {
       const bar = document.getElementById('filter-bar');
       bar.innerHTML = '<span class="filter-label">الفلتر:</span>' +
         filterCategories.map(c => `<button class="filter-btn ${c === activeFilter ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`).join('');
     }
 
-    function setFilter(cat) {
-      activeFilter = cat;
-      renderProducts();
-    }
+    function setFilter(cat) { activeFilter = cat; renderProducts(); }
 
     function renderProducts() {
       renderFilterBar();
       const grid = document.getElementById('all-products-grid');
       const filtered = activeFilter === 'الكل' ? products : products.filter(p => p.category === activeFilter);
-      if (filtered.length === 0) {
-        grid.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px 0;grid-column:1/-1">لا توجد منتجات في هذا القسم حالياً.</p>';
-        return;
-      }
-      grid.innerHTML = filtered.map(p => productCard(p)).join('');
+      grid.innerHTML = filtered.length ? filtered.map(p => productCard(p)).join('') : '<p style="text-align:center;color:var(--text-muted);padding:40px 0;grid-column:1/-1">لا توجد منتجات في هذا القسم حالياً.</p>';
     }
 
-    function filterAndGo(cat) {
-      activeFilter = cat;
-      navigate('products');
-    }
+    function filterAndGo(cat) { activeFilter = cat; navigate('products'); }
 
-    /* ============================
-       PRODUCT CARD HTML
-    ============================ */
     function productCard(p) {
       return `
         <div class="product-card" onclick="navigate('detail', ${p.id})">
@@ -1658,47 +1007,24 @@
     }
 
     function handleAddToCart(btn, id) {
-      addToCart(id);
-      btn.textContent = 'تم';
-      btn.classList.add('added');
-      setTimeout(() => {
-        btn.textContent = '+ السلة';
-        btn.classList.remove('added');
-      }, 1800);
+      addToCart(id); btn.textContent = 'تم'; btn.classList.add('added');
+      setTimeout(() => { btn.textContent = '+ السلة'; btn.classList.remove('added'); }, 1800);
     }
 
-    /* ============================
-       RENDER: PRODUCT DETAIL
-    ============================ */
     function renderDetail(id) {
-      const p = products.find(x => x.id === id);
-      if (!p) return;
-      const wrap = document.getElementById('detail-wrap');
+      const p = products.find(x => x.id === id); if (!p) return;
       const inWishlist = isInWishlist(id);
-      wrap.innerHTML = `
-        <div class="detail-img-wrap">
-          <img src="${p.img}" alt="${p.name}" />
-        </div>
+      document.getElementById('detail-wrap').innerHTML = `
+        <div class="detail-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
         <div class="detail-body">
           <div class="detail-category">${p.category}</div>
           <h1 class="detail-name">${p.name}</h1>
           <div class="detail-price">${p.price} درهم</div>
           <p class="detail-desc">${p.desc}</p>
-          <div class="detail-sizes">
-            <label>المقاس</label>
-            <div class="sizes-row">
-              ${p.sizes.map((s, i) => `
-                <button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this)">${s}</button>
-              `).join('')}
-            </div>
-          </div>
+          <div class="detail-sizes"><label>المقاس</label><div class="sizes-row">${p.sizes.map((s,i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this)">${s}</button>`).join('')}</div></div>
           <div class="detail-actions">
-            <button class="detail-add-btn" onclick="addToCart(${p.id}); this.textContent='تمت الإضافة للسلة!';">
-              أضف للسلة
-            </button>
-            <button class="wishlist-btn" id="wishlist-btn-${p.id}" onclick="toggleWishlist(${p.id}, this)" style="color:${inWishlist ? 'var(--pink-deep)' : ''}">
-              ${inWishlist ? 'محفوظ' : 'حفظ'}
-            </button>
+            <button class="detail-add-btn" onclick="addToCart(${p.id}); this.textContent='تمت الإضافة للسلة!';">أضف للسلة</button>
+            <button class="wishlist-btn" id="wishlist-btn-${p.id}" onclick="toggleWishlist(${p.id}, this)" style="color:${inWishlist?'var(--pink-deep)':''}">${inWishlist ? 'محفوظ' : 'حفظ'}</button>
           </div>
         </div>`;
     }
@@ -1708,46 +1034,25 @@
       btn.classList.add('selected');
     }
 
-    /* ============================
-       CONTACT FORM
-    ============================ */
     function submitContact() {
-      const name    = document.getElementById('c-name').value.trim();
-      const email   = document.getElementById('c-email').value.trim();
-      const message = document.getElementById('c-message').value.trim();
-      if (!name || !email || !message) {
-        showToast('يرجى ملء جميع الحقول المطلوبة');
-        return;
+      if (!document.getElementById('c-name').value.trim() || !document.getElementById('c-email').value.trim() || !document.getElementById('c-message').value.trim()) {
+        showToast('يرجى ملء جميع الحقول المطلوبة'); return;
       }
       document.getElementById('contact-form-inner').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     }
 
-    /* ============================
-       NAVBAR SCROLL
-    ============================ */
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-    });
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });
 
-    /* ============================
-       MOBILE MENU
-    ============================ */
     function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const btn  = document.getElementById('hamburger');
-      menu.classList.toggle('open');
-      btn.classList.toggle('open');
+      document.getElementById('mobile-menu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
     }
-
     function closeMobileMenu() {
       document.getElementById('mobile-menu').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
     }
 
-    /* ============================
-       INIT
-    ============================ */
     document.addEventListener('DOMContentLoaded', () => {
       updateCartBadge();
       renderHomeCategories();
