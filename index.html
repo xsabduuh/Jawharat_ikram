@@ -173,7 +173,7 @@
       100%{ transform: scale(1); }
     }
 
-    /* ========== HAMBURGER BUTTON (محسّن) ========== */
+    /* ========== هامبرغر محسّن وثابت ========== */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -210,7 +210,7 @@
       background-color: var(--pink-soft);
     }
 
-    /* ========== MOBILE MENU (Drawer محسّن) ========== */
+    /* ========== القائمة الجانبية (Drawer) ========== */
     .mobile-overlay {
       position: fixed;
       top: 0;
@@ -244,9 +244,6 @@
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       overflow-y: auto;
-    }
-    /* RTL: القائمة تخرج من اليمين */
-    .mobile-menu {
       right: 0;
       left: auto;
       transform: translateX(100%);
@@ -291,7 +288,7 @@
       color: var(--pink-deep);
     }
 
-    /* باقي الأنماط (نفسها) */
+    /* باقي الأنماط (من الموقع الأصلي) */
     .page { display: none; animation: fadeIn .4s ease; }
     .page.active { display: block; }
     @keyframes fadeIn {
@@ -311,7 +308,6 @@
       overflow: hidden;
       border-bottom: 1px solid var(--border);
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -1133,14 +1129,294 @@
   </footer>
 
   <script>
-    var products = [ /* ... نفس المنتجات السابقة ... */ ];
-    var whatsappNumber = '212600000000';
-    // بقية الـ JS (نفسه)
-  </script>
-  <script src="cart.js"></script>
-  <script>
-    // هنا كل دوال التطبيق (navigate, cart, etc) - سيتم وضعها كاملة ولكن للاختصار سأكتب الجديد فقط
-    // ملاحظة: يجب نسخ كامل الـ JS من الملف الأصلي مع إضافة دوال القائمة الجديدة
+    // بيانات المنتجات (نفسها)
+    const products = [
+      { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 8, name: 'بيجامة قطيفة شتوية', category: 'بيجامات', price: 275, badge: null, isNew: false, desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.', img: 'images/بيجامة-قطيفة.jpg', sizes: ['S','M','L','XL'] },
+      { id: 2, name: 'جلابة تقليدية بتطريز ملكي', category: 'جلابيات', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.', img: 'images/جلابة-تطريز-ملكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 7, name: 'جلابة مطرزة بالعقيق', category: 'جلابيات', price: 590, badge: null, isNew: false, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.', img: 'images/جلابة-عقيق.jpg', sizes: ['S','M','L','XL'] },
+      { id: 9, name: 'جلابة كروشيه صيفية', category: 'جلابيات', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.', img: 'images/جلابة-كروشيه.jpg', sizes: ['S','M','L'] },
+      { id: 6, name: 'فستان سهرة طويل', category: 'فساتين', price: 720, badge: null, isNew: false, desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.', img: 'images/فستان-سهرة.jpg', sizes: ['36','38','40','42'] },
+      { id: 11, name: 'فستان نهاري بنقشة الأزهار', category: 'فساتين', price: 310, badge: null, isNew: false, desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.', img: 'images/فستان-نهاري.jpg', sizes: ['28','30','32','34'] },
+      { id: 3, name: 'عباءة سوداء بتطريز فاخر', category: 'عبايات', price: 520, badge: 'الأكثر مبيعاً', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'images/عباءة-ذهبي.jpg', sizes: ['S','M','L','XL','XXL'] },
+      { id: 10, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: false, desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.', img: 'images/عباءة-كريمية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 4, name: 'بدلة رياضية نسائية كاجوال', category: 'معاطف', price: 180, badge: 'جديد', isNew: true, desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.', img: 'images/بدلة-رياضية.jpg', sizes: ['S','M','L'] },
+      { id: 5, name: 'معطف شتوي كلاسيكي', category: 'معاطف', price: 680, badge: 'حصري', isNew: false, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.', img: 'images/معطف-كلاسيكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 12, name: 'معطف ترنش أنيق', category: 'معاطف', price: 530, badge: 'جديد', isNew: false, desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.', img: 'images/معطف-ترنش.jpg', sizes: ['XS','S','M','L'] },
+      { id: 13, name: 'حقيبة يد جلدية فاخرة', category: 'إكسسوارات', price: 420, badge: null, isNew: false, desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.', img: 'images/حقيبة-جلدية.jpg', sizes: ['One Size'] },
+      { id: 14, name: 'وشاح حرير منقوش', category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.', img: 'images/وشاح-حرير.jpg', sizes: ['One Size'] },
+      { id: 15, name: 'حزام جلد مطرز', category: 'إكسسوارات', price: 230, badge: null, isNew: false, desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.', img: 'images/حزام-مطرز.jpg', sizes: ['S','M','L'] }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('warda_cart') || '[]');
+    let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
+
+    // دوال مساعدة
+    function saveCart() { localStorage.setItem('warda_cart', JSON.stringify(cart)); updateCartBadge(); }
+    function updateCartBadge() { document.getElementById('cart-count').innerText = cart.reduce((s, i) => s + i.qty, 0); }
+    function addToCart(id, qty = 1) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+      const existing = cart.find(i => i.id === id);
+      if (existing) existing.qty += qty;
+      else cart.push({ id, name: product.name, price: product.price, qty, img: product.img });
+      saveCart();
+      showToast('تمت إضافة المنتج إلى السلة');
+      renderCart();
+    }
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      saveCart();
+      renderCart();
+    }
+    function updateQuantity(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) removeFromCart(id);
+        else saveCart();
+        renderCart();
+      }
+    }
+    function calculateTotals() {
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const shipping = subtotal >= 300 ? 0 : 20;
+      const total = subtotal + shipping;
+      return { subtotal, shipping, total };
+    }
+    function renderCart() {
+      const container = document.getElementById('cart-content');
+      if (!container) return;
+      if (cart.length === 0) {
+        container.innerHTML = `<div class="empty-cart"><h3>سلة التسوق فارغة</h3><p>أضيفي بعض المنتجات الرائعة إلى سلتكِ</p><button class="btn-primary" onclick="navigate('products')">تسوقي الآن</button></div>`;
+        return;
+      }
+      const { subtotal, shipping, total } = calculateTotals();
+      let itemsHtml = '';
+      cart.forEach(item => {
+        const product = products.find(p => p.id === item.id);
+        itemsHtml += `
+          <div class="cart-item">
+            <div class="cart-item-img"><img src="${product.img}" alt="${item.name}"></div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">${item.price} درهم</div>
+              <div class="qty-ctrl">
+                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span class="qty-num">${item.qty}</span>
+                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                <button class="remove-btn" onclick="removeFromCart(${item.id})">حذف</button>
+              </div>
+            </div>
+          </div>`;
+      });
+      const freeShippingText = subtotal >= 300 ? 'تهانينا! أنت مؤهلة للتوصيل المجاني' : `أضيفي ${300 - subtotal} درهماً للحصول على توصيل مجاني`;
+      const fillPercent = Math.min(100, (subtotal / 300) * 100);
+      container.innerHTML = `
+        <div class="cart-wrap">
+          <div class="cart-items-list">${itemsHtml}</div>
+          <div class="cart-summary">
+            <div class="summary-title">ملخص الطلب</div>
+            <div class="free-shipping-text">${freeShippingText}</div>
+            <div class="free-shipping-bar"><div class="free-shipping-fill" style="width: ${fillPercent}%"></div></div>
+            <div class="summary-row"><span>المجموع الفرعي</span><span class="val">${subtotal} درهم</span></div>
+            <div class="summary-row"><span>رسوم التوصيل</span><span class="val">${shipping === 0 ? 'مجاني' : shipping + ' درهم'}</span></div>
+            <div class="summary-row total"><span>الإجمالي</span><span class="val">${total} درهم</span></div>
+            <button class="checkout-btn" onclick="openCheckoutModal()">إتمام الطلب</button>
+          </div>
+        </div>`;
+    }
+
+    // Toast
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Navigation
+    async function navigate(page, productId, replace = false) {
+      // تحديث القائمة النشطة في الـ drawer
+      document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-page') === page);
+      });
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-page') === page);
+      });
+
+      if (page === 'home') {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-home').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const state = { page: 'home' };
+        if (replace) history.replaceState(state, '', '#home');
+        else history.pushState(state, '', '#home');
+        return;
+      }
+      if (page === 'products') {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-products').classList.add('active');
+        renderProducts();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const state = { page: 'products' };
+        if (replace) history.replaceState(state, '', '#products');
+        else history.pushState(state, '', '#products');
+        return;
+      }
+      if (page === 'detail' && productId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-detail').classList.add('active');
+        renderDetail(productId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const state = { page: 'detail', productId };
+        if (replace) history.replaceState(state, '', `#detail/${productId}`);
+        else history.pushState(state, '', `#detail/${productId}`);
+        return;
+      }
+      if (page === 'cart') {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-cart').classList.add('active');
+        renderCart();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const state = { page: 'cart' };
+        if (replace) history.replaceState(state, '', '#cart');
+        else history.pushState(state, '', '#cart');
+        return;
+      }
+      // للصفحات الخارجية (about, contact, terms...)
+      const externalPages = ['about', 'contact', 'terms', 'faq', 'refund', 'privacy', 'shipping'];
+      if (externalPages.includes(page)) {
+        const app = document.getElementById('app');
+        app.innerHTML = '<div class="page active" style="text-align:center;padding:80px 20px;"><p>جاري التحميل...</p></div>';
+        try {
+          const response = await fetch(`${page}.html`);
+          if (!response.ok) throw new Error();
+          const html = await response.text();
+          app.innerHTML = html;
+        } catch (error) {
+          app.innerHTML = '<div class="page active" style="text-align:center;padding:80px 20px;"><h2>عذراً، الصفحة غير موجودة</h2></div>';
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const state = { page };
+        if (replace) history.replaceState(state, '', `#${page}`);
+        else history.pushState(state, '', `#${page}`);
+      }
+    }
+
+    window.addEventListener('popstate', (event) => {
+      if (event.state) navigate(event.state.page, event.state.productId, true);
+      else navigate('home', null, true);
+    });
+
+    // دوال عرض المنتجات
+    let activeFilter = 'الكل';
+    function renderHomeCategories() {
+      const container = document.getElementById('home-categories');
+      const pills = ['كل المنتجات', 'بيجامات', 'جلابيات', 'فساتين', 'عبايات', 'معاطف', 'إكسسوارات'];
+      container.innerHTML = pills.map(cat => {
+        const filterValue = cat === 'كل المنتجات' ? 'الكل' : cat;
+        return `<button class="pill-btn" onclick="filterAndGo('${filterValue}')">${cat}</button>`;
+      }).join('');
+    }
+    function renderNewArrivals() {
+      const grid = document.getElementById('new-arrivals-grid');
+      const newProducts = products.filter(p => p.isNew).slice(0, 4);
+      grid.innerHTML = newProducts.map(p => productCard(p)).join('');
+    }
+    function renderFilterBar() {
+      const bar = document.getElementById('filter-bar');
+      if (!bar) return;
+      const filterCategories = ['الكل', 'بيجامات', 'جلابيات', 'فساتين', 'عبايات', 'معاطف', 'إكسسوارات'];
+      bar.innerHTML = '<span class="filter-label">الفلتر:</span>' +
+        filterCategories.map(c => `<button class="filter-btn ${c === activeFilter ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`).join('');
+    }
+    function setFilter(cat) { activeFilter = cat; renderProducts(); }
+    function renderProducts() {
+      renderFilterBar();
+      const grid = document.getElementById('all-products-grid');
+      if (!grid) return;
+      const filtered = activeFilter === 'الكل' ? products : products.filter(p => p.category === activeFilter);
+      grid.innerHTML = filtered.length ? filtered.map(p => productCard(p)).join('') : '<p style="text-align:center;color:var(--text-muted);padding:40px 0;">لا توجد منتجات في هذا القسم حالياً.</p>';
+    }
+    function filterAndGo(cat) { activeFilter = cat; navigate('products'); }
+    function productCard(p) {
+      const inCart = cart.some(i => i.id === p.id);
+      return `
+        <div class="product-card" onclick="navigate('detail', ${p.id})">
+          <div class="card-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy" />${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}</div>
+          <div class="card-body">
+            <div class="card-category">${p.category}</div>
+            <div class="card-name">${p.name}</div>
+            <div class="card-footer">
+              <div class="card-price">${p.price} <span>درهم</span></div>
+              <button class="buy-btn ${inCart ? 'in-cart' : ''}" onclick="event.stopPropagation(); handleBuyClick(this, ${p.id})">${inCart ? 'في السلة' : 'شراء'}</button>
+            </div>
+          </div>
+        </div>`;
+    }
+    function handleBuyClick(btn, id) {
+      if (cart.some(i => i.id === id)) return;
+      addToCart(id);
+      btn.textContent = 'في السلة';
+      btn.classList.add('in-cart');
+      showToast('تمت إضافة المنتج إلى السلة');
+    }
+    function renderDetail(id) {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      const inWishlist = wishlist.includes(id);
+      document.getElementById('detail-wrap').innerHTML = `
+        <div class="detail-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy" /></div>
+        <div class="detail-body">
+          <div class="detail-category">${p.category}</div>
+          <h1 class="detail-name">${p.name}</h1>
+          <div class="detail-price">${p.price} درهم</div>
+          <p class="detail-desc">${p.desc}</p>
+          <div class="detail-sizes"><label>المقاس</label><div class="sizes-row">${p.sizes.map((s,i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this)">${s}</button>`).join('')}</div></div>
+          <div class="detail-actions">
+            <button class="detail-add-btn" onclick="addToCart(${p.id}); this.textContent='تمت الإضافة للسلة!';">أضف للسلة</button>
+            <button class="wishlist-btn" id="wishlist-btn-${p.id}" onclick="toggleWishlist(${p.id}, this)" style="color:${inWishlist?'var(--pink-deep)':''}">${inWishlist ? 'محفوظ' : 'حفظ'}</button>
+          </div>
+        </div>`;
+    }
+    function selectSize(btn) {
+      btn.closest('.sizes-row').querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+    function toggleWishlist(id, btn) {
+      if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(i => i !== id);
+        btn.textContent = 'حفظ';
+        btn.style.color = '';
+        showToast('تمت الإزالة من المفضلة');
+      } else {
+        wishlist.push(id);
+        btn.textContent = 'محفوظ';
+        btn.style.color = '#e07898';
+        showToast('تمت الإضافة للمفضلة');
+      }
+      localStorage.setItem('warda_wishlist', JSON.stringify(wishlist));
+    }
+
+    // Checkout modal
+    function openCheckoutModal() { document.getElementById('checkout-modal').classList.add('open'); }
+    function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('open'); }
+    function confirmCheckout() {
+      const name = document.getElementById('checkout-name').value.trim();
+      const city = document.getElementById('checkout-city').value.trim();
+      const phone = document.getElementById('checkout-phone').value.trim();
+      if (!name || !city || !phone) { showToast('يرجى ملء جميع البيانات'); return; }
+      const { subtotal, shipping, total } = calculateTotals();
+      let message = `طلب من متجر جوهرة إكرام%0A%0Aالاسم: ${encodeURIComponent(name)}%0Aالمدينة: ${encodeURIComponent(city)}%0Aالهاتف: ${encodeURIComponent(phone)}%0A%0A`;
+      cart.forEach((item, idx) => { message += `${idx+1}- ${encodeURIComponent(item.name)} (الكمية: ${item.qty}) - ${item.price * item.qty} درهم%0A`; });
+      message += `%0Aالمجموع: ${subtotal} درهم%0Aالتوصيل: ${shipping === 0 ? 'مجاني' : shipping + ' درهم'}%0Aالإجمالي: ${total} درهم`;
+      window.open(`https://wa.me/212600000000?text=${message}`, '_blank');
+      closeCheckoutModal();
+    }
 
     // دوال القائمة الجديدة
     function toggleMobileMenu() {
@@ -1159,22 +1435,21 @@
       menu.classList.remove('open');
       hamburger.classList.remove('open');
     }
-    // إغلاق القائمة عند النقر على الـ overlay
     document.getElementById('mobile-overlay').addEventListener('click', closeMobileMenu);
-    // تحديث حالة العنصر النشط في القائمة الجانبية
-    function updateActiveMobileLink(page) {
+    document.getElementById('hamburger').addEventListener('click', toggleMobileMenu);
+
+    // تحديث active link في القائمة الجانبية عند التنقل (يتم داخلياً)
+    window.addEventListener('load', () => {
+      updateCartBadge();
+      renderHomeCategories();
+      renderNewArrivals();
+      renderFilterBar();
+      renderCart();
+      // تعيين active للصفحة الحالية (home)
       document.querySelectorAll('.mobile-menu a').forEach(link => {
-        link.classList.remove('active');
-        if(link.getAttribute('data-page') === page) link.classList.add('active');
+        link.classList.toggle('active', link.getAttribute('data-page') === 'home');
       });
-    }
-    // تعديل دالة navigate لإضافة تحديث القائمة الجانبية
-    const originalNavigate = window.navigate;
-    window.navigate = function(page, productId, replace) {
-      originalNavigate(page, productId, replace);
-      updateActiveMobileLink(page);
-    };
-    // تأكيد أن cart.js يحتوي على الدوال الأساسية
+    });
   </script>
 </body>
 </html>
