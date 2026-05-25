@@ -173,7 +173,7 @@
       100%{ transform: scale(1); }
     }
 
-    /* ========== هامبرغر محسّن وثابت ========== */
+    /* ========== هامبرغر ========== */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -210,7 +210,7 @@
       background-color: var(--pink-soft);
     }
 
-    /* ========== القائمة الجانبية (Drawer) ========== */
+    /* ========== القائمة الجانبية (تخرج من اليمين) ========== */
     .mobile-overlay {
       position: fixed;
       top: 0;
@@ -231,7 +231,6 @@
     .mobile-menu {
       position: fixed;
       top: 0;
-      left: 0;
       bottom: 0;
       width: min(85%, 320px);
       background: var(--white);
@@ -241,9 +240,9 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       overflow-y: auto;
+      /* يخرج من اليمين (جهة الهامبرغر) */
       right: 0;
       left: auto;
       transform: translateX(100%);
@@ -288,7 +287,7 @@
       color: var(--pink-deep);
     }
 
-    /* باقي الأنماط (من الموقع الأصلي) */
+    /* باقي الأنماط الأساسية */
     .page { display: none; animation: fadeIn .4s ease; }
     .page.active { display: block; }
     @keyframes fadeIn {
@@ -867,6 +866,77 @@
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
+    /* CHECKOUT MODAL */
+    .checkout-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(58,36,48,.6);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .checkout-modal.open { display: flex; }
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      animation: fadeIn .4s ease;
+    }
+    .modal-box h3 {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .modal-box .form-group { margin-bottom: 16px; }
+    .modal-box label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .modal-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      font-family: var(--font-main);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--pink-bg);
+    }
+    .modal-box input:focus {
+      outline: none;
+      border-color: var(--pink-deep);
+      background: var(--white);
+    }
+    .modal-actions { display: flex; gap: 10px; margin-top: 24px; }
+    .modal-actions button {
+      flex: 1;
+      padding: 12px;
+      border-radius: var(--radius-xl);
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .modal-cancel {
+      background: var(--white);
+      border: 2px solid var(--border);
+      color: var(--text-light);
+    }
+    .modal-confirm {
+      background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
+      color: var(--white);
+      border: none;
+    }
+
     /* FOOTER */
     .site-footer {
       background: #fffafc;
@@ -996,7 +1066,7 @@
   <!-- Overlay للقائمة -->
   <div class="mobile-overlay" id="mobile-overlay"></div>
 
-  <!-- القائمة الجانبية المحسّنة -->
+  <!-- القائمة الجانبية (تخرج من اليمين) -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#" onclick="navigate('home'); closeMobileMenu()" data-page="home">
       <i class="fas fa-home"></i> الرئيسية
@@ -1129,29 +1199,28 @@
   </footer>
 
   <script>
-    // بيانات المنتجات (نفسها)
+    // بيانات المنتجات
     const products = [
-      { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
-      { id: 8, name: 'بيجامة قطيفة شتوية', category: 'بيجامات', price: 275, badge: null, isNew: false, desc: 'بيجامة شتوية من القطيفة الفاخرة، تشعرين بالدفء والأناقة.', img: 'images/بيجامة-قطيفة.jpg', sizes: ['S','M','L','XL'] },
-      { id: 2, name: 'جلابة تقليدية بتطريز ملكي', category: 'جلابيات', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر. مثالية للمناسبات العائلية.', img: 'images/جلابة-تطريز-ملكي.jpg', sizes: ['XS','S','M','L'] },
-      { id: 7, name: 'جلابة مطرزة بالعقيق', category: 'جلابيات', price: 590, badge: null, isNew: false, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل، لإطلالة محتشمة وراقية.', img: 'images/جلابة-عقيق.jpg', sizes: ['S','M','L','XL'] },
-      { id: 9, name: 'جلابة كروشيه صيفية', category: 'جلابيات', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي، خفيفة ومثالية لفصل الصيف.', img: 'images/جلابة-كروشيه.jpg', sizes: ['S','M','L'] },
-      { id: 6, name: 'فستان سهرة طويل', category: 'فساتين', price: 720, badge: null, isNew: false, desc: 'فستان سهرة طويل بقصة راقية، مثالي للحفلات والمناسبات الخاصة.', img: 'images/فستان-سهرة.jpg', sizes: ['36','38','40','42'] },
-      { id: 11, name: 'فستان نهاري بنقشة الأزهار', category: 'فساتين', price: 310, badge: null, isNew: false, desc: 'فستان نهاري مريح بنقشة زهرية رومانسية، مثالي لإطلالات الربيع والصيف.', img: 'images/فستان-نهاري.jpg', sizes: ['28','30','32','34'] },
-      { id: 3, name: 'عباءة سوداء بتطريز فاخر', category: 'عبايات', price: 520, badge: 'الأكثر مبيعاً', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري. تصميم مغربي أصيل يجمع بين الأناقة والعصرية.', img: 'images/عباءة-ذهبي.jpg', sizes: ['S','M','L','XL','XXL'] },
-      { id: 10, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: false, desc: 'عباءة كريمية ناعمة بحزام أنيق، تناسب المناسبات الرسمية والخروجات.', img: 'images/عباءة-كريمية.jpg', sizes: ['S','M','L','XL'] },
-      { id: 4, name: 'بدلة رياضية نسائية كاجوال', category: 'معاطف', price: 180, badge: 'جديد', isNew: true, desc: 'بدلة رياضية مريحة وعصرية، مثالية للجيم والخروجات الكاجوال.', img: 'images/بدلة-رياضية.jpg', sizes: ['S','M','L'] },
-      { id: 5, name: 'معطف شتوي كلاسيكي', category: 'معاطف', price: 680, badge: 'حصري', isNew: false, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق، مناسب للعمل والمناسبات الرسمية.', img: 'images/معطف-كلاسيكي.jpg', sizes: ['XS','S','M','L'] },
-      { id: 12, name: 'معطف ترنش أنيق', category: 'معاطف', price: 530, badge: 'جديد', isNew: false, desc: 'معطف ترنش كلاسيكي بقصة عصرية، يناسب مختلف الإطلالات الأنيقة.', img: 'images/معطف-ترنش.jpg', sizes: ['XS','S','M','L'] },
-      { id: 13, name: 'حقيبة يد جلدية فاخرة', category: 'إكسسوارات', price: 420, badge: null, isNew: false, desc: 'حقيبة جلدية أنيقة تكمل إطلالتك بلمسة فاخرة.', img: 'images/حقيبة-جلدية.jpg', sizes: ['One Size'] },
-      { id: 14, name: 'وشاح حرير منقوش', category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, desc: 'وشاح حريري ناعم بنقشات مغربية أصيلة.', img: 'images/وشاح-حرير.jpg', sizes: ['One Size'] },
-      { id: 15, name: 'حزام جلد مطرز', category: 'إكسسوارات', price: 230, badge: null, isNew: false, desc: 'حزام جلد يدوي مطرز يعزز أناقة الجلابيات والفساتين.', img: 'images/حزام-مطرز.jpg', sizes: ['S','M','L'] }
+      { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 2, name: 'جلابة تقليدية بتطريز ملكي', category: 'جلابيات', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي ملكي فاخر.', img: 'images/جلابة-تطريز-ملكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 3, name: 'عباءة سوداء بتطريز فاخر', category: 'عبايات', price: 520, badge: 'الأكثر مبيعاً', isNew: true, desc: 'عباءة فاخرة بتطريز ذهبي حصري.', img: 'images/عباءة-ذهبي.jpg', sizes: ['S','M','L','XL','XXL'] },
+      { id: 4, name: 'بدلة رياضية نسائية كاجوال', category: 'معاطف', price: 180, badge: 'جديد', isNew: true, desc: 'بدلة رياضية مريحة وعصرية.', img: 'images/بدلة-رياضية.jpg', sizes: ['S','M','L'] },
+      { id: 5, name: 'معطف شتوي كلاسيكي', category: 'معاطف', price: 680, badge: 'حصري', isNew: false, desc: 'معطف شتوي دافئ بتصميم كلاسيكي أنيق.', img: 'images/معطف-كلاسيكي.jpg', sizes: ['XS','S','M','L'] },
+      { id: 6, name: 'فستان سهرة طويل', category: 'فساتين', price: 720, badge: null, isNew: false, desc: 'فستان سهرة طويل بقصة راقية.', img: 'images/فستان-سهرة.jpg', sizes: ['36','38','40','42'] },
+      { id: 7, name: 'جلابة مطرزة بالعقيق', category: 'جلابيات', price: 590, badge: null, isNew: false, desc: 'جلابة مغربية تقليدية بتطريز العقيق الجميل.', img: 'images/جلابة-عقيق.jpg', sizes: ['S','M','L','XL'] },
+      { id: 8, name: 'بيجامة قطيفة شتوية', category: 'بيجامات', price: 275, badge: null, isNew: false, desc: 'بيجامة شتوية من القطيفة الفاخرة.', img: 'images/بيجامة-قطيفة.jpg', sizes: ['S','M','L','XL'] },
+      { id: 9, name: 'جلابة كروشيه صيفية', category: 'جلابيات', price: 390, badge: 'ترند', isNew: false, desc: 'جلابة بيضاء من الكروشيه الراقي.', img: 'images/جلابة-كروشيه.jpg', sizes: ['S','M','L'] },
+      { id: 10, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: false, desc: 'عباءة كريمية ناعمة بحزام أنيق.', img: 'images/عباءة-كريمية.jpg', sizes: ['S','M','L','XL'] },
+      { id: 11, name: 'فستان نهاري بنقشة الأزهار', category: 'فساتين', price: 310, badge: null, isNew: false, desc: 'فستان نهاري مريح بنقشة زهرية.', img: 'images/فستان-نهاري.jpg', sizes: ['28','30','32','34'] },
+      { id: 12, name: 'معطف ترنش أنيق', category: 'معاطف', price: 530, badge: 'جديد', isNew: false, desc: 'معطف ترنش كلاسيكي بقصة عصرية.', img: 'images/معطف-ترنش.jpg', sizes: ['XS','S','M','L'] },
+      { id: 13, name: 'حقيبة يد جلدية فاخرة', category: 'إكسسوارات', price: 420, badge: null, isNew: false, desc: 'حقيبة جلدية أنيقة.', img: 'images/حقيبة-جلدية.jpg', sizes: ['One Size'] },
+      { id: 14, name: 'وشاح حرير منقوش', category: 'إكسسوارات', price: 180, badge: 'جديد', isNew: true, desc: 'وشاح حريري ناعم بنقشات مغربية.', img: 'images/وشاح-حرير.jpg', sizes: ['One Size'] },
+      { id: 15, name: 'حزام جلد مطرز', category: 'إكسسوارات', price: 230, badge: null, isNew: false, desc: 'حزام جلد يدوي مطرز.', img: 'images/حزام-مطرز.jpg', sizes: ['S','M','L'] }
     ];
 
     let cart = JSON.parse(localStorage.getItem('warda_cart') || '[]');
     let wishlist = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
 
-    // دوال مساعدة
     function saveCart() { localStorage.setItem('warda_cart', JSON.stringify(cart)); updateCartBadge(); }
     function updateCartBadge() { document.getElementById('cart-count').innerText = cart.reduce((s, i) => s + i.qty, 0); }
     function addToCart(id, qty = 1) {
@@ -1181,8 +1250,7 @@
     function calculateTotals() {
       const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
       const shipping = subtotal >= 300 ? 0 : 20;
-      const total = subtotal + shipping;
-      return { subtotal, shipping, total };
+      return { subtotal, shipping, total: subtotal + shipping };
     }
     function renderCart() {
       const container = document.getElementById('cart-content');
@@ -1227,7 +1295,6 @@
         </div>`;
     }
 
-    // Toast
     let toastTimer;
     function showToast(msg) {
       const t = document.getElementById('toast');
@@ -1238,9 +1305,8 @@
       toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
     }
 
-    // Navigation
+    // التنقل بين الصفحات
     async function navigate(page, productId, replace = false) {
-      // تحديث القائمة النشطة في الـ drawer
       document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.classList.toggle('active', link.getAttribute('data-page') === page);
       });
@@ -1252,9 +1318,7 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById('page-home').classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        const state = { page: 'home' };
-        if (replace) history.replaceState(state, '', '#home');
-        else history.pushState(state, '', '#home');
+        history.pushState({ page: 'home' }, '', '#home');
         return;
       }
       if (page === 'products') {
@@ -1262,9 +1326,7 @@
         document.getElementById('page-products').classList.add('active');
         renderProducts();
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        const state = { page: 'products' };
-        if (replace) history.replaceState(state, '', '#products');
-        else history.pushState(state, '', '#products');
+        history.pushState({ page: 'products' }, '', '#products');
         return;
       }
       if (page === 'detail' && productId) {
@@ -1272,9 +1334,7 @@
         document.getElementById('page-detail').classList.add('active');
         renderDetail(productId);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        const state = { page: 'detail', productId };
-        if (replace) history.replaceState(state, '', `#detail/${productId}`);
-        else history.pushState(state, '', `#detail/${productId}`);
+        history.pushState({ page: 'detail', productId }, '', `#detail/${productId}`);
         return;
       }
       if (page === 'cart') {
@@ -1282,12 +1342,9 @@
         document.getElementById('page-cart').classList.add('active');
         renderCart();
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        const state = { page: 'cart' };
-        if (replace) history.replaceState(state, '', '#cart');
-        else history.pushState(state, '', '#cart');
+        history.pushState({ page: 'cart' }, '', '#cart');
         return;
       }
-      // للصفحات الخارجية (about, contact, terms...)
       const externalPages = ['about', 'contact', 'terms', 'faq', 'refund', 'privacy', 'shipping'];
       if (externalPages.includes(page)) {
         const app = document.getElementById('app');
@@ -1297,22 +1354,20 @@
           if (!response.ok) throw new Error();
           const html = await response.text();
           app.innerHTML = html;
-        } catch (error) {
+        } catch {
           app.innerHTML = '<div class="page active" style="text-align:center;padding:80px 20px;"><h2>عذراً، الصفحة غير موجودة</h2></div>';
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        const state = { page };
-        if (replace) history.replaceState(state, '', `#${page}`);
-        else history.pushState(state, '', `#${page}`);
+        history.pushState({ page }, '', `#${page}`);
       }
     }
 
-    window.addEventListener('popstate', (event) => {
-      if (event.state) navigate(event.state.page, event.state.productId, true);
+    window.addEventListener('popstate', (e) => {
+      if (e.state) navigate(e.state.page, e.state.productId, true);
       else navigate('home', null, true);
     });
 
-    // دوال عرض المنتجات
+    // دوال المنتجات
     let activeFilter = 'الكل';
     function renderHomeCategories() {
       const container = document.getElementById('home-categories');
@@ -1388,37 +1443,48 @@
       btn.classList.add('selected');
     }
     function toggleWishlist(id, btn) {
-      if (wishlist.includes(id)) {
-        wishlist = wishlist.filter(i => i !== id);
-        btn.textContent = 'حفظ';
-        btn.style.color = '';
-        showToast('تمت الإزالة من المفضلة');
-      } else {
+      const index = wishlist.indexOf(id);
+      if (index === -1) {
         wishlist.push(id);
         btn.textContent = 'محفوظ';
         btn.style.color = '#e07898';
         showToast('تمت الإضافة للمفضلة');
+      } else {
+        wishlist.splice(index, 1);
+        btn.textContent = 'حفظ';
+        btn.style.color = '';
+        showToast('تمت الإزالة من المفضلة');
       }
       localStorage.setItem('warda_wishlist', JSON.stringify(wishlist));
     }
 
     // Checkout modal
-    function openCheckoutModal() { document.getElementById('checkout-modal').classList.add('open'); }
-    function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('open'); }
+    function openCheckoutModal() {
+      document.getElementById('checkout-modal').classList.add('open');
+    }
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.remove('open');
+    }
     function confirmCheckout() {
       const name = document.getElementById('checkout-name').value.trim();
       const city = document.getElementById('checkout-city').value.trim();
       const phone = document.getElementById('checkout-phone').value.trim();
-      if (!name || !city || !phone) { showToast('يرجى ملء جميع البيانات'); return; }
+      if (!name || !city || !phone) {
+        showToast('يرجى ملء جميع البيانات');
+        return;
+      }
       const { subtotal, shipping, total } = calculateTotals();
       let message = `طلب من متجر جوهرة إكرام%0A%0Aالاسم: ${encodeURIComponent(name)}%0Aالمدينة: ${encodeURIComponent(city)}%0Aالهاتف: ${encodeURIComponent(phone)}%0A%0A`;
-      cart.forEach((item, idx) => { message += `${idx+1}- ${encodeURIComponent(item.name)} (الكمية: ${item.qty}) - ${item.price * item.qty} درهم%0A`; });
+      cart.forEach((item, idx) => {
+        const product = products.find(p => p.id === item.id);
+        message += `${idx+1}- ${encodeURIComponent(product.name)} (الكمية: ${item.qty}) - ${item.price * item.qty} درهم%0A`;
+      });
       message += `%0Aالمجموع: ${subtotal} درهم%0Aالتوصيل: ${shipping === 0 ? 'مجاني' : shipping + ' درهم'}%0Aالإجمالي: ${total} درهم`;
       window.open(`https://wa.me/212600000000?text=${message}`, '_blank');
       closeCheckoutModal();
     }
 
-    // دوال القائمة الجديدة
+    // دوال القائمة الجانبية
     function toggleMobileMenu() {
       const overlay = document.getElementById('mobile-overlay');
       const menu = document.getElementById('mobile-menu');
@@ -1435,17 +1501,20 @@
       menu.classList.remove('open');
       hamburger.classList.remove('open');
     }
+
     document.getElementById('mobile-overlay').addEventListener('click', closeMobileMenu);
     document.getElementById('hamburger').addEventListener('click', toggleMobileMenu);
 
-    // تحديث active link في القائمة الجانبية عند التنقل (يتم داخلياً)
-    window.addEventListener('load', () => {
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
       updateCartBadge();
       renderHomeCategories();
       renderNewArrivals();
-      renderFilterBar();
+      renderProducts();
       renderCart();
-      // تعيين active للصفحة الحالية (home)
       document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.classList.toggle('active', link.getAttribute('data-page') === 'home');
       });
