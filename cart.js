@@ -2,6 +2,9 @@
    cart.js - سلة التسوق المتطورة
    ============================ */
 
+const FREE_SHIPPING_THRESHOLD = 300;
+const SHIPPING_COST = 20;
+
 let cart = JSON.parse(localStorage.getItem('warda_cart') || '[]');
 
 function saveCart() {
@@ -42,22 +45,21 @@ function addToCart(id) {
 }
 
 function removeFromCart(id) {
+  const doRemove = () => {
+    cart = cart.filter(i => i.id !== id);
+    saveCart();
+    updateCartBadge();
+    renderCart();
+  };
+
   const itemEl = document.querySelector(`.cart-item[data-id="${id}"]`);
   if (itemEl) {
     itemEl.style.transition = 'opacity 0.3s, transform 0.3s';
     itemEl.style.opacity = '0';
     itemEl.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      cart = cart.filter(i => i.id !== id);
-      saveCart();
-      updateCartBadge();
-      renderCart();
-    }, 300);
+    setTimeout(doRemove, 300);
   } else {
-    cart = cart.filter(i => i.id !== id);
-    saveCart();
-    updateCartBadge();
-    renderCart();
+    doRemove();
   }
 }
 
@@ -72,7 +74,7 @@ function updateQty(id, delta) {
 
 function calculateTotals() {
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const shipping = subtotal >= 300 ? 0 : 20;  // تغيير: 300 درهم للتوصيل المجاني، وإلا 20 درهم
+  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
   const total = subtotal + shipping;
   return { subtotal, shipping, total };
 }
@@ -93,24 +95,24 @@ function renderCart() {
 
   const { subtotal, shipping, total } = calculateTotals();
 
-  // شريط التوصيل المجاني (الهدف 300 درهم)
-  const progressPercent = Math.min((subtotal / 300) * 100, 100);
-  const remaining = subtotal >= 300 ? 0 : 300 - subtotal;
-  const freeShippingMsg = remaining > 0
-    ? `بقي لكِ ${remaining} درهم للشحن المجاني`
-    : 'لقد حصلتِ على توصيل مجاني!';
+  // شريط التوصيل المجاني
+  const progressPercent = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
+  const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
+  const freeShippingMsg = remaining <= 0
+    ? 'لقد حصلتِ على توصيل مجاني!'
+    : `بقي لكِ ${remaining} درهم للشحن المجاني`;
 
   // التوصيات الذكية (Upselling)
   const cartCategories = [...new Set(cart.map(item => {
-    const product = window.products.find(p => p.id === item.id);
+    const product = (window.products || []).find(p => p.id === item.id);
     return product ? product.category : null;
   }).filter(Boolean))];
 
   let recommendedProducts = [];
   if (cartCategories.includes('بيجامات') && !cartCategories.includes('معاطف')) {
-    recommendedProducts = window.products.filter(p => p.category === 'معاطف' || p.category === 'إكسسوارات').slice(0, 4);
+    recommendedProducts = (window.products || []).filter(p => p.category === 'معاطف' || p.category === 'إكسسوارات').slice(0, 4);
   } else if (cartCategories.includes('جلابيات') && !cartCategories.includes('إكسسوارات')) {
-    recommendedProducts = window.products.filter(p => p.category === 'إكسسوارات').slice(0, 4);
+    recommendedProducts = (window.products || []).filter(p => p.category === 'إكسسوارات').slice(0, 4);
   }
 
   const upsellHTML = recommendedProducts.length ? `
@@ -121,7 +123,9 @@ function renderCart() {
       </div>
       <div class="products-grid">
         ${recommendedProducts.map(p => {
-          const stockBadge = p.stock < 3 ? '<span class="card-badge stock-badge">سارعي! آخر قطع متوفرة</span>' : (p.badge ? `<span class="card-badge">${p.badge}</span>` : '');
+          const stockBadge = p.stock < 3
+            ? '<span class="card-badge stock-badge">سارعي! آخر قطع متوفرة</span>'
+            : (p.badge ? `<span class="card-badge">${p.badge}</span>` : '');
           return `
             <div class="product-card" onclick="navigate('detail', ${p.id})">
               <div class="card-img-wrap">
@@ -145,8 +149,10 @@ function renderCart() {
     <div class="cart-wrap">
       <div class="cart-items-list">
         ${cart.map(item => {
-          const product = window.products.find(p => p.id === item.id);
-          const stockWarning = product && product.stock < 3 ? '<span class="stock-badge" style="font-size:11px;color:#e05050;font-weight:700;display:block;margin-top:4px;">سارعي! آخر قطع متوفرة</span>' : '';
+          const product = (window.products || []).find(p => p.id === item.id);
+          const stockWarning = product && product.stock < 3
+            ? '<span class="stock-badge" style="font-size:11px;color:#e05050;font-weight:700;display:block;margin-top:4px;">سارعي! آخر قطع متوفرة</span>'
+            : '';
           return `
             <div class="cart-item" data-id="${item.id}">
               <div class="cart-item-img">
@@ -174,7 +180,7 @@ function renderCart() {
         <div class="free-shipping-text">${freeShippingMsg}</div>
         <div class="summary-row">
           <span>عدد المنتجات</span>
-          <span class="val">${cart.reduce((s,i)=>s+i.qty,0)} قطعة</span>
+          <span class="val">${cart.reduce((s, i) => s + i.qty, 0)} قطعة</span>
         </div>
         <div class="summary-row">
           <span>المجموع الفرعي</span>
@@ -184,7 +190,6 @@ function renderCart() {
           <span>التوصيل</span>
           <span class="val">${shipping === 0 ? 'مجاني' : shipping + ' درهم'}</span>
         </div>
-        ${shipping > 0 ? `<div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">أضيفي ${300 - subtotal} درهم أخرى للحصول على توصيل مجاني</div>` : ''}
         <div class="summary-row total">
           <span>الإجمالي</span>
           <span class="val">${total} درهم</span>
