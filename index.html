@@ -58,7 +58,7 @@
       padding: 0 20px;
     }
 
-    /* NAVBAR (نفسه بدون تغيير) */
+    /* NAVBAR */
     #navbar {
       position: fixed;
       top: 0; right: 0; left: 0;
@@ -954,7 +954,7 @@
       border: none;
     }
 
-    /* TRUST FEATURES - تصميم أنيق بدون مربعات كبيرة */
+    /* TRUST FEATURES */
     .trust-features {
       display: flex;
       flex-wrap: wrap;
@@ -1023,7 +1023,7 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* FOOTER - تنسيق جديد على شكل شبكة مرنة */
+    /* FOOTER - تنسيق متناسق */
     .site-footer {
       background: #fffafc;
       border-top: 1px solid var(--border);
@@ -1058,7 +1058,27 @@
       padding-bottom: 5px;
     }
 
-    /* شبكة الروابط: صفين، كل صف به عنصران */
+    /* قائمة عمودية بسيطة لقسم "عن المتجر" (متناسقة) */
+    .link-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .link-list li {
+      margin-bottom: 12px;
+    }
+    .link-list li a {
+      font-size: 14px;
+      color: var(--text-light);
+      transition: color var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .link-list li a:hover {
+      color: var(--pink-deep);
+    }
+
+    /* شبكة 2x2 لقسم "خدمة العملاء" (كما أعجبك) */
     .links-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1066,25 +1086,15 @@
       max-width: 280px;
       margin: 0 auto;
     }
-
     .links-grid a {
       font-size: 14px;
       color: var(--text-light);
       transition: color var(--transition);
       cursor: pointer;
       text-decoration: none;
-      display: inline-block;
     }
-
     .links-grid a:hover {
       color: var(--pink-deep);
-    }
-
-    /* حالة خاصة للشروط والأحكام في قسم المتجر: نجعلها تأخذ عمودين */
-    .full-width-link {
-      grid-column: span 2;
-      text-align: center;
-      margin-top: 4px;
     }
 
     .footer-social {
@@ -1165,7 +1175,7 @@
   </style>
 </head>
 <body>
-  <!-- NAVBAR (نفسها بدون تغيير) -->
+  <!-- NAVBAR -->
   <nav id="navbar">
     <div class="container">
       <div class="nav-inner">
@@ -1199,7 +1209,7 @@
   </div>
 
   <div id="app">
-    <!-- HOME PAGE (نفسها) -->
+    <!-- HOME PAGE -->
     <div class="page active" id="page-home">
       <section class="hero">
         <div class="hero-badge">تشكيلة صيف 2026 الحصرية</div>
@@ -1236,7 +1246,6 @@
         </div>
       </section>
 
-      <!-- قسم الثقة المحسن (بدون مربعات كبيرة) -->
       <section class="section">
         <div class="container">
           <div class="trust-features">
@@ -1265,7 +1274,7 @@
       </section>
     </div>
 
-    <!-- PRODUCTS PAGE, DETAIL, CART (نفسها) -->
+    <!-- PRODUCTS PAGE -->
     <div class="page" id="page-products">
       <section class="section">
         <div class="container">
@@ -1276,6 +1285,7 @@
       </section>
     </div>
 
+    <!-- PRODUCT DETAIL PAGE -->
     <div class="page" id="page-detail">
       <section class="section">
         <div class="container">
@@ -1285,6 +1295,7 @@
       </section>
     </div>
 
+    <!-- CART PAGE -->
     <div class="page" id="page-cart">
       <section class="section">
         <div class="container">
@@ -1311,22 +1322,20 @@
 
   <div class="toast" id="toast"></div>
 
-  <!-- FOOTER المعدل بالكامل (شبكة الروابط) -->
+  <!-- FOOTER المعدل (قسم عن المتجر عمودي، قسم خدمة العملاء شبكة 2x2) -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-links-grid">
-        <!-- قسم عن المتجر -->
+        <!-- قسم عن المتجر (قائمة عمودية متناسقة) -->
         <div class="link-group">
           <div class="link-group-title">عن المتجر</div>
-          <div class="links-grid">
-            <a onclick="navigate('about')">من نحن</a>
-            <a onclick="navigate('contact')">تواصل معنا</a>
-            <div class="full-width-link">
-              <a onclick="navigate('terms')">الشروط والأحكام</a>
-            </div>
-          </div>
+          <ul class="link-list">
+            <li><a onclick="navigate('about')">من نحن</a></li>
+            <li><a onclick="navigate('contact')">تواصل معنا</a></li>
+            <li><a onclick="navigate('terms')">الشروط والأحكام</a></li>
+          </ul>
         </div>
-        <!-- قسم خدمة العملاء -->
+        <!-- قسم خدمة العملاء (شبكة 2x2 كما تريد) -->
         <div class="link-group">
           <div class="link-group-title">خدمة العملاء</div>
           <div class="links-grid">
@@ -1359,7 +1368,7 @@
     </div>
   </footer>
 
-  <!-- نفس السكريبتات السابقة مع الحفاظ على الوظائف -->
+  <!-- JavaScript (نفسه مع جميع الوظائف) -->
   <script>
     var products = [
       { id: 1, name: 'طقم بيجامة حريرية ناعمة', category: 'بيجامات', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'images/بيجامة-حريرية.jpg', sizes: ['S','M','L','XL'] },
