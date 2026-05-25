@@ -85,17 +85,12 @@
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
       cursor: pointer;
     }
 
-    .nav-logo .logo-text {
+    .logo-text {
       font-size: 24px;
       font-weight: 800;
-      color: var(--pink-deep);
-      letter-spacing: -0.5px;
       font-family: 'Tajawal', sans-serif;
       background: linear-gradient(135deg, #e07898, #f0a0c0);
       -webkit-background-clip: text;
@@ -639,7 +634,8 @@
       border-radius: var(--radius-md);
       border: 1.5px solid var(--border);
       background: var(--white);
-      font-size: 20px;
+      font-size: 14px;
+      font-weight: 700;
       display: flex; align-items: center; justify-content: center;
       transition: all var(--transition);
       color: var(--text-muted);
@@ -748,14 +744,15 @@
 
     .remove-btn {
       background: none;
-      font-size: 18px;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--text-muted);
-      padding: 4px;
-      transition: color var(--transition);
-      flex-shrink: 0;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
     }
 
-    .remove-btn:hover { color: #e05050; }
+    .remove-btn:hover { color: #e05050; background: #fff0f3; }
 
     /* Cart Summary */
     .cart-summary {
@@ -821,7 +818,6 @@
       padding: 60px 20px;
     }
 
-    .empty-cart .empty-icon { font-size: 64px; margin-bottom: 16px; color: var(--text-muted); }
     .empty-cart h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
     .empty-cart p  { font-size: 14px; color: var(--text-light); margin-bottom: 24px; }
 
@@ -841,9 +837,10 @@
       aspect-ratio: 4/5;
       background: var(--pink-soft);
       display: flex; align-items: center; justify-content: center;
-      font-size: 100px;
-      box-shadow: var(--shadow-lg);
+      font-size: 80px;
+      font-weight: 900;
       color: var(--pink-deep);
+      box-shadow: var(--shadow-lg);
     }
 
     .about-content h2 {
@@ -907,8 +904,6 @@
       box-shadow: var(--shadow-sm);
     }
 
-    .value-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; color: var(--pink-deep); }
-
     .value-text h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
     .value-text p  { font-size: 13px; color: var(--text-light); line-height: 1.6; }
 
@@ -945,16 +940,6 @@
       border-radius: var(--radius-md);
       border: 1.5px solid var(--border);
       margin-bottom: 12px;
-    }
-
-    .contact-item .ci-icon {
-      width: 42px; height: 42px;
-      background: var(--pink-soft);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-      color: var(--pink-deep);
     }
 
     .contact-item .ci-text h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); }
@@ -1025,7 +1010,6 @@
       display: none;
     }
 
-    .form-success .success-icon { font-size: 50px; margin-bottom: 12px; color: var(--pink-deep); }
     .form-success h3 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
     .form-success p  { font-size: 14px; color: var(--text-light); }
 
@@ -1091,6 +1075,7 @@
       border: 1.5px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       font-size: 16px;
+      font-weight: 700;
       color: var(--pink-deep);
       transition: all var(--transition);
     }
@@ -1250,38 +1235,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Features Strip -->
-      <section class="section">
-        <div class="container">
-          <div class="categories-row">
-            <div class="cat-card">
-              <div class="cat-name">توصيل سريع</div>
-              <div class="cat-count">خلال 24-48 ساعة</div>
-            </div>
-            <div class="cat-card">
-              <div class="cat-name">إرجاع مجاني</div>
-              <div class="cat-count">خلال 14 يوم</div>
-            </div>
-            <div class="cat-card">
-              <div class="cat-name">دفع آمن</div>
-              <div class="cat-count">100% مضمون</div>
-            </div>
-            <div class="cat-card">
-              <div class="cat-name">جودة عالية</div>
-              <div class="cat-count">أقمشة مختارة</div>
-            </div>
-            <div class="cat-card">
-              <div class="cat-name">تصاميم حصرية</div>
-              <div class="cat-count">مجموعات موسمية</div>
-            </div>
-            <div class="cat-card">
-              <div class="cat-name">دعم دائم</div>
-              <div class="cat-count">7/7 أيام</div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
 
     <!-- ========== PRODUCTS PAGE ========== -->
@@ -1333,7 +1286,7 @@
       <section class="section">
         <div class="container">
           <div class="about-grid">
-            <div class="about-img-block" style="font-size: 80px; font-weight: 900; color: var(--pink-deep);">جوهرة اكرام</div>
+            <div class="about-img-block">جوهرة اكرام</div>
             <div class="about-content">
               <div class="section-header" style="text-align:right; margin-bottom:20px;">
                 <span class="tag">قصتنا</span>
@@ -1520,9 +1473,10 @@
   <!-- ============================
        SCRIPTS
   ============================ -->
-  <!-- بيانات المنتجات -->
+  <!-- بيانات المنتجات (متغيرات عامة صريحة) -->
   <script>
-    const products = [
+    // استخدام var لجعلها متاحة على window للوصول إليها من ملف cart.js
+    var products = [
       { id: 1, name: 'طقم بيجامة حريرية', category: 'بيجامة', price: 349, badge: 'جديد', isNew: true, desc: 'طقم بيجامة فاخر من الحرير الناعم، مريح للمنزل والنوم. متوفر بألوان متعددة.', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&q=80', sizes: ['S','M','L','XL'] },
       { id: 2, name: 'جلابة تقليدية بتطريز', category: 'جلابة', price: 450, badge: null, isNew: true, desc: 'جلابة مغربية أصيلة بتطريز يدوي راقٍ. مثالية للمناسبات العائلية.', img: 'https://images.unsplash.com/photo-1551163943-3f7253a97941?w=500&q=80', sizes: ['XS','S','M','L'] },
       { id: 3, name: 'جينز سكيني أزرق', category: 'جينز', price: 320, badge: 'الأكثر مبيعاً', isNew: false, desc: 'جينز سكيني بقصة عصرية ومريحة. خامة عالية الجودة تدوم طويلاً.', img: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=500&q=80', sizes: ['28','30','32','34','36'] },
@@ -1537,7 +1491,7 @@
       { id: 12, name: 'عباءة كريمية بحزام', category: 'عبايات', price: 449, badge: 'جديد', isNew: true, desc: 'عباءة كريمية ناعمة بحزام متقن يمنحكِ قوامًا مثاليًا. تناسب المناسبات الرسمية.', img: 'https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=500&q=80', sizes: ['S','M','L','XL'] }
     ];
 
-    const categories = [
+    var categories = [
       { name: 'بيجامة',    filter: 'بيجامة' },
       { name: 'جلابة',    filter: 'جلابة' },
       { name: 'جينز',     filter: 'جينز' },
@@ -1548,13 +1502,13 @@
       { name: 'صايات',    filter: 'صايات' }
     ];
 
-    const whatsappNumber = '212600000000';
+    var whatsappNumber = '212600000000'; // غيّره إلى رقمك
   </script>
 
-  <!-- ملف السلة المنفصل -->
+  <!-- ملف السلة المنفصل (مطور) -->
   <script src="cart.js"></script>
 
-  <!-- سكريبت الموقع الرئيسي -->
+  <!-- سكريبت الموقع الرئيسي (المنطق) -->
   <script>
     /* ============================
        WISHLIST (المفضلة)
