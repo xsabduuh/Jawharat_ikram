@@ -1,10 +1,324 @@
+<!-- ========== REFUND PAGE ========== -->
 <div class="page active" id="page-refund">
-  <section class="section">
+  <section class="section refund-section">
     <div class="container">
-      <div class="section-header"><span class="tag">سياسة</span><h2>سياسة الاسترجاع</h2><p>آخر تحديث: يونيو 2025</p></div>
-      <div style="background:var(--white); border-radius:var(--radius-lg); padding:30px; border:1px solid var(--border); line-height:2; color:var(--text-light);">
-        <p>يمكنكِ إرجاع المنتجات خلال 7 أيام من تاريخ الاستلام، بشرط أن تكون بحالتها الأصلية غير مستعملة ومع الغلاف والملصقات.</p>
+
+      <div class="section-header">
+        <span class="tag">سياسة</span>
+        <h2>سياسة الاسترجاع</h2>
+        <p>آخر تحديث: يونيو 2025</p>
       </div>
+
+      <!-- بانر رئيسي -->
+      <div class="refund-hero">
+        <div class="refund-hero-icon">↩</div>
+        <div>
+          <h3>استرجاع مضمون خلال 7 أيام</h3>
+          <p>رضاكِ أولويتنا — نضمن لكِ تجربة شراء آمنة وبدون قلق</p>
+        </div>
+      </div>
+
+      <!-- خطوات الاسترجاع -->
+      <div class="refund-steps-title">كيف تطلبين الاسترجاع؟</div>
+      <div class="refund-steps">
+        <div class="refund-step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>تواصلي معنا</strong>
+            <span>راسلينا عبر واتساب أو الموقع خلال 7 أيام من الاستلام</span>
+          </div>
+        </div>
+        <div class="refund-step-divider">←</div>
+        <div class="refund-step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>أرسلي المنتج</strong>
+            <span>أعيدي تعبئة المنتج بغلافه الأصلي مع الملصقات</span>
+          </div>
+        </div>
+        <div class="refund-step-divider">←</div>
+        <div class="refund-step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>استردي أموالك</strong>
+            <span>نعالج الطلب فور وصول المنتج إلينا</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- شروط -->
+      <div class="refund-cards">
+        <div class="refund-card refund-card--yes">
+          <div class="refund-card-header">
+            <span class="refund-card-icon">✓</span>
+            <h4>يُقبل الاسترجاع</h4>
+          </div>
+          <ul>
+            <li>المنتج بحالته الأصلية غير مستعمل</li>
+            <li>الغلاف والملصقات سليمة</li>
+            <li>الطلب خلال 7 أيام من الاستلام</li>
+            <li>عيب مصنعي أو خطأ في الطلبية</li>
+          </ul>
+        </div>
+        <div class="refund-card refund-card--no">
+          <div class="refund-card-header">
+            <span class="refund-card-icon">✗</span>
+            <h4>لا يُقبل الاسترجاع</h4>
+          </div>
+          <ul>
+            <li>المنتج مستعمل أو غُسل</li>
+            <li>إزالة الملصقات أو الغلاف</li>
+            <li>مرور أكثر من 7 أيام على الاستلام</li>
+            <li>الملابس الداخلية لأسباب صحية</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- تنبيه -->
+      <div class="refund-note">
+        <span class="refund-note-icon">💡</span>
+        <p>للاستفسار عن أي طلب، يمكنكِ التواصل معنا مباشرة عبر صفحة <strong>اتصل بنا</strong> وسنرد خلال ساعات.</p>
+      </div>
+
     </div>
   </section>
 </div>
+
+/* ========== REFUND STYLES ========== */
+.refund-section {
+  padding: 60px 0;
+}
+
+.refund-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark, #c0392b));
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  margin-bottom: 40px;
+}
+
+.refund-hero-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.15);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refund-hero h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #fff;
+}
+
+.refund-hero p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.88;
+}
+
+.refund-steps-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.refund-steps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.refund-step {
+  flex: 1;
+  min-width: 160px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step-num {
+  background: var(--primary);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step-text strong {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.step-text span {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.refund-step-divider {
+  color: var(--text-light);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.refund-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.refund-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  border: 1px solid var(--border);
+}
+
+.refund-card--yes {
+  border-top: 3px solid #27ae60;
+}
+
+.refund-card--no {
+  border-top: 3px solid #e74c3c;
+}
+
+.refund-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.refund-card-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.refund-card--yes .refund-card-icon {
+  background: #eafaf1;
+  color: #27ae60;
+}
+
+.refund-card--no .refund-card-icon {
+  background: #fdecea;
+  color: #e74c3c;
+}
+
+.refund-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.refund-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.refund-card ul li {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  padding-right: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.refund-card--yes ul li::before {
+  content: '✓';
+  position: absolute;
+  right: 0;
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.refund-card--no ul li::before {
+  content: '✗';
+  position: absolute;
+  right: 0;
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+.refund-note {
+  background: #fffbea;
+  border: 1px solid #f0d060;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.refund-note-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.refund-note p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.refund-note p strong {
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .refund-cards {
+    grid-template-columns: 1fr;
+  }
+  .refund-steps {
+    flex-direction: column;
+  }
+  .refund-step {
+    width: 100%;
+  }
+  .refund-step-divider {
+    transform: rotate(-90deg);
+  }
+}
