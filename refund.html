@@ -1,4 +1,3 @@
-
 <div class="page active" id="page-refund" style="padding-top:70px">
 <style>
 .refund-hero{background:linear-gradient(135deg,#fff5f9,#fdf0f5);padding:60px 20px 40px;text-align:center;border-bottom:1px solid #f2d8e4}
@@ -7,7 +6,7 @@
 .refund-hero p{font-size:14px;color:#7a5a68;max-width:480px;margin:0 auto;line-height:1.7}
 .refund-body{max-width:860px;margin:0 auto;padding:50px 20px 60px}
 .refund-highlight{background:linear-gradient(135deg,#fff0f5,#fdf5f9);border:2px solid #f8c8dc;border-radius:20px;padding:28px 30px;margin-bottom:28px;text-align:center}
-.refund-highlight h2{font-size:22px;font-weight:900;color:#e07898;margin-bottom:10px}
+.refund-highlight h2{font-size:22px;font-weight:900;color:#e07898;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px}
 .refund-highlight p{font-size:15px;color:#7a5a68;line-height:1.7}
 .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
 .step-card{background:#fff;border:1px solid #f2d8e4;border-radius:18px;padding:24px 18px;text-align:center;transition:transform .25s,box-shadow .25s}
@@ -25,7 +24,7 @@
 .condition-box{border-radius:14px;padding:16px 18px}
 .condition-box.ok{background:#f0fff4;border:1px solid #c6f6d5}
 .condition-box.no{background:#fff5f5;border:1px solid #fed7d7}
-.condition-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.condition-box h3{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .condition-box.ok h3{color:#276749}
 .condition-box.no h3{color:#c53030}
 .condition-box li{font-size:13px;line-height:1.7;margin-bottom:4px}
@@ -48,7 +47,10 @@
 <div class="refund-body">
 
   <div class="refund-highlight">
-    <h2>🌸 ضمان الرضا لمدة 14 يوماً</h2>
+    <h2>
+      <i class="fas fa-shield-heart" style="color:#e07898" aria-hidden="true"></i>
+      ضمان الرضا لمدة 14 يوماً
+    </h2>
     <p>إذا لم تكوني راضية عن أي منتج لأي سبب كان، يمكنكِ إعادته خلال <strong>14 يوماً</strong> من تاريخ الاستلام واسترجاع ثمنه كاملاً.</p>
   </div>
 
@@ -71,10 +73,13 @@
   </div>
 
   <div class="refund-section">
-    <h2><span aria-hidden="true">✅</span> شروط الاسترجاع</h2>
+    <h2>
+      <i class="fas fa-clipboard-check" style="color:#e07898" aria-hidden="true"></i>
+      شروط الاسترجاع
+    </h2>
     <div class="conditions-grid">
       <div class="condition-box ok">
-        <h3>✔ مقبول للاسترجاع</h3>
+        <h3><i class="fas fa-check-circle" aria-hidden="true"></i> مقبول للاسترجاع</h3>
         <ul>
           <li>المنتج جديد غير مستخدم</li>
           <li>بغلاف وبطاقة السعر الأصليين</li>
@@ -84,7 +89,7 @@
         </ul>
       </div>
       <div class="condition-box no">
-        <h3>✗ غير مقبول للاسترجاع</h3>
+        <h3><i class="fas fa-times-circle" aria-hidden="true"></i> غير مقبول للاسترجاع</h3>
         <ul>
           <li>المنتجات المستخدمة أو المغسولة</li>
           <li>إزالة البطاقات أو الغلاف</li>
@@ -97,18 +102,27 @@
   </div>
 
   <div class="refund-section">
-    <h2><span aria-hidden="true">🔄</span> الاستبدال</h2>
+    <h2>
+      <i class="fas fa-rotate-left" style="color:#e07898" aria-hidden="true"></i>
+      الاستبدال
+    </h2>
     <p>يمكنكِ استبدال أي منتج بمقاس أو لون مختلف خلال <strong>14 يوماً</strong> من الاستلام. في حال وجود فرق في السعر، يُعالَج بينكِ وبين فريق المبيعات مباشرة عبر واتساب.</p>
   </div>
 
   <div class="refund-section">
-    <h2><span aria-hidden="true">💰</span> طريقة الاسترداد</h2>
+    <h2>
+      <i class="fas fa-money-bill-wave" style="color:#e07898" aria-hidden="true"></i>
+      طريقة الاسترداد
+    </h2>
     <p>نظراً لأن الدفع يتم عند الاستلام، يُعاد المبلغ نقداً عند استلام المنتج المُرجَع، أو يُخصم من قيمة طلبكِ القادم — حسب تفضيلكِ.</p>
     <p>مدة المعالجة: <strong>3 إلى 5 أيام عمل</strong> من استلام المنتج.</p>
   </div>
 
   <div class="refund-section" style="background:linear-gradient(135deg,#f0fff4,#e6ffed);border-color:#c6f6d5">
-    <h2><span aria-hidden="true">📞</span> للتواصل بشأن الاسترجاع</h2>
+    <h2>
+      <i class="fab fa-whatsapp" style="color:#25D366" aria-hidden="true"></i>
+      للتواصل بشأن الاسترجاع
+    </h2>
     <p>تواصلي معنا مباشرة عبر واتساب للحصول على المساعدة الفورية:</p>
     <a href="https://wa.me/212727726891?text=أريد%20الاستفسار%20عن%20سياسة%20الاسترجاع"
       target="_blank" rel="noopener noreferrer"
