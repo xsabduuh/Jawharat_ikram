@@ -44,7 +44,7 @@
       z-index: 0;
     }
 
-    /* زر الرجوع - دائري، سهم فقط، يظهر في الجهة اليسرى (في RTL) */
+    /* زر الرجوع - دائري، سهم لليسار، مع مسافة من الحافة */
     .back-btn {
       display: flex;
       align-items: center;
@@ -57,7 +57,7 @@
       margin-top: 100px;
       margin-bottom: 20px;
       margin-right: auto;   /* يدفع الزر لليمين في LTR، ولليسار في RTL */
-      margin-left: 0;
+      margin-left: 20px;    /* مسافة من الحافة اليسرى */
       font-size: 18px;
       color: #e07898;
       cursor: pointer;
@@ -202,15 +202,15 @@
       .step-arrow { transform: rotate(90deg); margin: 0; }
       .guarantee-card { flex-direction: column; text-align: center; }
       .refund-wrapper { padding: 0 16px 40px; }
-      .back-btn { margin-top: 90px; margin-right: auto; margin-left: 0; }
+      .back-btn { margin-top: 90px; margin-right: auto; margin-left: 16px; }
     }
   </style>
 </head>
 <body>
 
-<!-- زر الرجوع - دائري، سهم فقط، ملتصق بالجهة اليسرى -->
+<!-- زر الرجوع - دائري، سهم لليسار، مع مسافة من الحافة -->
 <div class="back-btn" onclick="goBack()">
-  <i class="fa-solid fa-arrow-right"></i>
+  <i class="fa-solid fa-arrow-left"></i>
 </div>
 
 <div class="refund-wrapper">
