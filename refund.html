@@ -30,7 +30,6 @@
       position: relative;
     }
 
-    /* خلفية بنقاط */
     body::before {
       content: '';
       position: fixed;
@@ -45,28 +44,30 @@
       z-index: 0;
     }
 
-    /* زر الرجوع المعدل (ظهر فوق الشريط) */
+    /* زر الرجوع - معدل: حجم أصغر، في الجهة الأخرى (يسار) */
     .back-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 60px;
-      padding: 8px 20px;
-      margin: 80px 30px 20px 30px;  /* زيادة المسافة من الأعلى */
-      font-size: 14px;
+      padding: 6px 14px;
+      margin: 100px 30px 20px auto;
+      font-size: 13px;
       font-weight: 600;
       color: #e07898;
       cursor: pointer;
       transition: all 0.25s ease;
       text-decoration: none;
       position: relative;
-      z-index: 1001;                /* أعلى من الشريط */
+      z-index: 1001;
       width: fit-content;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      margin-left: auto; /* يدفع الزر لليسار في RTL */
+      margin-right: 30px;
     }
-    .back-btn i { font-size: 13px; }
+    .back-btn i { font-size: 12px; }
     .back-btn:hover {
       background: #fdf0f5;
       border-color: #e07898;
@@ -74,7 +75,6 @@
       box-shadow: 0 4px 12px rgba(224,120,152,0.15);
     }
 
-    /* الحاوية الرئيسية */
     .refund-wrapper {
       max-width: 1000px;
       margin: 0 auto;
@@ -83,7 +83,6 @@
       z-index: 1;
     }
 
-    /* باقي الأنماط كما هي (غير معدلة) */
     .refund-header { text-align: center; margin-bottom: 48px; padding: 20px 0 10px; }
     .refund-header .icon-circle {
       width: 80px; height: 80px;
@@ -205,13 +204,13 @@
       .step-arrow { transform: rotate(90deg); margin: 0; }
       .guarantee-card { flex-direction: column; text-align: center; }
       .refund-wrapper { padding: 0 16px 40px; }
-      .back-btn { margin-top: 70px; margin-left: 20px; margin-right: 20px; }
+      .back-btn { margin-top: 90px; margin-left: 20px; margin-right: auto; }
     }
   </style>
 </head>
 <body>
 
-<!-- زر الرجوع مع مسافة أعلى مناسبة -->
+<!-- زر الرجوع المعدل -->
 <div class="back-btn" onclick="goBack()">
   <i class="fa-solid fa-arrow-right"></i> رجوع
 </div>
@@ -265,8 +264,11 @@
 
 <script>
   function goBack() {
-    if (window.history.length > 1) window.history.back();
-    else window.location.href = 'index.html';
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = 'index.html';
+    }
   }
 </script>
 
