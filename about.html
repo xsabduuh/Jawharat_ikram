@@ -6,20 +6,23 @@
 .about-hero p{font-size:16px;color:#7a5a68;max-width:520px;margin:0 auto;line-height:1.7}
 .about-section{max-width:900px;margin:0 auto;padding:60px 20px}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:60px}
-.about-img{border-radius:28px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 12px 48px rgba(240,160,192,.28)}
+.about-img{border-radius:28px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 12px 48px rgba(240,160,192,.28);background:linear-gradient(145deg,#fdf0f5,#f8c8dc);display:flex;align-items:center;justify-content:center}
+.test-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#e07898}
+.test-placeholder i{font-size:4rem;opacity:0.85}
+.test-placeholder span{font-size:1.3rem;font-weight:800;background:rgba(255,255,240,0.7);padding:4px 18px;border-radius:60px;backdrop-filter:blur(2px)}
 .about-img img{width:100%;height:100%;object-fit:cover}
 .about-text h2{font-size:clamp(20px,3.5vw,30px);font-weight:800;color:#3a2430;margin-bottom:14px}
-.about-text h2 span{color:#e07898}
+.about-text h2 i{margin-left:8px;color:#e07898}
 .about-text p{font-size:15px;color:#7a5a68;line-height:1.85;margin-bottom:14px}
 .about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
 .value-card{background:#fff;border:1px solid #f2d8e4;border-radius:18px;padding:28px 20px;text-align:center;transition:transform .25s,box-shadow .25s}
 .value-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(240,160,192,.25)}
-.value-icon{font-size:36px;margin-bottom:14px}
+.value-icon{font-size:36px;margin-bottom:14px;color:#e07898}
 .value-title{font-size:16px;font-weight:800;color:#3a2430;margin-bottom:8px}
 .value-desc{font-size:13px;color:#7a5a68;line-height:1.6}
 .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px;margin-top:24px}
 .team-card{background:#fff;border:1px solid #f2d8e4;border-radius:18px;padding:24px 16px;text-align:center}
-.team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#f8c8dc,#e07898);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#f8c8dc,#e07898);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:28px;color:white}
 .team-name{font-size:15px;font-weight:700;color:#3a2430;margin-bottom:4px}
 .team-role{font-size:12px;color:#b89aaa}
 .back-hero-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#e07898,#f0a0c0);color:#fff;padding:12px 26px;border-radius:40px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:inherit;margin-top:16px;transition:all .3s}
@@ -38,55 +41,55 @@
 </div>
 
 <div class="about-section">
+  <!-- القسم الأول: صورة test + نص جديد -->
   <div class="about-grid">
     <div class="about-img">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="أزياء مغربية تقليدية" loading="lazy" width="600" height="450" />
+      <div class="test-placeholder">
+        <i class="fas fa-tshirt" aria-hidden="true"></i>
+        <span>test</span>
+      </div>
     </div>
     <div class="about-text">
-      <h2>من نحن <span>✨</span></h2>
+      <h2><i class="fas fa-heart" style="color:#e07898; margin-left:6px"></i> مرحبًا بكِ في جوهرة اكرام</h2>
       <p>
-        <strong>جوهرة اكرام</strong> متجر إلكتروني مغربي متخصص في الأزياء النسائية، أسسته اكرام بشغف حقيقي للموضة والأناقة. نؤمن أن كل امرأة تستحق أن تتألق بأسلوبها الفريد.
+        <strong>جوهرة اكرام</strong> وجهتكِ المغربية للأزياء النسائية الأنيقة والعصرية. وُلد المتجر من شغف حقيقي بالموضة وحب التفاصيل الجميلة، بهدف تقديم قطع تجمع بين الأناقة، الجودة، والراحة في مكان واحد.
       </p>
       <p>
-        تأسس المتجر عام 2022 ويضم اليوم مئات العميلات الراضيات من جميع أرجاء المملكة المغربية. نختار كل قطعة بعناية فائقة لتناسب ذوق وميزانية المرأة المغربية.
+        نسعى لتقديم تجربة تسوق مميزة تُلبي احتياجات المرأة المغربية وتواكب ذوقها المتجدد، مع اختيار كل قطعة بعناية فائقة لتمنحكِ مزيجًا من الأناقة والجودة والأسعار المناسبة.
       </p>
       <p>
-        من الجلابيات التقليدية المطرزة إلى الفساتين العصرية والبيجامات الفاخرة — لدينا ما يناسب كل مناسبة وكل ذوق.
+        من الجلابيات المغربية الأنيقة إلى الفساتين العصرية والبيجامات الراقية — ستجدين لدينا ما يناسب كل مناسبة ويعكس أسلوبكِ الخاص.
       </p>
     </div>
   </div>
 
-  <div class="about-grid" style="direction:rtl">
+  <!-- القسم الثاني: بدون صورة (تم حذف صورة فساتين سهرة راقية) -->
+  <div class="about-grid" style="grid-template-columns:1fr; text-align:center">
     <div class="about-text">
-      <h2>رسالتنا <span>🌸</span></h2>
+      <h2><i class="fas fa-star" style="color:#e07898; margin-left:6px"></i> لأن الأناقة ليست مجرد ملابس</h2>
       <p>
-        رسالتنا بسيطة: <strong>نجعل كل امرأة تشعر بالجمال والثقة</strong>. نقدم أزياء راقية بأسعار مناسبة وخدمة عملاء تجعل تجربة التسوق ممتعة.
+        بل إحساس يرافقكِ كل يوم. نقدم أزياء راقية بأسعار مناسبة وخدمة عملاء تجعل تجربة التسوق ممتعة. نحرص على جودة كل قطعة، ونتعامل مباشرة مع أفضل الموردين لضمان أعلى مستوى من الجودة بأسعار عادلة.
       </p>
-      <p>
-        نحرص على جودة كل قطعة، ونتعامل مباشرة مع أفضل الموردين لضمان أعلى مستوى من الجودة بأسعار عادلة.
-      </p>
-    </div>
-    <div class="about-img">
-      <img src="https://images.unsplash.com/photo-1566479179817-d78ff42e5dee?w=600&q=80" alt="فساتين سهرة راقية" loading="lazy" width="600" height="450" />
     </div>
   </div>
 
+  <!-- قيمنا الأساسية -->
   <div>
-    <h2 style="font-size:26px;font-weight:800;color:#3a2430;text-align:center;margin-bottom:8px">قيمنا الأساسية</h2>
+    <h2 style="font-size:26px;font-weight:800;color:#3a2430;text-align:center;margin-bottom:8px"><i class="fas fa-gem" style="color:#e07898; margin-left:8px"></i> قيمنا الأساسية</h2>
     <p style="text-align:center;color:#7a5a68;margin-bottom:4px">المبادئ التي تحكم كل ما نقوم به</p>
     <div class="about-values">
       <div class="value-card">
-        <div class="value-icon" aria-hidden="true">✨</div>
+        <div class="value-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
         <div class="value-title">الجودة أولاً</div>
         <div class="value-desc">نختار كل قطعة بعناية لضمان أعلى جودة ممكنة</div>
       </div>
       <div class="value-card">
-        <div class="value-icon" aria-hidden="true">❤️</div>
+        <div class="value-icon"><i class="fas fa-smile" aria-hidden="true"></i></div>
         <div class="value-title">رضا العميلة</div>
         <div class="value-desc">رضاكِ هو أولويتنا القصوى في كل خطوة</div>
       </div>
       <div class="value-card">
-        <div class="value-icon" aria-hidden="true">💎</div>
+        <div class="value-icon"><i class="fas fa-hand-holding-heart" aria-hidden="true"></i></div>
         <div class="value-title">أسعار عادلة</div>
         <div class="value-desc">أزياء راقية بأسعار تناسب الجميع</div>
       </div>
