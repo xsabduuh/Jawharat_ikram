@@ -6,15 +6,35 @@
   <title>سياسة الخصوصية | جوهرة اكرام</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Tajawal', sans-serif;
-      background: #fff8fa;
+      background: linear-gradient(145deg, #fff5f9 0%, #fef0f5 100%);
       color: #2d1a22;
       min-height: 100vh;
+      position: relative;
+    }
+
+    /* خلفية بنقاط خفيفة */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(#f0a0c0 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* زر الرجوع */
@@ -23,246 +43,222 @@
       align-items: center;
       gap: 8px;
       background: #fff;
-      border: 1px solid #fce4ec;
-      border-radius: 40px;
-      padding: 8px 18px;
-      margin: 20px 30px;
+      border: 1px solid #f2d8e4;
+      border-radius: 60px;
+      padding: 8px 20px;
+      margin: 25px 30px;
       font-size: 14px;
-      font-weight: 500;
-      color: #c2185b;
+      font-weight: 600;
+      color: #e07898;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       text-decoration: none;
+      z-index: 10;
+      position: relative;
       width: fit-content;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-    .back-btn i {
-      font-size: 14px;
-    }
+    .back-btn i { font-size: 13px; }
     .back-btn:hover {
-      background: #fce4ec;
-      border-color: #e91e8c;
+      background: #fdf0f5;
+      border-color: #e07898;
       transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(224,120,152,0.15);
     }
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #e91e8c 0%, #f06292 100%);
-      padding: 3rem 1.5rem;
+    /* الحاوية الرئيسية */
+    .privacy-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* الهيدر الجديد */
+    .privacy-header {
       text-align: center;
+      margin-bottom: 48px;
+      padding: 20px 0 10px;
     }
-
-    .hero h1 {
-      color: #fff;
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: .01em;
-    }
-
-    .hero p {
-      color: rgba(255,255,255,.8);
-      font-size: .9rem;
-      margin-top: .5rem;
-      font-weight: 300;
-    }
-
-    /* CONTENT */
-    .content {
-      max-width: 700px;
-      margin: 3rem auto;
-      padding: 0 1.5rem 5rem;
-    }
-
-    /* SECTION */
-    .section {
-      display: flex;
-      gap: 1.2rem;
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      transform: translateY(14px);
-      animation: up .45s forwards;
-    }
-
-    .section:nth-child(1) { animation-delay: .08s; }
-    .section:nth-child(2) { animation-delay: .16s; }
-    .section:nth-child(3) { animation-delay: .24s; }
-    .section:nth-child(4) { animation-delay: .32s; }
-    .section:nth-child(5) { animation-delay: .40s; }
-
-    @keyframes up { to { opacity: 1; transform: none; } }
-
-    .icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: #fce4ec;
+    .privacy-header .icon-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #e07898, #f0a0c0);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      color: #e91e8c;
-      font-size: .95rem;
+      margin: 0 auto 20px;
+      box-shadow: 0 12px 24px rgba(224,120,152,0.3);
+    }
+    .privacy-header .icon-circle i {
+      font-size: 36px;
+      color: #fff;
+    }
+    .privacy-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c94b6c, #e07898);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+    }
+    .privacy-header .date {
+      font-size: 13px;
+      color: #b89aaa;
+      font-weight: 500;
     }
 
-    .section h2 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #c2185b;
-      margin-bottom: .4rem;
+    /* شبكة الكروت */
+    .privacy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    .section p {
-      font-size: .9rem;
-      color: #7b5260;
+    .privacy-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      border: 1px solid #f2d8e4;
+      padding: 28px 32px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    .privacy-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(224,120,152,0.1);
+      border-color: #f0a0c0;
+      background: #fff;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      background: #fdf0f5;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e07898;
+      font-size: 24px;
+      transition: all 0.2s;
+    }
+    .privacy-card:hover .card-icon {
+      background: #e07898;
+      color: #fff;
+    }
+    .card-header h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #3a2430;
+    }
+    .privacy-card p {
+      font-size: 15px;
       line-height: 1.8;
+      color: #7a5a68;
+      padding-right: 8px;
     }
 
-    /* DIVIDER */
-    hr {
-      border: none;
-      border-top: 1px dashed #fce4ec;
-      margin: 0 0 2.2rem;
-    }
-
-    /* FOOTER CTA */
-    .cta {
-      background: #fff;
-      border: 1px solid #fce4ec;
-      border-radius: 14px;
-      padding: 1.6rem;
+    /* تذييل نظيف (بدون أي روابط تواصل) */
+    .privacy-footer {
       text-align: center;
-      margin-top: 1rem;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 2px dashed #f2d8e4;
+      font-size: 13px;
+      color: #b89aaa;
     }
 
-    .cta p { font-size: .88rem; color: #9e6778; margin-bottom: 1rem; }
-
-    .cta-links {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .cta a {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      background: #e91e8c;
-      color: #fff;
-      font-family: 'Tajawal', sans-serif;
-      font-size: .88rem;
-      font-weight: 600;
-      padding: .65rem 1.6rem;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: opacity .2s;
-    }
-    .cta a:hover { opacity: .85; }
-
-    .phone-number {
-      direction: ltr;
-      display: inline-block;
-      unicode-bidi: embed;
-      background: #fce4ec;
-      color: #c2185b;
-      padding: 0.65rem 1.6rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.88rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: .78rem;
-      color: #c9a0b0;
-      background: #fff;
-      border-top: 1px solid #fce4ec;
-    }
-
-    @media (max-width: 500px) {
+    /* استجابة */
+    @media (max-width: 640px) {
+      .privacy-wrapper { padding: 0 16px 40px; }
+      .privacy-card { padding: 20px 20px; }
+      .card-header { gap: 12px; }
+      .card-icon { width: 44px; height: 44px; font-size: 20px; }
+      .card-header h2 { font-size: 17px; }
+      .privacy-header h1 { font-size: 26px; }
       .back-btn { margin: 15px 20px; }
-      .cta-links { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- زر الرجوع (بدون شريط علوي) -->
+<!-- زر الرجوع -->
 <div class="back-btn" onclick="goBack()">
   <i class="fa-solid fa-arrow-right"></i> رجوع
 </div>
 
-<div class="hero">
-  <h1>سياسة الخصوصية</h1>
-  <p>آخر تحديث: مايو 2026</p>
-</div>
+<div class="privacy-wrapper">
+  <div class="privacy-header">
+    <div class="icon-circle">
+      <i class="fa-solid fa-lock"></i>
+    </div>
+    <h1>سياسة الخصوصية</h1>
+    <div class="date">آخر تحديث: مايو 2026</div>
+  </div>
 
-<div class="content">
-
-  <div class="section">
-    <div class="icon"><i class="fa-solid fa-database"></i></div>
-    <div>
-      <h2>ما الذي نجمعه؟</h2>
+  <div class="privacy-grid">
+    <!-- 1 -->
+    <div class="privacy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+        <h2>ما الذي نجمعه؟</h2>
+      </div>
       <p>عند إتمام طلبك نطلب فقط اسمك، رقم هاتفك، ومدينتك — وذلك لإيصال طلبك إليكِ.</p>
     </div>
-  </div>
 
-  <hr />
-
-  <div class="section">
-    <div class="icon"><i class="fa-solid fa-gear"></i></div>
-    <div>
-      <h2>لماذا نستخدم بياناتك؟</h2>
+    <!-- 2 -->
+    <div class="privacy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-solid fa-gear"></i></div>
+        <h2>لماذا نستخدم بياناتك؟</h2>
+      </div>
       <p>فقط لتأكيد الطلب والتواصل معكِ بشأن التوصيل. لا شيء آخر.</p>
     </div>
-  </div>
 
-  <hr />
-
-  <div class="section">
-    <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
-    <div>
-      <h2>هل نشاركها مع أحد؟</h2>
+    <!-- 3 -->
+    <div class="privacy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h2>هل نشاركها مع أحد؟</h2>
+      </div>
       <p>لا. بياناتك لدينا فقط، ولن تُشارَك مع أي جهة تسويقية أو إعلانية.</p>
     </div>
-  </div>
 
-  <hr />
-
-  <div class="section">
-    <div class="icon"><i class="fa-solid fa-lock"></i></div>
-    <div>
-      <h2>الدفع والأمان</h2>
+    <!-- 4 -->
+    <div class="privacy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
+        <h2>الدفع والأمان</h2>
+      </div>
       <p>نعتمد الدفع نقداً عند الاستلام فقط — لا نجمع أي بيانات بنكية أو مالية.</p>
     </div>
-  </div>
 
-  <hr />
-
-  <div class="section">
-    <div class="icon"><i class="fa-solid fa-scale-balanced"></i></div>
-    <div>
-      <h2>حقوقك</h2>
+    <!-- 5 -->
+    <div class="privacy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h2>حقوقك</h2>
+      </div>
       <p>يمكنكِ طلب الاطلاع على بياناتك أو حذفها في أي وقت بالتواصل معنا مباشرة.</p>
     </div>
   </div>
 
-  <div class="cta">
-    <p>هل لديكِ سؤال حول خصوصيتك؟</p>
-    <div class="cta-links">
-      <a href="https://wa.me/212727726891">
-        <i class="fab fa-whatsapp"></i> واتساب
-      </a>
-      <span class="phone-number" dir="ltr">📞 +212 727-726891</span>
-    </div>
+  <div class="privacy-footer">
+    <i class="fa-regular fa-heart"></i> جوهرة إكرام — خصوصيتك أمانة
   </div>
-
 </div>
 
-<footer>جميع الحقوق محفوظة © 2026 — جوهرة اكرام</footer>
-
 <script>
-  // دالة الرجوع إلى الصفحة السابقة
   function goBack() {
     if (window.history.length > 1) {
       window.history.back();
