@@ -44,7 +44,6 @@
       z-index: 0;
     }
 
-    /* زر الرجوع - دائري، سهم لليسار، مسافة من الحافة */
     .back-btn {
       display: flex;
       align-items: center;
@@ -81,7 +80,6 @@
       z-index: 1;
     }
 
-    /* باقي الأنماط كما هي (الهيدر، البطاقات، الجدول، إلخ) */
     .refund-header { text-align: center; margin-bottom: 48px; padding: 20px 0 10px; }
     .refund-header .icon-circle {
       width: 80px; height: 80px;
@@ -209,7 +207,6 @@
 </head>
 <body>
 
-<!-- زر الرجوع -->
 <div class="back-btn" id="backButton">
   <i class="fa-solid fa-arrow-left"></i>
 </div>
@@ -262,22 +259,29 @@
 </div>
 
 <script>
-  // حل الرجوع الذي يعمل مع التحميل عبر fetch وبدون history
   (function() {
-    var backBtn = document.getElementById('backButton');
+    const backBtn = document.getElementById('backButton');
     if (!backBtn) return;
 
-    backBtn.addEventListener('click', function() {
-      // التحقق مما إذا كان المستخدم أتى من صفحة داخل نفس الموقع
-      var referrer = document.referrer;
-      if (referrer && referrer.includes(window.location.hostname)) {
-        // إذا كان المرجع من نفس الموقع، نذهب إليه مباشرة
-        window.location.href = referrer;
-      } else {
-        // وإلا نذهب إلى الصفحة الرئيسية
-        window.location.href = 'index.html';
+    // استراتيجية الرجوع: أولاً sessionStorage، ثم referrer، ثم الرئيسية
+    function goBack() {
+      // 1. هل هناك صفحة سابقة مخزنة من index.html؟
+      const previous = sessionStorage.getItem('previousPage');
+      if (previous && previous !== window.location.pathname && previous !== window.location.hash) {
+        window.location.href = previous;
+        return;
       }
-    });
+      // 2. استخدام document.referrer (إذا أتى المستخدم من رابط داخل نفس الموقع)
+      const referrer = document.referrer;
+      if (referrer && referrer.includes(window.location.hostname)) {
+        window.location.href = referrer;
+        return;
+      }
+      // 3. الحل الأخير: العودة إلى الصفحة الرئيسية
+      window.location.href = 'index.html';
+    }
+
+    backBtn.addEventListener('click', goBack);
   })();
 </script>
 
