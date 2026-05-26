@@ -1,324 +1,144 @@
-<div class="page active" id="page-contact">
-  <style>
-    /* أنماط خاصة بصفحة تواصل معنا */
-    .contact-hero {
-      background: linear-gradient(135deg, #fdf0f5 0%, #fff5f9 40%, #fce8f2 100%);
-      padding: 80px 20px 70px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-    }
+<div class="page active" id="page-contact" style="padding-top:70px">
+<style>
+.contact-hero{background:linear-gradient(135deg,#fff5f9,#fdf0f5);padding:70px 20px 50px;text-align:center;border-bottom:1px solid #f2d8e4}
+.contact-hero h1{font-size:clamp(26px,5vw,40px);font-weight:900;color:#3a2430;margin-bottom:12px}
+.contact-hero h1 span{color:#e07898}
+.contact-hero p{font-size:15px;color:#7a5a68;max-width:500px;margin:0 auto;line-height:1.7}
+.contact-wrap{max-width:900px;margin:0 auto;padding:60px 20px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-info-card{background:#fff;border:1px solid #f2d8e4;border-radius:24px;padding:32px;box-shadow:0 4px 20px rgba(240,160,192,.12)}
+.contact-form-card{background:#fff;border:1px solid #f2d8e4;border-radius:24px;padding:32px;box-shadow:0 4px 20px rgba(240,160,192,.12)}
+.card-title{font-size:20px;font-weight:800;color:#3a2430;margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.contact-method{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #f2d8e4}
+.contact-method:last-child{border-bottom:none}
+.method-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.method-icon.wa{background:#e8f8ee;color:#25D366}
+.method-icon.phone{background:#fff0f5;color:#e07898}
+.method-icon.ig{background:#fce8f0;color:#E1306C}
+.method-icon.email{background:#f0f5ff;color:#4a7aff}
+.method-label{font-size:12px;font-weight:600;color:#b89aaa;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.method-value{font-size:14px;font-weight:700;color:#3a2430;line-height:1.5}
+.method-value a{color:#e07898;text-decoration:none}
+.method-value a:hover{text-decoration:underline}
+.form-group{margin-bottom:16px}
+.form-group label{font-size:13px;font-weight:600;color:#7a5a68;display:block;margin-bottom:6px}
+.form-group input,.form-group textarea{
+  width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid #f2d8e4;
+  font-family:inherit;font-size:14px;color:#3a2430;background:#fff5f9;
+  transition:all .3s;resize:vertical;
+}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:#e07898;background:#fff;box-shadow:0 0 0 3px rgba(224,120,152,.1)}
+.form-group textarea{min-height:110px}
+.submit-btn{
+  width:100%;background:linear-gradient(135deg,#e07898,#f0a0c0);color:#fff;
+  padding:13px;border-radius:40px;font-size:15px;font-weight:700;
+  cursor:pointer;border:none;font-family:inherit;transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(224,120,152,.4)}
+.hours-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+.hours-table td{padding:7px 0;color:#7a5a68;border-bottom:1px dashed #f2d8e4}
+.hours-table td:last-child{text-align:left;font-weight:700;color:#3a2430}
+.back-btn-contact{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#e07898,#f0a0c0);color:#fff;padding:11px 22px;border-radius:40px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .3s;margin-top:16px}
+.back-btn-contact:hover{transform:translateY(-2px)}
+@media(max-width:650px){.contact-grid{grid-template-columns:1fr}}
+</style>
 
-    .contact-hero h1 {
-      font-size: clamp(28px, 5vw, 44px);
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
+<div class="contact-hero">
+  <span style="display:inline-block;background:#f8c8dc;color:#e07898;font-size:12px;font-weight:700;padding:4px 14px;border-radius:40px;margin-bottom:14px">تواصل معنا</span>
+  <h1>نحن هنا <span>من أجلكِ</span></h1>
+  <p>فريقنا جاهز للإجابة على جميع استفساراتكِ ومساعدتكِ في اختيار أجمل الأزياء</p>
+  <button class="back-btn-contact" onclick="navigate('home')">
+    <i class="fas fa-home" aria-hidden="true"></i> الرئيسية
+  </button>
+</div>
 
-    .contact-hero h1 span {
-      color: var(--pink-deep);
-    }
+<div class="contact-wrap">
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-card" style="margin-bottom:24px">
+        <div class="card-title"><i class="fas fa-address-book" style="color:#e07898" aria-hidden="true"></i> معلومات التواصل</div>
 
-    .contact-hero .hero-subtitle {
-      font-size: clamp(14px, 2.5vw, 16px);
-      color: var(--text-light);
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    /* شبكة التواصل */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-      align-items: start;
-      margin: 40px 0;
-    }
-
-    /* معلومات التواصل */
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .contact-card {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      padding: 20px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      transition: all var(--transition);
-    }
-
-    .contact-card:hover {
-      border-color: var(--pink);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .contact-card .cc-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--pink-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--pink-deep);
-      flex-shrink: 0;
-    }
-
-    .contact-card .cc-info h4 {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .contact-card .cc-info p,
-    .contact-card .cc-info a {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .phone-number {
-      direction: ltr;
-      display: inline-block;
-      unicode-bidi: embed;
-    }
-
-    /* نموذج التواصل */
-    .contact-form-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 32px 28px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .contact-form-card h3 {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .contact-form-card .form-subtitle {
-      font-size: 13px;
-      color: var(--text-light);
-      margin-bottom: 24px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 7px;
-    }
-
-    .form-group label .required {
-      color: var(--pink-deep);
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border);
-      background: var(--pink-bg);
-      font-family: var(--font-main);
-      font-size: 14px;
-      color: var(--text);
-      transition: all var(--transition);
-      resize: vertical;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--pink-deep);
-      background: var(--white);
-      box-shadow: 0 0 0 3px rgba(224,120,152,0.1);
-    }
-
-    .form-control::placeholder {
-      color: var(--text-muted);
-    }
-
-    .submit-contact-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-      color: var(--white);
-      padding: 14px;
-      border-radius: var(--radius-xl);
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .submit-contact-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* استجابة الجوال */
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-
-  <!-- Hero -->
-  <section class="contact-hero">
-    <div class="container">
-      <span class="tag" style="background: var(--pink); color: var(--pink-deep); padding: 4px 14px; border-radius: 40px; font-size: 12px; font-weight: 700;">تواصل</span>
-      <h1 style="margin-top: 18px;">تواصلي <span>معنا</span></h1>
-      <p class="hero-subtitle">نحن هنا للإجابة على جميع استفساراتكِ ومساعدتكِ في كل ما تحتاجينه</p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top: 50px;">
-    <div class="container">
-      <div class="contact-grid">
-        <!-- معلومات التواصل -->
-        <div class="contact-details">
-          <!-- رقم الهاتف -->
-          <div class="contact-card">
-            <div class="cc-icon">📞</div>
-            <div class="cc-info">
-              <h4>رقم الهاتف</h4>
-              <a href="tel:+212727726891" class="phone-number" dir="ltr" style="text-decoration: none;">
-                +212 727-726891
-              </a>
-            </div>
-          </div>
-
-          <!-- البريد الإلكتروني -->
-          <div class="contact-card">
-            <div class="cc-icon">✉️</div>
-            <div class="cc-info">
-              <h4>البريد الإلكتروني</h4>
-              <p>contact@warda.ma</p>
-            </div>
-          </div>
-
-          <!-- العنوان -->
-          <div class="contact-card">
-            <div class="cc-icon">📍</div>
-            <div class="cc-info">
-              <h4>العنوان</h4>
-              <p>الدار البيضاء، المغرب</p>
-            </div>
-          </div>
-
-          <!-- واتساب -->
-          <div class="contact-card">
-            <div class="cc-icon">💬</div>
-            <div class="cc-info">
-              <h4>واتساب</h4>
-              <a href="https://wa.me/212727726891" target="_blank" class="phone-number" dir="ltr" style="text-decoration: none;">
-                +212 727-726891
-              </a>
-            </div>
-          </div>
-
-          <!-- متابعة على وسائل التواصل -->
-          <div class="contact-card" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-            <p style="font-size:14px; color: var(--text-light);">يمكنكِ أيضاً متابعتنا على:</p>
-            <div style="display: flex; gap: 12px;">
-              <!-- WhatsApp -->
-              <a href="https://wa.me/212727726891" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-              <!-- Instagram -->
-              <a href="https://www.instagram.com/jawharat_ikram1" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <!-- TikTok -->
-              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
-                <i class="fab fa-tiktok"></i>
-              </a>
-              <!-- Facebook -->
-              <a href="#" target="_blank" style="background: var(--pink-soft); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pink-deep); font-size: 20px; transition: all 0.2s;">
-                <i class="fab fa-facebook-f"></i>
-              </a>
+        <div class="contact-method">
+          <div class="method-icon wa"><i class="fab fa-whatsapp" aria-hidden="true"></i></div>
+          <div>
+            <div class="method-label">واتساب</div>
+            <div class="method-value">
+              <a href="https://wa.me/212727726891" target="_blank" rel="noopener noreferrer">+212 727-726891</a>
             </div>
           </div>
         </div>
 
-        <!-- نموذج التواصل (يرسل إلى واتساب مباشرة) -->
-        <div class="contact-form-card">
-          <h3>أرسلي لنا رسالة</h3>
-          <p class="form-subtitle">املئي النموذج وسنتواصل معكِ عبر واتساب مباشرة</p>
-
-          <div class="form-group">
-            <label>الاسم الكامل <span class="required">*</span></label>
-            <input type="text" class="form-control" id="c-name" placeholder="أدخلي اسمكِ الكامل" />
+        <div class="contact-method">
+          <div class="method-icon phone"><i class="fas fa-phone-alt" aria-hidden="true"></i></div>
+          <div>
+            <div class="method-label">الهاتف</div>
+            <div class="method-value">
+              <a href="tel:+212727726891" dir="ltr">+212 727-726891</a>
+            </div>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label>الموضوع</label>
-            <input type="text" class="form-control" id="c-subject" placeholder="مثل: استفسار عن منتج" />
+        <div class="contact-method">
+          <div class="method-icon ig"><i class="fab fa-instagram" aria-hidden="true"></i></div>
+          <div>
+            <div class="method-label">إنستغرام</div>
+            <div class="method-value">
+              <a href="https://www.instagram.com/jawharat_ikram1" target="_blank" rel="noopener noreferrer">@jawharat_ikram1</a>
+            </div>
           </div>
-
-          <div class="form-group">
-            <label>الرسالة <span class="required">*</span></label>
-            <textarea class="form-control" id="c-message" rows="5" placeholder="اكتبي رسالتكِ هنا..."></textarea>
-          </div>
-
-          <button class="submit-contact-btn" onclick="submitContactForm()">
-            إرسال عبر واتساب <i class="fab fa-whatsapp"></i>
-          </button>
         </div>
       </div>
+
+      <div class="contact-info-card">
+        <div class="card-title"><i class="fas fa-clock" style="color:#e07898" aria-hidden="true"></i> ساعات العمل</div>
+        <table class="hours-table" aria-label="جدول ساعات العمل">
+          <tbody>
+            <tr><td>السبت — الخميس</td><td>9:00 ص — 10:00 م</td></tr>
+            <tr><td>الجمعة</td><td>2:00 م — 10:00 م</td></tr>
+            <tr><td>واتساب</td><td>متاح دائماً 24/7</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </section>
 
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <div class="contact-form-card">
+      <div class="card-title"><i class="fas fa-paper-plane" style="color:#e07898" aria-hidden="true"></i> أرسلي لنا رسالة</div>
+      <form onsubmit="sendContactMessage(event)" novalidate>
+        <div class="form-group">
+          <label for="c-name">الاسم الكامل</label>
+          <input type="text" id="c-name" placeholder="اسمكِ الكريم" autocomplete="name" required />
+        </div>
+        <div class="form-group">
+          <label for="c-phone">رقم الهاتف</label>
+          <input type="tel" id="c-phone" placeholder="0612345678" autocomplete="tel" dir="ltr" required />
+        </div>
+        <div class="form-group">
+          <label for="c-subject">الموضوع</label>
+          <input type="text" id="c-subject" placeholder="موضوع رسالتكِ" />
+        </div>
+        <div class="form-group">
+          <label for="c-msg">الرسالة</label>
+          <textarea id="c-msg" placeholder="اكتبي رسالتكِ هنا..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> إرسال عبر واتساب
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 
-  <script>
-    const whatsappNumber = '212727726891';
-
-    function submitContactForm() {
-      const name = document.getElementById('c-name').value.trim();
-      const subject = document.getElementById('c-subject').value.trim();
-      const message = document.getElementById('c-message').value.trim();
-
-      if (!name || !message) {
-        alert('يرجى ملء الاسم الكامل والرسالة');
-        return;
-      }
-
-      let fullMessage = `مرحباً،\nأنا ${name}`;
-      if (subject) fullMessage += `\nالموضوع: ${subject}`;
-      fullMessage += `\n\nالرسالة:\n${message}`;
-      fullMessage += `\n\nأرسلت من صفحة التواصل في متجر جوهرة إكرام.`;
-
-      const encodedMsg = encodeURIComponent(fullMessage);
-      const waLink = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
-      window.open(waLink, '_blank');
-    }
-  </script>
+<script>
+function sendContactMessage(e) {
+  e.preventDefault();
+  var name    = document.getElementById('c-name').value.trim();
+  var phone   = document.getElementById('c-phone').value.trim();
+  var subject = document.getElementById('c-subject').value.trim();
+  var msg     = document.getElementById('c-msg').value.trim();
+  if (!name || !phone || !msg) { alert('يرجى ملء جميع الحقول المطلوبة'); return; }
+  var text = '📩 رسالة جديدة من موقع جوهرة اكرام\n\n👤 الاسم: ' + name + '\n📞 الهاتف: ' + phone + (subject ? '\n📌 الموضوع: ' + subject : '') + '\n\n💬 الرسالة:\n' + msg;
+  window.open('https://wa.me/212727726891?text=' + encodeURIComponent(text), '_blank');
+}
+</script>
 </div>
