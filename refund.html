@@ -263,7 +263,6 @@
     const backBtn = document.getElementById('backButton');
     if (!backBtn) return;
 
-    // استراتيجية الرجوع: أولاً sessionStorage، ثم referrer، ثم الرئيسية
     function goBack() {
       // 1. هل هناك صفحة سابقة مخزنة من index.html؟
       const previous = sessionStorage.getItem('previousPage');
@@ -277,8 +276,9 @@
         window.location.href = referrer;
         return;
       }
-      // 3. الحل الأخير: العودة إلى الصفحة الرئيسية
-      window.location.href = 'index.html';
+      // 3. الحل الأخير: العودة إلى الصفحة الرئيسية (جذر الموقع)
+      // تم تغيير المسار النسبي إلى "/" ليضمن الوصول للصفحة الرئيسية من أي مجلد فرعي
+      window.location.href = '/';
     }
 
     backBtn.addEventListener('click', goBack);
