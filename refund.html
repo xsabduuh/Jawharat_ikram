@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <style>
+    /* نفس الـ CSS السابق بالضبط، لم يتغير */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -264,21 +265,15 @@
     if (!backBtn) return;
 
     function goBack() {
-      // 1. هل هناك صفحة سابقة مخزنة من index.html؟
-      const previous = sessionStorage.getItem('previousPage');
-      if (previous && previous !== window.location.pathname && previous !== window.location.hash) {
-        window.location.href = previous;
+      // إذا كنا داخل index.html (تم تحميل الصفحة عبر fetch)
+      // نستخدم دالة navigate الموجودة في الصفحة الرئيسية للعودة للرئيسية مباشرة
+      if (typeof navigate === 'function') {
+        navigate('home');
         return;
       }
-      // 2. استخدام document.referrer (إذا أتى المستخدم من رابط داخل نفس الموقع)
-      const referrer = document.referrer;
-      if (referrer && referrer.includes(window.location.hostname)) {
-        window.location.href = referrer;
-        return;
-      }
-      // 3. الحل الأخير: العودة إلى الصفحة الرئيسية (جذر الموقع)
-      // تم تغيير المسار النسبي إلى "/" ليضمن الوصول للصفحة الرئيسية من أي مجلد فرعي
-      window.location.href = '/';
+      // إذا فتح المستخدم الصفحة مباشرة (بدون index.html)، نوجهه إلى الصفحة الرئيسية
+      // يمكنك تعديل المسار حسب بنية مجلداتك، مثلاً '../index.html' إذا كانت الصفحة بمجلد فرعي
+      window.location.href = 'index.html';
     }
 
     backBtn.addEventListener('click', goBack);
