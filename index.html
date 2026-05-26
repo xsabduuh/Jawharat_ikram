@@ -1111,42 +1111,45 @@
     }
 
     function navigate(page, productId) {
-    if (page === 'home') {
-        // الإصلاح: التحقق من وجود عنصر الصفحة الرئيسية قبل إظهارها
-        if (!document.getElementById('page-home')) {
-            // إذا كان العنصر غير موجود (دخلنا من صفحة خارجية) نعيد تحميل التطبيق كاملاً
-            window.location.href = './#home';
-            return;
-        }
-        showPage('page-home');
-        history.pushState({ page: 'home' }, '', '#home');
-        return;
-    }
+      if (page === 'home') {
+          // الإصلاح: التحقق من وجود عنصر الصفحة الرئيسية قبل إظهارها
+          if (!document.getElementById('page-home')) {
+              // إذا كان العنصر غير موجود (دخلنا من صفحة خارجية) نعيد تحميل التطبيق كاملاً
+              window.location.href = './#home';
+              return;
+          }
+          showPage('page-home');
+          history.pushState({ page: 'home' }, '', '#home');
+          return;
+      }
 
-    if (page === 'products') {
-        showPage('page-products');
-        history.pushState({ page: 'products' }, '', '#products');
-        return;
-    }
+      if (page === 'products') {
+          showPage('page-products');
+          history.pushState({ page: 'products' }, '', '#products');
+          return;
+      }
 
-    if (page === 'detail' && productId) {
-        showPage('page-detail');
-        history.pushState({ page: 'detail', productId: productId }, '', `#product-${productId}`);
-        return;
-    }
+      if (page === 'detail' && productId) {
+          showPage('page-detail');
+          history.pushState({ page: 'detail', productId: productId }, '', `#product-${productId}`);
+          return;
+      }
 
-    if (page === 'cart') {
-        showPage('page-cart');
-        history.pushState({ page: 'cart' }, '', '#cart');
-        return;
-    }
+      if (page === 'cart') {
+          showPage('page-cart');
+          history.pushState({ page: 'cart' }, '', '#cart');
+          return;
+      }
 
-    if (page === 'faq') {
-        showPage('page-faq');
-        history.pushState({ page: 'faq' }, '', '#faq');
-        return;
+      if (page === 'faq') {
+          showPage('page-faq');
+          history.pushState({ page: 'faq' }, '', '#faq');
+          return;
+      }
+
+      // معالجة الصفحات الخارجية (about, contact, refund, shipping, privacy, terms)
+      loadExternalPage(page);
     }
-}
 
     function loadExternalPage(page) {
       var app = document.getElementById('app');
