@@ -44,7 +44,7 @@
       z-index: 0;
     }
 
-    /* زر الرجوع - دائري، سهم لليسار، مع مسافة من الحافة */
+    /* زر الرجوع - دائري، سهم لليسار، مسافة من الحافة */
     .back-btn {
       display: flex;
       align-items: center;
@@ -56,8 +56,8 @@
       height: 40px;
       margin-top: 100px;
       margin-bottom: 20px;
-      margin-right: auto;   /* يدفع الزر للجهة اليسرى في RTL */
-      margin-left: 20px;    /* مسافة من الحافة اليسرى */
+      margin-right: auto;
+      margin-left: 20px;
       font-size: 18px;
       color: #e07898;
       cursor: pointer;
@@ -81,6 +81,7 @@
       z-index: 1;
     }
 
+    /* باقي الأنماط كما هي (الهيدر، البطاقات، الجدول، إلخ) */
     .refund-header { text-align: center; margin-bottom: 48px; padding: 20px 0 10px; }
     .refund-header .icon-circle {
       width: 80px; height: 80px;
@@ -208,7 +209,7 @@
 </head>
 <body>
 
-<!-- زر الرجوع - مع id لربط الحدث -->
+<!-- زر الرجوع -->
 <div class="back-btn" id="backButton">
   <i class="fa-solid fa-arrow-left"></i>
 </div>
@@ -261,24 +262,23 @@
 </div>
 
 <script>
-  // دالة الرجوع إلى الصفحة السابقة أو الرئيسية
-  function goBack() {
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = 'index.html';
-    }
-  }
+  // حل الرجوع الذي يعمل مع التحميل عبر fetch وبدون history
+  (function() {
+    var backBtn = document.getElementById('backButton');
+    if (!backBtn) return;
 
-  // تأكيد ربط الحدث بعد تحميل الصفحة
-  document.addEventListener('DOMContentLoaded', function() {
-    var backButton = document.getElementById('backButton');
-    if (backButton) {
-      backButton.addEventListener('click', goBack);
-    } else {
-      console.log('الزر غير موجود');
-    }
-  });
+    backBtn.addEventListener('click', function() {
+      // التحقق مما إذا كان المستخدم أتى من صفحة داخل نفس الموقع
+      var referrer = document.referrer;
+      if (referrer && referrer.includes(window.location.hostname)) {
+        // إذا كان المرجع من نفس الموقع، نذهب إليه مباشرة
+        window.location.href = referrer;
+      } else {
+        // وإلا نذهب إلى الصفحة الرئيسية
+        window.location.href = 'index.html';
+      }
+    });
+  })();
 </script>
 
 </body>
