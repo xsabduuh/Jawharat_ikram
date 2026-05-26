@@ -1,83 +1,183 @@
 <div class="page active" id="page-privacy" style="padding-top:70px">
 <style>
-.policy-hero{background:linear-gradient(135deg,#fff5f9,#fdf0f5);padding:60px 20px 40px;text-align:center;border-bottom:1px solid #f2d8e4}
-.policy-hero h1{font-size:clamp(24px,4.5vw,38px);font-weight:900;color:#3a2430;margin-bottom:10px}
-.policy-hero h1 span{color:#e07898}
-.policy-hero p{font-size:14px;color:#7a5a68;max-width:480px;margin:0 auto}
-.policy-body{max-width:800px;margin:0 auto;padding:50px 20px 60px}
-.policy-section{background:#fff;border:1px solid #f2d8e4;border-radius:18px;padding:28px 30px;margin-bottom:20px;transition:box-shadow .25s}
-.policy-section:hover{box-shadow:0 6px 24px rgba(240,160,192,.15)}
-.policy-section h2{font-size:18px;font-weight:800;color:#3a2430;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.policy-section h2 .ps-icon{font-size:22px}
-.policy-section p,.policy-section li{font-size:14px;color:#7a5a68;line-height:1.85;margin-bottom:8px}
-.policy-section ul{padding-right:20px}
-.policy-section li{list-style:disc}
-.policy-section li:last-child{margin-bottom:0}
-.policy-date{text-align:center;font-size:13px;color:#b89aaa;margin-bottom:30px}
-.back-btn-policy{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#e07898,#f0a0c0);color:#fff;padding:11px 22px;border-radius:40px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .3s;margin-top:12px}
-.back-btn-policy:hover{transform:translateY(-2px)}
+  .policy-hero{
+    background:linear-gradient(135deg,#fff5f9 0%,#fdf0f5 60%,#fce8f2 100%);
+    padding:70px 20px 50px;text-align:center;border-bottom:1px solid #f2d8e4;
+    position:relative;overflow:hidden;
+  }
+  .policy-hero::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 70% 40%,rgba(248,200,220,.35) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .policy-hero-badge{
+    display:inline-flex;align-items:center;gap:7px;
+    background:#f8c8dc;color:#e07898;
+    font-size:12px;font-weight:700;padding:5px 16px;
+    border-radius:40px;margin-bottom:18px;
+  }
+  .policy-hero h1{font-size:clamp(26px,5vw,42px);font-weight:900;color:#3a2430;margin-bottom:10px;line-height:1.2}
+  .policy-hero h1 span{color:#e07898}
+  .policy-hero p{font-size:15px;color:#7a5a68;max-width:460px;margin:0 auto 28px;line-height:1.7}
+  .back-btn-policy{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,#e07898,#f0a0c0);color:#fff;
+    padding:11px 24px;border-radius:40px;font-size:14px;font-weight:700;
+    cursor:pointer;border:none;font-family:inherit;
+    transition:all .3s;box-shadow:0 4px 14px rgba(224,120,152,.3);
+  }
+  .back-btn-policy:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,120,152,.4)}
+
+  .policy-body{max-width:820px;margin:0 auto;padding:48px 20px 70px}
+
+  .policy-date{
+    text-align:center;font-size:13px;color:#b89aaa;margin-bottom:36px;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+
+  .policy-section{
+    background:#fff;border:1px solid #f2d8e4;border-radius:20px;
+    padding:30px 32px;margin-bottom:18px;
+    transition:box-shadow .25s,transform .25s;
+    position:relative;overflow:hidden;
+  }
+  .policy-section::before{
+    content:'';position:absolute;top:0;right:0;
+    width:4px;height:100%;
+    background:linear-gradient(180deg,#e07898,#f0a0c0);
+    border-radius:0 20px 20px 0;
+  }
+  .policy-section:hover{box-shadow:0 8px 32px rgba(240,160,192,.18);transform:translateY(-2px)}
+
+  .policy-section h2{
+    font-size:17px;font-weight:800;color:#3a2430;
+    margin-bottom:14px;display:flex;align-items:center;gap:12px;
+    padding-bottom:12px;border-bottom:1px dashed #f2d8e4;
+  }
+  .ps-icon-wrap{
+    width:38px;height:38px;border-radius:12px;
+    background:linear-gradient(135deg,#fff5f9,#fdf0f5);
+    border:1.5px solid #f2d8e4;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;color:#e07898;font-size:16px;
+  }
+
+  .policy-section p{font-size:14px;color:#7a5a68;line-height:1.9;margin-bottom:8px}
+  .policy-section p:last-child{margin-bottom:0}
+
+  .policy-list{padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+  .policy-list li{
+    list-style:none;
+    font-size:14px;color:#7a5a68;line-height:1.75;
+    display:flex;align-items:flex-start;gap:10px;
+    padding:8px 12px;border-radius:10px;background:#fdf5f9;
+    transition:background .2s;
+  }
+  .policy-list li:hover{background:#fce8f2}
+  .policy-list li i{color:#e07898;font-size:13px;margin-top:3px;flex-shrink:0}
+
+  .policy-contact-box{
+    background:linear-gradient(135deg,#fff5f9,#fdf0f5);
+    border:1.5px solid #f2d8e4;border-radius:14px;
+    padding:14px 18px;margin-top:14px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .policy-contact-box i{font-size:20px;color:#25D366}
+  .policy-contact-box span{font-size:14px;color:#3a2430;font-weight:600}
+
+  @media(max-width:600px){
+    .policy-section{padding:22px 18px}
+    .policy-section::before{width:3px}
+  }
 </style>
 
 <div class="policy-hero">
-  <span style="display:inline-block;background:#f8c8dc;color:#e07898;font-size:12px;font-weight:700;padding:4px 14px;border-radius:40px;margin-bottom:14px">الخصوصية</span>
+  <div class="policy-hero-badge">
+    <i class="fas fa-shield-alt" aria-hidden="true"></i> الخصوصية
+  </div>
   <h1>سياسة <span>الخصوصية</span></h1>
-  <p>نحن نقدّر ثقتكِ ونحافظ على خصوصية بياناتكِ</p>
+  <p>نحن نقدّر ثقتكِ ونحافظ على خصوصية بياناتكِ بأعلى معايير الأمان</p>
   <button class="back-btn-policy" onclick="navigate('home')">
     <i class="fas fa-home" aria-hidden="true"></i> الرئيسية
   </button>
 </div>
 
 <div class="policy-body">
-  <p class="policy-date">آخر تحديث: مايو 2026</p>
+  <p class="policy-date">
+    <i class="far fa-calendar-alt" aria-hidden="true"></i>
+    آخر تحديث: مايو 2026
+  </p>
 
   <div class="policy-section">
-    <h2><span class="ps-icon" aria-hidden="true">📋</span> مقدمة</h2>
+    <h2>
+      <span class="ps-icon-wrap"><i class="fas fa-info" aria-hidden="true"></i></span>
+      مقدمة
+    </h2>
     <p>تلتزم <strong>جوهرة اكرام</strong> بحماية خصوصية عميلاتها واحترام بياناتهن الشخصية. تشرح هذه السياسة كيفية جمع المعلومات واستخدامها وحمايتها.</p>
   </div>
 
   <div class="policy-section">
-    <h2><span class="ps-icon" aria-hidden="true">📦</span> المعلومات التي نجمعها</h2>
+    <h2>
+      <span class="ps-icon-wrap"><i class="fas fa-database" aria-hidden="true"></i></span>
+      المعلومات التي نجمعها
+    </h2>
     <p>نجمع المعلومات الضرورية لمعالجة طلباتكِ فقط، وتشمل:</p>
-    <ul>
-      <li>الاسم الكامل ورقم الهاتف</li>
-      <li>عنوان التوصيل (المدينة)</li>
-      <li>سجل الطلبات والمشتريات</li>
-      <li>بيانات التواصل عبر واتساب</li>
+    <ul class="policy-list">
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> الاسم الكامل ورقم الهاتف</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> عنوان التوصيل (المدينة)</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> سجل الطلبات والمشتريات</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> بيانات التواصل عبر واتساب</li>
     </ul>
   </div>
 
   <div class="policy-section">
-    <h2><span class="ps-icon" aria-hidden="true">🔒</span> كيف نستخدم بياناتكِ</h2>
-    <ul>
-      <li>معالجة وتأكيد وتوصيل طلباتكِ</li>
-      <li>التواصل معكِ بشأن طلباتكِ أو الاستفسارات</li>
-      <li>تحسين خدماتنا وتجربة التسوق</li>
-      <li>إرسال عروض ترويجية (برضاكِ المسبق فقط)</li>
+    <h2>
+      <span class="ps-icon-wrap"><i class="fas fa-cogs" aria-hidden="true"></i></span>
+      كيف نستخدم بياناتكِ
+    </h2>
+    <ul class="policy-list">
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> معالجة وتأكيد وتوصيل طلباتكِ</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> التواصل معكِ بشأن طلباتكِ أو الاستفسارات</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> تحسين خدماتنا وتجربة التسوق</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> إرسال عروض ترويجية (برضاكِ المسبق فقط)</li>
     </ul>
   </div>
 
   <div class="policy-section">
-    <h2><span class="ps-icon" aria-hidden="true">🛡️</span> حماية بياناتكِ</h2>
+    <h2>
+      <span class="ps-icon-wrap"><i class="fas fa-lock" aria-hidden="true"></i></span>
+      حماية بياناتكِ
+    </h2>
     <p>نتخذ إجراءات أمنية صارمة لحماية بياناتكِ الشخصية من الوصول غير المصرح به. <strong>لا نبيع ولا نشارك</strong> بياناتكِ مع أي طرف ثالث إلا لأغراض التوصيل.</p>
   </div>
 
   <div class="policy-section">
-    <h2><span class="ps-icon" aria-hidden="true">✅</span> حقوقكِ</h2>
-    <ul>
-      <li>الحق في الاطلاع على بياناتكِ المحفوظة</li>
-      <li>الحق في تعديل أو تصحيح معلوماتكِ</li>
-      <li>الحق في حذف بياناتكِ نهائياً</li>
-      <li>الحق في الاعتراض على معالجة بياناتكِ</li>
+    <h2>
+      <span class="ps-icon-wrap"><i class="fas fa-user-check" aria-hidden="true"></i></span>
+      حقوقكِ
+    </h2>
+    <ul class="policy-list">
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> الحق في الاطلاع على بياناتكِ المحفوظة</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> الحق في تعديل أو تصحيح معلوماتكِ</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> الحق في حذف بياناتكِ نهائياً</li>
+      <li><i class="fas fa-chevron-left" aria-hidden="true"></i> الحق في الاعتراض على معالجة بياناتكِ</li>
     </ul>
-    <p>لممارسة أي من هذه الحقوق، تواصلي معنا عبر واتساب: <strong>+212 727-726891</strong></p>
+    <p style="margin-top:14px">لممارسة أي من هذه الحقوق، تواصلي معنا:</p>
+    <div class="policy-contact-box">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i>
+      <span>+212 727-726891</span>
+    </div>
   </div>
 
   <div class="policy-section">
-    <h2><span class="ps-icon" aria-hidden="true">🔄</span> تحديثات السياسة</h2>
+    <h2>
+      <span class="ps-icon-wrap"><i class="fas fa-sync-alt" aria-hidden="true"></i></span>
+      تحديثات السياسة
+    </h2>
     <p>قد نحدّث هذه السياسة من وقت لآخر. سنعلمكِ بأي تغييرات جوهرية عبر واتساب أو عند زيارتكِ القادمة للمتجر.</p>
   </div>
 
-  <div style="text-align:center;margin-top:30px">
+  <div style="text-align:center;margin-top:36px">
     <button class="back-btn-policy" onclick="navigate('home')">
       <i class="fas fa-arrow-right" aria-hidden="true"></i> العودة للرئيسية
     </button>
