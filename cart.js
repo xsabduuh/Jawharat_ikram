@@ -34,7 +34,7 @@
     const total = cart.reduce((s, i) => s + i.qty, 0);
     badge.textContent = total;
     badge.classList.remove('bump');
-    void badge.offsetWidth; /* reflow لإعادة تشغيل الأنيميشن */
+    void badge.offsetWidth;
     if (total > 0) badge.classList.add('bump');
   };
 
@@ -58,7 +58,7 @@
     }
     saveCart();
     updateCartBadge();
-    showToast('🛍️ تمت الإضافة إلى السلة: ' + p.name);
+    showToast('<i class="fas fa-check" style="margin-left:6px"></i> تمت الإضافة إلى السلة: ' + p.name);
   };
 
   /* ─── تغيير الكمية ─── */
@@ -146,10 +146,13 @@
           <div class="free-shipping-bar" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100" aria-label="التقدم نحو الشحن المجاني">
             <div class="free-shipping-fill" style="width:${pct}%"></div>
           </div>
-          <div class="free-shipping-text">أضيفي ${remaining} درهم للشحن المجاني! 🚚</div>
+          <div class="free-shipping-text">
+            <i class="fas fa-truck" aria-hidden="true"></i>
+            أضيفي ${remaining} درهم للشحن المجاني!
+          </div>
           ` : `
           <div class="free-shipping-text" style="color:#6dbb8a">
-            <i class="fas fa-check-circle" aria-hidden="true"></i> تهانينا! الشحن مجاني لهذا الطلب ✨
+            <i class="fas fa-check-circle" aria-hidden="true"></i> تهانينا! الشحن مجاني لهذا الطلب
           </div>`}
 
           <div class="summary-row">
@@ -158,8 +161,10 @@
           </div>
           <div class="summary-row">
             <span>الشحن</span>
-            <span class="val" style="${shipping===0?'color:#6dbb8a':''}">
-              ${shipping === 0 ? 'مجاني 🎉' : shipping + ' درهم'}
+            <span class="val" style="${shipping===0 ? 'color:#6dbb8a' : ''}">
+              ${shipping === 0
+                ? '<i class="fas fa-gift" aria-hidden="true" style="margin-left:4px"></i> مجاني'
+                : shipping + ' درهم'}
             </span>
           </div>
           <div class="summary-row total">
