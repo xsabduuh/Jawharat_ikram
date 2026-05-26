@@ -162,7 +162,7 @@
     .page.active{display:block}
     @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ═══ Hero ═══ */
+    /* ═══ Hero (لم يتم المساس بها) ═══ */
     .hero{
       position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;
       padding:80px 20px 70px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);
@@ -224,6 +224,7 @@
     }
     .product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--pink)}
     .card-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--pink-soft)}
+    /* placeholder للصور التي قيمتها 'test' */
     .test-placeholder{
       width:100%;height:100%;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -234,6 +235,8 @@
     }
     .test-placeholder i{font-size:3.5rem;opacity:0.85}
     .test-placeholder span{font-size:1.2rem;font-weight:800;background:rgba(255,255,240,0.7);padding:4px 16px;border-radius:60px;backdrop-filter:blur(2px)}
+    .card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+    .product-card:hover .card-img-wrap img{transform:scale(1.05)}
     .card-badge{
       position:absolute;top:10px;right:10px;background:var(--pink-deep);color:var(--white);
       font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--r-xl);z-index:2;
@@ -269,7 +272,7 @@
     /* ═══ Detail ═══ */
     .detail-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
     .detail-img-wrap{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-lg);background:var(--pink-soft)}
-    .detail-img-wrap .test-placeholder{width:100%;height:100%}
+    .detail-img-wrap img{width:100%;height:100%;object-fit:cover}
     .detail-body{padding:10px 0}
     .detail-category{font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
     .detail-name{font-size:clamp(20px,4vw,30px);font-weight:900;color:var(--text);margin-bottom:12px}
@@ -317,6 +320,7 @@
     .cart-item-img .test-placeholder{width:100%;height:100%;gap:4px}
     .cart-item-img .test-placeholder i{font-size:2rem}
     .cart-item-img .test-placeholder span{font-size:0.7rem;padding:2px 8px}
+    .cart-item-img img{width:100%;height:100%;object-fit:cover}
     .cart-item-info{flex:1;min-width:0}
     .cart-item-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
     .cart-item-price{font-size:14px;font-weight:800;color:var(--pink-deep);margin-bottom:12px}
@@ -401,23 +405,6 @@
     .modal-confirm{background:linear-gradient(135deg,var(--pink-deep),var(--pink-dark));color:var(--white);border:none}
     .modal-confirm:hover{box-shadow:var(--shadow-md)}
 
-    /* ═══ FAQ Styles (مدمجة) ═══ */
-    .faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-    .faq-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
-    .faq-question{
-      width:100%;display:flex;align-items:center;gap:12px;padding:18px 20px;
-      font-size:15px;font-weight:700;color:var(--text);background:none;cursor:pointer;text-align:right;
-      transition:background var(--tr);min-height:56px;font-family:var(--font);
-    }
-    .faq-question:hover{background:var(--pink-soft)}
-    .faq-icon i{font-size:1.2rem;width:28px;color:var(--pink-deep)}
-    .faq-arrow{width:20px;height:20px;flex-shrink:0;stroke:var(--text-muted);transition:transform .3s ease}
-    .faq-item.open .faq-arrow{transform:rotate(180deg)}
-    .faq-answer{display:none;padding:0 20px 18px;border-top:1px solid var(--border)}
-    .faq-answer p{font-size:14px;color:var(--text-light);line-height:1.8;padding-top:14px}
-    .faq-item.open .faq-answer{display:block;animation:fadeIn .25s ease}
-    .faq-section{padding:60px 20px}
-
     /* ═══ Footer ═══ */
     .site-footer{background:#fffafc;border-top:1px solid var(--border);padding:56px 0 28px;margin-top:60px}
     .footer-container{max-width:1200px;margin:0 auto;padding:0 24px}
@@ -440,6 +427,24 @@
     .social-circle.whatsapp{background:#25D366}
     .footer-bottom-bar{border-top:1px solid var(--border);padding:22px 0 8px;text-align:center}
     .copyright-text{font-size:13px;color:var(--text-muted)}
+
+    /* ═══ FAQ ═══ */
+    .faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .faq-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
+    .faq-question{
+      width:100%;display:flex;align-items:center;gap:12px;padding:18px 20px;
+      font-size:15px;font-weight:700;color:var(--text);background:none;cursor:pointer;text-align:right;
+      transition:background var(--tr);min-height:56px;font-family:var(--font);
+    }
+    .faq-question:hover{background:var(--pink-soft)}
+    .faq-icon{font-size:20px;flex-shrink:0}
+    .faq-question span{flex:1}
+    .faq-arrow{width:20px;height:20px;flex-shrink:0;stroke:var(--text-muted);transition:transform .3s ease}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-answer{display:none;padding:0 20px 18px;border-top:1px solid var(--border)}
+    .faq-answer p{font-size:14px;color:var(--text-light);line-height:1.8;padding-top:14px}
+    .faq-item.open .faq-answer{display:block;animation:fadeIn .25s ease}
+    .faq-section{padding:60px 20px}
 
     /* ═══ Scrollbar ═══ */
     ::-webkit-scrollbar{width:6px}
@@ -525,7 +530,7 @@
       <a onclick="navigate('cart');closeMobileMenu()" data-page="cart">
         <i class="fas fa-shopping-bag" aria-hidden="true"></i> السلة
       </a>
-      <a onclick="navigate('faq');closeMobileMenu()" data-page="faq">
+      <a onclick="navigate('faq');closeMobileMenu()">
         <i class="fas fa-question-circle" aria-hidden="true"></i> الأسئلة الشائعة
       </a>
     </div>
@@ -537,48 +542,86 @@
     <!-- الرئيسية -->
     <main class="page active" id="page-home">
       <section class="hero" aria-label="صورة ترويجية">
-        <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=1200&q=80" alt="أزياء نسائية راقية" class="hero-img" fetchpriority="high" />
+        <img
+          src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=1200&q=80"
+          alt="أزياء نسائية راقية من جوهرة اكرام"
+          class="hero-img"
+          fetchpriority="high"
+          width="1200"
+          height="800"
+        />
         <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content">
           <div class="hero-badge">✨ تشكيلة صيف 2026</div>
           <h1>تألقي بأسلوبك <span>الخاص</span></h1>
           <p>اكتشفي أحدث صيحات الملابس النسائية، بتصاميم تجمع بين الذوق العصري واللمسة المغربية الأصيلة.</p>
           <div class="hero-btns">
-            <button class="btn-primary" onclick="navigate('products')"><i class="fas fa-shopping-bag"></i> تسوقي الآن</button>
+            <button class="btn-primary" onclick="navigate('products')">
+              <i class="fas fa-shopping-bag" aria-hidden="true"></i> تسوقي الآن
+            </button>
             <button class="btn-outline" onclick="navigate('products')">شاهدي التشكيلة</button>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" aria-labelledby="cats-h2">
         <div class="container">
           <div class="section-header">
             <span class="tag">الأقسام</span>
-            <h2>اختاري حسب ذوقك</h2>
+            <h2 id="cats-h2">اختاري حسب ذوقك</h2>
+            <p>موديلات متنوعة تناسب كل إطلالة وكل مناسبة</p>
           </div>
           <div class="category-pills" id="home-categories"></div>
         </div>
       </section>
 
-      <section class="section" style="background:white">
+      <section class="section" style="background:var(--white);padding-top:10px" aria-labelledby="new-h2">
         <div class="container">
           <div class="section-header">
             <span class="tag">جديد</span>
-            <h2>جديدنا هذا الأسبوع</h2>
+            <h2 id="new-h2">جديدنا هذا الأسبوع</h2>
+            <p>أحدث القطع التي تضفي لمسة من السحر على إطلالتكِ</p>
           </div>
           <div class="products-grid" id="new-arrivals-grid"></div>
           <div style="text-align:center;margin-top:32px">
-            <button class="btn-primary" onclick="navigate('products')">عرض جميع المنتجات <i class="fas fa-arrow-left"></i></button>
+            <button class="btn-primary" onclick="navigate('products')">
+              عرض جميع المنتجات <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" aria-label="مميزات المتجر">
         <div class="container">
           <div class="trust-features">
-            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/></svg></div><div class="trust-title">توصيل سريع</div><div class="trust-desc">خلال 24-48 ساعة</div></div>
-            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><div class="trust-title">الدفع عند الاستلام</div><div class="trust-desc">تسوّقي بأمان</div></div>
-            <div class="trust-item"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9"/></svg></div><div class="trust-title">استبدال مرن</div><div class="trust-desc">خلال 7 أيام</div></div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m-4 12h6a2 2 0 002-2v-5a2 2 0 00-2-2h-6m0 0l-3 3m3-3l-3-3M3 9h4"/></svg>
+              </div>
+              <div class="trust-title">توصيل سريع</div>
+              <div class="trust-desc">خلال 24 إلى 48 ساعة لجميع المدن</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 12h8"/></svg>
+              </div>
+              <div class="trust-title">الدفع عند الاستلام</div>
+              <div class="trust-desc">تسوّقي بأمان وادفعي نقداً عند الاستلام</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              </div>
+              <div class="trust-title">استبدال مرن</div>
+              <div class="trust-desc">إمكانية الاستبدال والاسترجاع خلال 7 أيام</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div class="trust-title">دعم متواصل</div>
+              <div class="trust-desc">فريقنا في خدمتكِ للإجابة على استفساراتكِ</div>
+            </div>
           </div>
         </div>
       </section>
@@ -586,14 +629,15 @@
 
     <!-- المنتجات -->
     <main class="page" id="page-products">
-      <section class="section">
+      <section class="section" aria-labelledby="store-h2">
         <div class="container">
           <div class="section-header">
             <span class="tag">المتجر</span>
-            <h2>جميع المنتجات</h2>
+            <h2 id="store-h2">جميع المنتجات</h2>
+            <p>اكتشفي مجموعتنا الكاملة من الأزياء العصرية</p>
           </div>
-          <div class="filter-bar" id="filter-bar"></div>
-          <div class="products-grid" id="all-products-grid"></div>
+          <div class="filter-bar" id="filter-bar" role="toolbar" aria-label="تصفية المنتجات"></div>
+          <div class="products-grid" id="all-products-grid" role="list"></div>
         </div>
       </section>
     </main>
@@ -602,7 +646,9 @@
     <main class="page" id="page-detail">
       <section class="section">
         <div class="container">
-          <button class="back-nav-btn" onclick="navigate('products')"><i class="fas fa-arrow-right"></i> العودة للمنتجات</button>
+          <button class="back-nav-btn" onclick="navigate('products')" aria-label="العودة للمنتجات">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i> العودة للمنتجات
+          </button>
           <div class="detail-wrap" id="detail-wrap"></div>
         </div>
       </section>
@@ -621,47 +667,55 @@
       </section>
     </main>
 
-    <!-- الأسئلة الشائعة (مدمجة) -->
+    <!-- الأسئلة الشائعة -->
     <main class="page" id="page-faq">
-      <section class="faq-section">
+      <section class="faq-section" aria-labelledby="faq-h2">
         <div class="container">
           <div class="section-header">
             <span class="tag">مساعدة</span>
-            <h2><i class="fas fa-question-circle" style="color:#e07898; margin-left:8px"></i> الأسئلة الشائعة</h2>
+            <h2 id="faq-h2">الأسئلة الشائعة</h2>
             <p>إجابات على أكثر الأسئلة تداولاً</p>
           </div>
           <div class="faq-list">
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
-                <span class="faq-icon"><i class="fas fa-truck"></i></span>
+              <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-icon" aria-hidden="true">🚚</span>
                 <span>ما مدة التوصيل؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
               <div class="faq-answer"><p>نوصل الطلبات خلال <strong>24 إلى 48 ساعة عمل</strong> لجميع المدن المغربية.</p></div>
             </div>
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
-                <span class="faq-icon"><i class="fas fa-arrows-spin"></i></span>
+              <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-icon" aria-hidden="true">🔄</span>
                 <span>هل يمكنني استبدال المنتج؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
               <div class="faq-answer"><p>نعم، يمكنكِ استبدال المنتج خلال <strong>14 يوماً</strong> من تاريخ الاستلام بدون أي شروط.</p></div>
             </div>
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
-                <span class="faq-icon"><i class="fas fa-credit-card"></i></span>
+              <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-icon" aria-hidden="true">💳</span>
                 <span>ما هي طرق الدفع المتاحة؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
               <div class="faq-answer"><p>ندعم حالياً <strong>الدفع عند الاستلام</strong> — ادفع فقط حين تصلك طلبيتك على بابك.</p></div>
             </div>
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
-                <span class="faq-icon"><i class="fas fa-gift"></i></span>
+              <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-icon" aria-hidden="true">🎁</span>
                 <span>هل يوجد توصيل مجاني؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
               <div class="faq-answer"><p>نعم! التوصيل <strong>مجاني تماماً</strong> لجميع الطلبات التي تتجاوز <strong>300 درهم</strong>.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-icon" aria-hidden="true">📦</span>
+                <span>كيف أتابع طلبي؟</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="faq-answer"><p>بعد شحن طلبكِ ستصلكِ رسالة واتساب تحتوي على رقم التتبع. يمكنكِ أيضاً مراسلتنا مباشرة عبر واتساب.</p></div>
             </div>
           </div>
         </div>
@@ -671,33 +725,71 @@
   </div><!-- #app -->
 
   <!-- Checkout Modal -->
-  <div class="checkout-modal" id="checkout-modal">
+  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
     <div class="modal-box">
-      <h2>إتمام الطلب</h2>
-      <div class="form-group"><label>الاسم الكامل <span class="req">*</span></label><input type="text" id="checkout-name" placeholder="أدخلي اسمكِ الكامل" /></div>
-      <div class="form-group"><label>المدينة <span class="req">*</span></label><input type="text" id="checkout-city" placeholder="أدخلي مدينتكِ" /></div>
-      <div class="form-group"><label>رقم الهاتف <span class="req">*</span></label><input type="tel" id="checkout-phone" placeholder="مثال: 0612345678" /></div>
+      <h2 id="checkout-title">إتمام الطلب</h2>
+      <div class="form-group">
+        <label for="checkout-name">الاسم الكامل <span class="req">*</span></label>
+        <input type="text" id="checkout-name" placeholder="أدخلي اسمكِ الكامل" autocomplete="name" required />
+      </div>
+      <div class="form-group">
+        <label for="checkout-city">المدينة <span class="req">*</span></label>
+        <input type="text" id="checkout-city" placeholder="أدخلي مدينتكِ" autocomplete="address-level2" required />
+      </div>
+      <div class="form-group">
+        <label for="checkout-phone">رقم الهاتف <span class="req">*</span></label>
+        <input type="tel" id="checkout-phone" placeholder="مثال: 0612345678" autocomplete="tel" dir="ltr" required />
+      </div>
       <div class="modal-actions">
         <button class="modal-cancel" onclick="closeCheckoutModal()">إلغاء</button>
-        <button class="modal-confirm" onclick="confirmCheckout()"><i class="fab fa-whatsapp"></i> تأكيد وإرسال</button>
+        <button class="modal-confirm" onclick="confirmCheckout()">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> تأكيد وإرسال
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-links-grid">
-        <div class="link-group"><div class="link-group-title">عن المتجر</div><ul><li><a onclick="navigate('about')">من نحن</a></li><li><a onclick="navigate('contact')">تواصل معنا</a></li></ul></div>
-        <div class="link-group"><div class="link-group-title">خدمة العملاء</div><div class="links-grid"><a onclick="navigate('faq')">الأسئلة الشائعة</a></div></div>
+        <div class="link-group">
+          <div class="link-group-title">عن المتجر</div>
+          <ul class="link-list">
+            <li><a onclick="navigate('about')" tabindex="0">من نحن</a></li>
+            <li><a onclick="navigate('contact')" tabindex="0">تواصل معنا</a></li>
+            <li><a onclick="navigate('terms')" tabindex="0">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+        <div class="link-group">
+          <div class="link-group-title">خدمة العملاء</div>
+          <div class="links-grid">
+            <a onclick="navigate('faq')" tabindex="0">الأسئلة الشائعة</a>
+            <a onclick="navigate('refund')" tabindex="0">سياسة الاسترجاع</a>
+            <a onclick="navigate('privacy')" tabindex="0">سياسة الخصوصية</a>
+            <a onclick="navigate('shipping')" tabindex="0">سياسة الشحن</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/jawharat_ikram1" target="_blank" class="social-circle instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07..."/></svg></a>
-        <a href="https://wa.me/212727726891" target="_blank" class="social-circle whatsapp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149..."/></svg></a>
+      <div class="footer-social" aria-label="وسائل التواصل الاجتماعي">
+        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-circle tiktok" aria-label="تيكتوك">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle facebook" aria-label="فيسبوك">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jawharat_ikram1" target="_blank" rel="noopener noreferrer" class="social-circle instagram" aria-label="إنستغرام">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://wa.me/212727726891" target="_blank" rel="noopener noreferrer" class="social-circle whatsapp" aria-label="واتساب">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
       </div>
-      <div class="footer-bottom-bar"><p class="copyright-text">جميع الحقوق محفوظة &copy; 2026 — جوهرة اكرام</p></div>
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">جميع الحقوق محفوظة &copy; 2026 — جوهرة اكرام</p>
+      </div>
     </div>
   </footer>
 
