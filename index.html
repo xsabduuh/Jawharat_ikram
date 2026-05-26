@@ -1119,30 +1119,35 @@
               return;
           }
           showPage('page-home');
+          window.scrollTo(0, 0);
           history.pushState({ page: 'home' }, '', '#home');
           return;
       }
 
       if (page === 'products') {
           showPage('page-products');
+          window.scrollTo(0, 0);
           history.pushState({ page: 'products' }, '', '#products');
           return;
       }
 
       if (page === 'detail' && productId) {
           showPage('page-detail');
+          window.scrollTo(0, 0);
           history.pushState({ page: 'detail', productId: productId }, '', `#product-${productId}`);
           return;
       }
 
       if (page === 'cart') {
           showPage('page-cart');
+          window.scrollTo(0, 0);
           history.pushState({ page: 'cart' }, '', '#cart');
           return;
       }
 
       if (page === 'faq') {
           showPage('page-faq');
+          window.scrollTo(0, 0);
           history.pushState({ page: 'faq' }, '', '#faq');
           return;
       }
@@ -1161,6 +1166,7 @@
         })
         .then(function(html){
           app.innerHTML = html;
+          window.scrollTo(0, 0); /* تمرير للأعلى بعد تحميل الصفحة الخارجية */
           app.querySelectorAll('script').forEach(function(old){
             var s = document.createElement('script');
             s.textContent = old.textContent;
@@ -1170,6 +1176,7 @@
         })
         .catch(function(){
           app.innerHTML = '<div class="page active" style="text-align:center;padding:140px 20px 80px"><i class="fas fa-exclamation-circle" style="font-size:48px;color:var(--pink-deep);margin-bottom:20px"></i><h2 style="color:var(--text);margin-bottom:14px">الصفحة غير موجودة</h2><p style="color:var(--text-light);margin-bottom:28px">هذه الصفحة غير متاحة حالياً</p><button class="btn-primary" onclick="navigate(\'home\')">العودة للرئيسية</button></div>';
+          window.scrollTo(0, 0); /* تمرير للأعلى حتى عند ظهور صفحة الخطأ */
           history.pushState({ page: page }, '', '#' + page);
         });
     }
