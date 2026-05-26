@@ -1111,32 +1111,42 @@
     }
 
     function navigate(page, productId) {
-      updateNavActive(page);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      if (page === 'home') {
+    if (page === 'home') {
+        // الإصلاح: التحقق من وجود عنصر الصفحة الرئيسية قبل إظهارها
+        if (!document.getElementById('page-home')) {
+            // إذا كان العنصر غير موجود (دخلنا من صفحة خارجية) نعيد تحميل التطبيق كاملاً
+            window.location.href = './#home';
+            return;
+        }
         showPage('page-home');
-        history.pushState({ page: page }, '', '#home');
-      } else if (page === 'products') {
-        showPage('page-products');
-        renderProducts();
-        history.pushState({ page: page }, '', '#products');
-      } else if (page === 'detail') {
-        if (!productId) { navigate('products'); return; }
-        showPage('page-detail');
-        renderDetail(productId);
-        history.pushState({ page: page, productId: productId }, '', '#detail/' + productId);
-      } else if (page === 'cart') {
-        showPage('page-cart');
-        renderCart();
-        history.pushState({ page: page }, '', '#cart');
-      } else if (page === 'faq') {
-        showPage('page-faq');
-        history.pushState({ page: page }, '', '#faq');
-      } else {
-        loadExternalPage(page);
-      }
+        history.pushState({ page: 'home' }, '', '#home');
+        return;
     }
+
+    if (page === 'products') {
+        showPage('page-products');
+        history.pushState({ page: 'products' }, '', '#products');
+        return;
+    }
+
+    if (page === 'detail' && productId) {
+        showPage('page-detail');
+        history.pushState({ page: 'detail', productId: productId }, '', `#product-${productId}`);
+        return;
+    }
+
+    if (page === 'cart') {
+        showPage('page-cart');
+        history.pushState({ page: 'cart' }, '', '#cart');
+        return;
+    }
+
+    if (page === 'faq') {
+        showPage('page-faq');
+        history.pushState({ page: 'faq' }, '', '#faq');
+        return;
+    }
+}
 
     function loadExternalPage(page) {
       var app = document.getElementById('app');
