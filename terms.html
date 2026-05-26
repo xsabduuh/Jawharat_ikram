@@ -97,7 +97,7 @@
               </div>
               <div class="method-item">
                 <span class="method-icon"><i class="fab fa-whatsapp"></i></span>
-                <span>+212 6 00 00 00 00</span>
+                <span>+212 727-726891</span>
               </div>
             </div>
           </div>
@@ -126,7 +126,6 @@
     color: var(--text-light);
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word;
   }
 
   .terms-intro {
@@ -169,7 +168,7 @@
 
   .terms-content {
     flex: 1;
-    min-width: 0; /* يسمح بتصغير العنصر والتفاف النص */
+    min-width: 0;
     max-width: 100%;
   }
 
@@ -193,7 +192,7 @@
     margin-bottom: 10px;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word;
+    word-break: keep-all;   /* يمنع قطع الكلمات في منتصفها */
     max-width: 100%;
   }
 
@@ -213,7 +212,7 @@
     gap: 8px;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word;
+    word-break: keep-all;   /* يمنع قطع الكلمات */
     max-width: 100%;
   }
 
@@ -247,7 +246,7 @@
     color: var(--text);
     font-size: 14px;
     transition: all 0.25s ease;
-    word-break: break-word;
+    word-break: keep-all;
     max-width: 100%;
   }
 
