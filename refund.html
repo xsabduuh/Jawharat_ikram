@@ -3,367 +3,299 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سياسة الاسترجاع</title>
+  <title>سياسة الاسترجاع | جوهرة اكرام</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --primary: #e74c3c;
-      --primary-dark: #c0392b;
-      --white: #ffffff;
-      --border: #e8e8e8;
-      --text: #1a1a1a;
-      --text-light: #666;
-      --bg: #f7f7f7;
-      --radius-lg: 14px;
+      --pink:       #e91e8c;
+      --pink-dark:  #c2185b;
+      --pink-soft:  #fce4ec;
+      --pink-pale:  #fff8fa;
+      --white:      #ffffff;
+      --border:     #fce4ec;
+      --text:       #2d1a22;
+      --text-light: #7b5260;
+      --text-muted: #c9a0b0;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: var(--bg);
+      font-family: 'Tajawal', sans-serif;
+      background: var(--pink-pale);
       color: var(--text);
       direction: rtl;
     }
 
-    .section { padding: 60px 0; }
-    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-size: 1.1rem; font-weight: 800; color: var(--pink-dark); }
+    nav a {
+      font-size: .85rem;
+      color: var(--pink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      transition: opacity .2s;
+    }
+    nav a:hover { opacity: .7; }
 
-    /* SECTION HEADER */
-    .section-header {
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 100%);
+      padding: 3rem 1.5rem;
       text-align: center;
-      margin-bottom: 40px;
     }
+    .hero h1 { color: var(--white); font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; }
+    .hero p  { color: rgba(255,255,255,.8); font-size: .9rem; margin-top: .5rem; font-weight: 300; }
 
-    .tag {
-      display: inline-block;
-      background: #fdecea;
-      color: var(--primary);
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-    }
+    /* MAIN */
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 
-    .section-header h2 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .section-header p {
-      color: var(--text-light);
-      font-size: 0.9rem;
-    }
-
-    /* HERO BANNER */
-    .refund-hero {
+    /* GUARANTEE BANNER */
+    .guarantee-banner {
       display: flex;
       align-items: center;
-      gap: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      border-radius: var(--radius-lg);
-      padding: 28px 30px;
-      margin-bottom: 40px;
+      gap: 1.2rem;
+      background: linear-gradient(135deg, var(--pink-dark), var(--pink));
+      color: var(--white);
+      border-radius: 16px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 2.5rem;
     }
-
-    .refund-hero-icon {
-      font-size: 2.2rem;
-      flex-shrink: 0;
-      background: rgba(255,255,255,0.15);
-      width: 60px;
-      height: 60px;
+    .guarantee-icon {
+      width: 54px; height: 54px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
     }
-
-    .refund-hero h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #fff;
-    }
-
-    .refund-hero p {
-      font-size: 0.9rem;
-      opacity: 0.88;
-      margin: 0;
-    }
-
-    /* STEPS TITLE */
-    .refund-steps-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
+    .guarantee-banner h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .3rem; }
+    .guarantee-banner p  { font-size: .87rem; opacity: .85; margin: 0; }
 
     /* STEPS */
-    .refund-steps {
+    .steps-label {
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1rem;
+    }
+    .steps-row {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 32px;
+      align-items: stretch;
+      gap: .8rem;
+      margin-bottom: 2.5rem;
       flex-wrap: wrap;
     }
-
-    .refund-step {
+    .step-card {
       flex: 1;
-      min-width: 160px;
+      min-width: 155px;
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: .9rem;
+      transition: box-shadow .25s;
     }
-
+    .step-card:hover { box-shadow: 0 4px 20px rgba(233,30,140,.1); }
     .step-num {
-      background: var(--primary);
-      color: #fff;
-      width: 30px;
-      height: 30px;
+      width: 32px; height: 32px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
+      background: linear-gradient(135deg, var(--pink-dark), var(--pink));
+      color: var(--white);
+      font-weight: 800; font-size: .88rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-text strong { display: block; font-size: .92rem; color: var(--text); margin-bottom: .25rem; }
+    .step-text span   { font-size: .81rem; color: var(--text-light); line-height: 1.55; }
+    .step-arrow {
+      color: var(--text-muted);
+      font-size: 1rem;
+      align-self: center;
       flex-shrink: 0;
     }
 
-    .step-text {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .step-text strong {
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    .step-text span {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      line-height: 1.5;
-    }
-
-    .refund-step-divider {
-      color: var(--text-light);
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    /* CARDS */
+    /* YES/NO CARDS */
     .refund-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
-
     .refund-card {
       background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      border: 1.5px solid var(--border);
     }
-
     .refund-card--yes { border-top: 3px solid #27ae60; }
-    .refund-card--no  { border-top: 3px solid #e74c3c; }
+    .refund-card--no  { border-top: 3px solid var(--pink); }
 
     .refund-card-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      display: flex; align-items: center; gap: .7rem;
+      margin-bottom: 1rem;
     }
-
-    .refund-card-icon {
-      width: 28px;
-      height: 28px;
+    .card-icon {
+      width: 30px; height: 30px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .82rem; font-weight: 700;
       flex-shrink: 0;
     }
+    .refund-card--yes .card-icon { background: #eafaf1; color: #27ae60; }
+    .refund-card--no  .card-icon { background: var(--pink-soft); color: var(--pink-dark); }
+    .refund-card h4 { font-size: .95rem; font-weight: 700; color: var(--text); }
 
-    .refund-card--yes .refund-card-icon { background: #eafaf1; color: #27ae60; }
-    .refund-card--no  .refund-card-icon { background: #fdecea; color: #e74c3c; }
-
-    .refund-card h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin: 0;
-    }
-
-    .refund-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    .refund-card ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
     .refund-card ul li {
-      font-size: 0.88rem;
+      font-size: .86rem;
       color: var(--text-light);
-      padding-right: 22px;
+      padding-right: 1.3rem;
       position: relative;
-      line-height: 1.5;
+      line-height: 1.55;
     }
-
-    .refund-card--yes ul li::before {
-      content: '✓';
-      position: absolute;
-      right: 0;
-      color: #27ae60;
-      font-weight: 700;
-    }
-
-    .refund-card--no ul li::before {
-      content: '✗';
-      position: absolute;
-      right: 0;
-      color: #e74c3c;
-      font-weight: 700;
-    }
+    .refund-card--yes ul li::before { content: '✓'; position: absolute; right: 0; color: #27ae60; font-weight: 700; }
+    .refund-card--no  ul li::before { content: '✗'; position: absolute; right: 0; color: var(--pink); font-weight: 700; }
 
     /* NOTE */
-    .refund-note {
-      background: #fffbea;
-      border: 1px solid #f0d060;
-      border-radius: var(--radius-lg);
-      padding: 18px 22px;
+    .note-box {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-right: 4px solid var(--pink);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-    }
-
-    .refund-note-icon {
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .refund-note p {
-      margin: 0;
-      font-size: 0.9rem;
+      gap: .8rem;
+      font-size: .88rem;
       color: var(--text-light);
-      line-height: 1.7;
+      line-height: 1.75;
     }
+    .note-box i { color: var(--pink); margin-top: 2px; flex-shrink: 0; }
+    .note-box strong { color: var(--text); }
 
-    .refund-note p strong { color: var(--text); }
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
 
     /* RESPONSIVE */
     @media (max-width: 600px) {
       .refund-cards { grid-template-columns: 1fr; }
-      .refund-steps { flex-direction: column; }
-      .refund-step { width: 100%; }
-      .refund-step-divider { transform: rotate(-90deg); }
-      .refund-hero { flex-direction: column; text-align: center; }
-      .section-header h2 { font-size: 1.5rem; }
+      .steps-row { flex-direction: column; }
+      .step-arrow { transform: rotate(90deg); align-self: flex-start; margin-right: 1rem; }
+      .guarantee-banner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<div class="page active" id="page-refund">
-  <section class="section">
-    <div class="container">
+<nav>
+  <span class="brand">جوهرة اكرام</span>
+  <a href="index.html"><i class="fa-solid fa-arrow-right"></i> العودة للمتجر</a>
+</nav>
 
-      <div class="section-header">
-        <span class="tag">سياسة</span>
-        <h2>سياسة الاسترجاع</h2>
-        <p>آخر تحديث: يونيو 2025</p>
-      </div>
-
-      <!-- بانر رئيسي -->
-      <div class="refund-hero">
-        <div class="refund-hero-icon">↩</div>
-        <div>
-          <h3>استرجاع مضمون خلال 7 أيام</h3>
-          <p>رضاكِ أولويتنا — نضمن لكِ تجربة شراء آمنة وبدون قلق</p>
-        </div>
-      </div>
-
-      <!-- خطوات -->
-      <div class="refund-steps-title">كيف تطلبين الاسترجاع؟</div>
-      <div class="refund-steps">
-        <div class="refund-step">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <strong>تواصلي معنا</strong>
-            <span>راسلينا عبر واتساب أو الموقع خلال 7 أيام من الاستلام</span>
-          </div>
-        </div>
-        <div class="refund-step-divider">←</div>
-        <div class="refund-step">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <strong>أرسلي المنتج</strong>
-            <span>أعيدي تعبئة المنتج بغلافه الأصلي مع الملصقات</span>
-          </div>
-        </div>
-        <div class="refund-step-divider">←</div>
-        <div class="refund-step">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <strong>استردي أموالك</strong>
-            <span>نعالج الطلب فور وصول المنتج إلينا</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- شروط -->
-      <div class="refund-cards">
-        <div class="refund-card refund-card--yes">
-          <div class="refund-card-header">
-            <span class="refund-card-icon">✓</span>
-            <h4>يُقبل الاسترجاع</h4>
-          </div>
-          <ul>
-            <li>المنتج بحالته الأصلية غير مستعمل</li>
-            <li>الغلاف والملصقات سليمة</li>
-            <li>الطلب خلال 7 أيام من الاستلام</li>
-            <li>عيب مصنعي أو خطأ في الطلبية</li>
-          </ul>
-        </div>
-        <div class="refund-card refund-card--no">
-          <div class="refund-card-header">
-            <span class="refund-card-icon">✗</span>
-            <h4>لا يُقبل الاسترجاع</h4>
-          </div>
-          <ul>
-            <li>المنتج مستعمل أو غُسل</li>
-            <li>إزالة الملصقات أو الغلاف</li>
-            <li>مرور أكثر من 7 أيام على الاستلام</li>
-            <li>الملابس الداخلية لأسباب صحية</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- تنبيه -->
-      <div class="refund-note">
-        <span class="refund-note-icon">💡</span>
-        <p>للاستفسار عن أي طلب، يمكنكِ التواصل معنا مباشرة عبر صفحة <strong>اتصل بنا</strong> وسنرد خلال ساعات.</p>
-      </div>
-
-    </div>
-  </section>
+<div class="hero">
+  <h1>سياسة الاسترجاع</h1>
+  <p>آخر تحديث: مايو 2026</p>
 </div>
+
+<div class="container">
+
+  <!-- BANNER -->
+  <div class="guarantee-banner">
+    <div class="guarantee-icon"><i class="fa-solid fa-rotate-left"></i></div>
+    <div>
+      <h3>استرجاع مضمون خلال 7 أيام</h3>
+      <p>رضاكِ أولويتنا — نضمن لكِ تجربة شراء آمنة وبدون قلق</p>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps-label">كيف تطلبين الاسترجاع؟</div>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <strong>تواصلي معنا</strong>
+        <span>راسلينا عبر واتساب خلال 7 أيام من الاستلام</span>
+      </div>
+    </div>
+    <div class="step-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <strong>أرسلي المنتج</strong>
+        <span>أعيدي تعبئته بغلافه الأصلي مع الملصقات</span>
+      </div>
+    </div>
+    <div class="step-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <strong>استردي أموالك</strong>
+        <span>نعالج طلبك فور وصول المنتج إلينا</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- YES / NO -->
+  <div class="refund-cards">
+    <div class="refund-card refund-card--yes">
+      <div class="refund-card-header">
+        <span class="card-icon"><i class="fa-solid fa-check"></i></span>
+        <h4>يُقبل الاسترجاع</h4>
+      </div>
+      <ul>
+        <li>المنتج بحالته الأصلية غير مستعمل</li>
+        <li>الغلاف والملصقات سليمة</li>
+        <li>الطلب خلال 7 أيام من الاستلام</li>
+        <li>عيب مصنعي أو خطأ في الطلبية</li>
+      </ul>
+    </div>
+    <div class="refund-card refund-card--no">
+      <div class="refund-card-header">
+        <span class="card-icon"><i class="fa-solid fa-xmark"></i></span>
+        <h4>لا يُقبل الاسترجاع</h4>
+      </div>
+      <ul>
+        <li>المنتج مستعمل أو غُسل</li>
+        <li>إزالة الملصقات أو الغلاف</li>
+        <li>مرور أكثر من 7 أيام على الاستلام</li>
+        <li>الملابس الداخلية لأسباب صحية</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note-box">
+    <i class="fa-solid fa-circle-info"></i>
+    <p>للاستفسار عن أي طلب، تواصلي معنا مباشرة عبر <strong>واتساب</strong> وسنرد خلال ساعات.</p>
+  </div>
+
+</div>
+
+<footer>جميع الحقوق محفوظة © 2026 — جوهرة اكرام</footer>
 
 </body>
 </html>
