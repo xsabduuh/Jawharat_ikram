@@ -1,4 +1,38 @@
 <div class="page active" id="page-shipping">
+  <style>
+    /* زر الرجوع */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 8px 18px;
+      margin: 20px 30px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--pink-deep);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-btn i {
+      font-size: 14px;
+    }
+    .back-btn:hover {
+      background: var(--pink-soft);
+      border-color: var(--pink);
+      transform: translateX(4px);
+    }
+  </style>
+
+  <!-- زر الرجوع (بدون شريط علوي) -->
+  <div class="back-btn" onclick="goBack()">
+    <i class="fa-solid fa-arrow-right"></i> رجوع
+  </div>
+
   <section class="section">
     <div class="container">
       <div class="section-header">
@@ -121,7 +155,7 @@
           </div>
         </div>
 
-        <!-- القسم 6 -->
+        <!-- القسم 6 (تواصلي معنا) مع إضافة رقم الهاتف -->
         <div class="shipping-section">
           <div class="shipping-number">6</div>
           <div class="shipping-content">
@@ -130,7 +164,11 @@
             <div class="contact-methods">
               <div class="method-item">
                 <span class="method-icon"><i class="fab fa-whatsapp"></i></span>
-                <span>+212 6 00 00 00 00</span>
+                <a href="https://wa.me/212727726891" target="_blank" style="text-decoration: none; color: inherit;">+212 727-726891</a>
+              </div>
+              <div class="method-item">
+                <span class="method-icon"><i class="fas fa-phone-alt"></i></span>
+                <span class="phone-number" dir="ltr">+212 727-726891</span>
               </div>
               <div class="method-item">
                 <span class="method-icon"><i class="fas fa-envelope"></i></span>
@@ -147,11 +185,22 @@
 
     </div>
   </section>
+
+  <script>
+    // دالة الرجوع إلى الصفحة السابقة
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
 </div>
 
 <style>
   /* ============================
-     SHIPPING PAGE STYLES
+     SHIPPING PAGE STYLES (مع الحفاظ على الأنيميشنات)
   ============================ */
   .shipping-highlights {
     display: grid;
@@ -391,6 +440,12 @@
     font-size: 15px;
     flex-shrink: 0;
     box-shadow: var(--shadow-sm);
+  }
+
+  .phone-number {
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: embed;
   }
 
   .shipping-footer {
