@@ -944,7 +944,7 @@
 
     function calculateTotals() {
       var subtotal = cart.reduce(function(s, i){ return s + i.price * i.qty; }, 0);
-      var shipping = subtotal >= 300 ? 0 : 30;
+      var shipping = subtotal >= 300 ? 0 : 20;
       var total = subtotal + shipping;
       return { subtotal: subtotal, shipping: shipping, total: total };
     }
