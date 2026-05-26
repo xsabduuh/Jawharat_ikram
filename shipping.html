@@ -1,510 +1,100 @@
-<div class="page active" id="page-shipping">
-  <style>
-    /* زر الرجوع */
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 8px 18px;
-      margin: 20px 30px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--pink-deep);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      width: fit-content;
-    }
-    .back-btn i {
-      font-size: 14px;
-    }
-    .back-btn:hover {
-      background: var(--pink-soft);
-      border-color: var(--pink);
-      transform: translateX(4px);
-    }
-  </style>
+<div class="page active" id="page-shipping" style="padding-top:70px">
+<style>
+.shipping-hero{background:linear-gradient(135deg,#fff5f9,#fdf0f5);padding:60px 20px 40px;text-align:center;border-bottom:1px solid #f2d8e4}
+.shipping-hero h1{font-size:clamp(24px,4.5vw,38px);font-weight:900;color:#3a2430;margin-bottom:10px}
+.shipping-hero h1 span{color:#e07898}
+.shipping-hero p{font-size:14px;color:#7a5a68;max-width:480px;margin:0 auto;line-height:1.7}
+.shipping-body{max-width:860px;margin:0 auto;padding:50px 20px 60px}
+.shipping-highlight{background:linear-gradient(135deg,#e8f8ee,#f0fff4);border:2px solid #c6f6d5;border-radius:20px;padding:28px 30px;margin-bottom:28px;text-align:center}
+.shipping-highlight h2{font-size:20px;font-weight:900;color:#276749;margin-bottom:8px}
+.shipping-highlight p{font-size:15px;color:#276749;opacity:.85}
+.shipping-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:28px}
+.shipping-card{background:#fff;border:1px solid #f2d8e4;border-radius:18px;padding:26px 22px;transition:transform .25s,box-shadow .25s}
+.shipping-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(240,160,192,.2)}
+.sc-icon{font-size:32px;margin-bottom:14px}
+.sc-title{font-size:17px;font-weight:800;color:#3a2430;margin-bottom:8px}
+.sc-desc{font-size:14px;color:#7a5a68;line-height:1.7}
+.sc-price{font-size:22px;font-weight:900;color:#e07898;margin-top:12px}
+.sc-price span{font-size:13px;font-weight:600;color:#7a5a68}
+.shipping-section{background:#fff;border:1px solid #f2d8e4;border-radius:18px;padding:28px 30px;margin-bottom:20px}
+.shipping-section h2{font-size:18px;font-weight:800;color:#3a2430;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.shipping-section p,.shipping-section li{font-size:14px;color:#7a5a68;line-height:1.85;margin-bottom:8px}
+.shipping-section ul{padding-right:20px}
+.shipping-section li{list-style:disc}
+.shipping-section li:last-child{margin-bottom:0}
+.back-btn-s{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#e07898,#f0a0c0);color:#fff;padding:11px 22px;border-radius:40px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .3s;margin-top:12px}
+.back-btn-s:hover{transform:translateY(-2px)}
+@media(max-width:550px){.shipping-cards{grid-template-columns:1fr}}
+</style>
 
-  <!-- زر الرجوع (بدون شريط علوي) -->
-  <div class="back-btn" onclick="goBack()">
-    <i class="fa-solid fa-arrow-right"></i> رجوع
-  </div>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="tag"><i class="fas fa-truck"></i> الشحن</span>
-        <h2>سياسة الشحن والتوصيل</h2>
-        <p>نحرص على إيصال طلبكِ بأمان وفي أسرع وقت ممكن</p>
-      </div>
-
-      <!-- بطاقات سريعة -->
-      <div class="shipping-highlights">
-        <div class="highlight-card">
-          <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
-          <div class="highlight-title">توصيل سريع</div>
-          <div class="highlight-desc">24 إلى 48 ساعة داخل المدن الكبرى</div>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-icon"><i class="fas fa-gift"></i></div>
-          <div class="highlight-title">شحن مجاني</div>
-          <div class="highlight-desc">عند الطلب بـ 300 درهم فأكثر</div>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-icon"><i class="fas fa-hand-holding-usd"></i></div>
-          <div class="highlight-title">الدفع عند الاستلام</div>
-          <div class="highlight-desc">ادفعي نقداً حين تستلمين طلبكِ</div>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-icon"><i class="fas fa-map-marked-alt"></i></div>
-          <div class="highlight-title">تغطية شاملة</div>
-          <div class="highlight-desc">جميع مدن ومناطق المملكة المغربية</div>
-        </div>
-      </div>
-
-      <div class="shipping-card">
-        <div class="shipping-intro">
-          <p>نتعامل مع أفضل شركات الشحن في المغرب لضمان وصول طلبكِ بحالة ممتازة وفي الوقت المحدد. يمكنكِ الاطمئنان التام على كل طلب تضعينه معنا.</p>
-        </div>
-
-        <!-- القسم 1 -->
-        <div class="shipping-section">
-          <div class="shipping-number">1</div>
-          <div class="shipping-content">
-            <h3><i class="fas fa-clock"></i> مواعيد التوصيل</h3>
-            <div class="delivery-table">
-              <div class="delivery-row header-row">
-                <span><i class="fas fa-map-marker-alt"></i> المنطقة</span>
-                <span><i class="fas fa-hourglass-half"></i> المدة المتوقعة</span>
-                <span><i class="fas fa-tag"></i> تكلفة الشحن</span>
-              </div>
-              <div class="delivery-row">
-                <span>الدار البيضاء، الرباط، سلا، طنجة</span>
-                <span class="highlight">24 ساعة</span>
-                <span class="free-badge"><i class="fas fa-gift"></i> مجاني (300 درهم+)</span>
-              </div>
-              <div class="delivery-row">
-                <span>مراكش، فاس، مكناس، أكادير</span>
-                <span class="highlight">24 – 48 ساعة</span>
-                <span class="free-badge"><i class="fas fa-gift"></i> مجاني (300 درهم+)</span>
-              </div>
-              <div class="delivery-row">
-                <span>باقي المدن والمناطق</span>
-                <span class="highlight">48 – 72 ساعة</span>
-                <span>20 درهم</span>
-              </div>
-              <div class="delivery-row">
-                <span>المناطق النائية والقرى</span>
-                <span class="highlight">3 – 5 أيام عمل</span>
-                <span>20 درهم</span>
-              </div>
-            </div>
-            <p class="note"><i class="fas fa-info-circle"></i> المواعيد أعلاه تقريبية وتُحسب من لحظة تأكيد الطلب، ولا تشمل أيام الجمعة والعطل الرسمية.</p>
-          </div>
-        </div>
-
-        <!-- القسم 2 -->
-        <div class="shipping-section">
-          <div class="shipping-number">2</div>
-          <div class="shipping-content">
-            <h3><i class="fas fa-money-bill-wave"></i> تكاليف الشحن</h3>
-            <ul>
-              <li><i class="fas fa-check-circle"></i> الطلبات بقيمة <span class="highlight">300 درهم فأكثر</span>: توصيل مجاني لجميع أنحاء المغرب.</li>
-              <li><i class="fas fa-check-circle"></i> الطلبات أقل من 300 درهم: رسوم ثابتة <span class="highlight">20 درهم</span> فقط.</li>
-              <li><i class="fas fa-check-circle"></i> الدفع يكون عند الاستلام نقداً.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- القسم 3 -->
-        <div class="shipping-section">
-          <div class="shipping-number">3</div>
-          <div class="shipping-content">
-            <h3><i class="fas fa-box-open"></i> تجهيز ومعالجة الطلب</h3>
-            <ul>
-              <li><i class="fas fa-circle-notch"></i> يتم تجهيز الطلبات المؤكدة قبل الساعة 12 ظهراً في نفس اليوم.</li>
-              <li><i class="fas fa-circle-notch"></i> الطلبات المؤكدة بعد الظهر تُجهَّز في اليوم التالي.</li>
-              <li><i class="fas fa-circle-notch"></i> لا تُعالَج الطلبات أيام الجمعة والعطل الرسمية.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- القسم 4 -->
-        <div class="shipping-section">
-          <div class="shipping-number">4</div>
-          <div class="shipping-content">
-            <h3><i class="fas fa-search-location"></i> تتبع الطلب</h3>
-            <p>بعد شحن طلبكِ ستصلكِ رسالة واتساب تحتوي على رقم التتبع الخاص بشركة الشحن. يمكنكِ استخدامه لمتابعة حالة الشحنة مباشرةً على موقع شركة الشحن.</p>
-            <p>لأي استفسار عن موقع طلبكِ، تواصلي معنا عبر واتساب وسنتابع الأمر فوراً.</p>
-          </div>
-        </div>
-
-        <!-- القسم 5 -->
-        <div class="shipping-section">
-          <div class="shipping-number">5</div>
-          <div class="shipping-content">
-            <h3><i class="fas fa-exclamation-triangle"></i> في حالة وجود مشكلة</h3>
-            <ul>
-              <li><i class="fas fa-times-circle"></i> <strong>الطرد تالف أو مفتوح:</strong> لا تستلميه وأبلغينا فوراً مع صورة.</li>
-              <li><i class="fas fa-times-circle"></i> <strong>منتج خاطئ أو ناقص:</strong> تواصلي معنا خلال 24 ساعة من الاستلام.</li>
-              <li><i class="fas fa-times-circle"></i> <strong>تأخر في التوصيل:</strong> تواصلي معنا ونحن نتابع مع شركة الشحن نيابةً عنكِ.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- القسم 6 (تواصلي معنا) مع إضافة رقم الهاتف -->
-        <div class="shipping-section">
-          <div class="shipping-number">6</div>
-          <div class="shipping-content">
-            <h3><i class="fas fa-headset"></i> تواصلي معنا</h3>
-            <p>فريقنا جاهز لمساعدتكِ في أي وقت:</p>
-            <div class="contact-methods">
-              <div class="method-item">
-                <span class="method-icon"><i class="fab fa-whatsapp"></i></span>
-                <a href="https://wa.me/212727726891" target="_blank" style="text-decoration: none; color: inherit;">+212 727-726891</a>
-              </div>
-              <div class="method-item">
-                <span class="method-icon"><i class="fas fa-phone-alt"></i></span>
-                <span class="phone-number" dir="ltr">+212 727-726891</span>
-              </div>
-              <div class="method-item">
-                <span class="method-icon"><i class="fas fa-envelope"></i></span>
-                <span>contact@warda.ma</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="shipping-footer">
-          <i class="fas fa-clock"></i> آخر تحديث: يونيو 2025
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <script>
-    // دالة الرجوع إلى الصفحة السابقة
-    function goBack() {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = 'index.html';
-      }
-    }
-  </script>
+<div class="shipping-hero">
+  <span style="display:inline-block;background:#f8c8dc;color:#e07898;font-size:12px;font-weight:700;padding:4px 14px;border-radius:40px;margin-bottom:14px">الشحن</span>
+  <h1>سياسة <span>الشحن والتوصيل</span></h1>
+  <p>نوصل طلباتكِ لجميع مدن المغرب بسرعة وأمان</p>
+  <button class="back-btn-s" onclick="navigate('home')">
+    <i class="fas fa-home" aria-hidden="true"></i> الرئيسية
+  </button>
 </div>
 
-<style>
-  /* ============================
-     SHIPPING PAGE STYLES (مع الحفاظ على الأنيميشنات)
-  ============================ */
-  .shipping-highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 36px;
-  }
+<div class="shipping-body">
 
-  .highlight-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 22px 18px;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
+  <div class="shipping-highlight">
+    <h2>🎁 شحن مجاني للطلبات فوق 300 درهم!</h2>
+    <p>أضيفي منتجات بقيمة 300 درهم أو أكثر واستمتعي بالتوصيل المجاني لأي مكان في المغرب.</p>
+  </div>
 
-  .highlight-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--pink);
-  }
+  <div class="shipping-cards" role="list">
+    <div class="shipping-card" role="listitem">
+      <div class="sc-icon" aria-hidden="true">🚚</div>
+      <div class="sc-title">شحن عادي</div>
+      <div class="sc-desc">لجميع مدن المغرب خلال 24 إلى 48 ساعة عمل</div>
+      <div class="sc-price">20 <span>درهم</span></div>
+    </div>
+    <div class="shipping-card" role="listitem">
+      <div class="sc-icon" aria-hidden="true">⚡</div>
+      <div class="sc-title">شحن مجاني</div>
+      <div class="sc-desc">لجميع الطلبات التي تتجاوز قيمتها 300 درهم</div>
+      <div class="sc-price" style="color:#276749">مجاني! <span style="color:#276749">🎉</span></div>
+    </div>
+  </div>
 
-  .highlight-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-    color: var(--white);
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 12px;
-    box-shadow: 0 4px 14px rgba(224,120,152,0.3);
-  }
+  <div class="shipping-section">
+    <h2><span aria-hidden="true">📦</span> خطوات معالجة الطلب</h2>
+    <ul>
+      <li><strong>التأكيد:</strong> نتصل بكِ خلال ساعتين لتأكيد طلبكِ وعنوان التوصيل</li>
+      <li><strong>التجهيز:</strong> نجهز طلبكِ بعناية خلال يوم عمل واحد</li>
+      <li><strong>الشحن:</strong> يتم تسليمه لشركة التوصيل ويصلكِ خلال 24 إلى 48 ساعة</li>
+      <li><strong>التوصيل:</strong> تستقبلين طلبكِ وتدفعين نقداً عند الاستلام</li>
+    </ul>
+  </div>
 
-  .highlight-title {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
+  <div class="shipping-section">
+    <h2><span aria-hidden="true">🗺️</span> مناطق التوصيل</h2>
+    <p>نوصل لجميع مدن ومناطق المملكة المغربية دون استثناء، بما في ذلك:</p>
+    <ul>
+      <li>الدار البيضاء، الرباط، مراكش، فاس، مكناس</li>
+      <li>طنجة، أكادير، وجدة، تطوان، العرائش</li>
+      <li>المناطق الجنوبية والمدن الصغيرة</li>
+    </ul>
+    <p>ملاحظة: قد تستغرق بعض المناطق النائية يوماً إضافياً.</p>
+  </div>
 
-  .highlight-desc {
-    font-size: 12px;
-    color: var(--text-light);
-    line-height: 1.5;
-  }
+  <div class="shipping-section">
+    <h2><span aria-hidden="true">📞</span> تتبع الطلب</h2>
+    <p>بعد شحن طلبكِ، ستصلكِ رسالة واتساب تحتوي على رقم التتبع وتقدير وقت الوصول.</p>
+    <p>للاستفسار عن أي طلب، تواصلي معنا مباشرة:</p>
+    <a href="https://wa.me/212727726891?text=أريد%20الاستفسار%20عن%20طلبي"
+      target="_blank" rel="noopener noreferrer"
+      style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:12px 24px;border-radius:40px;font-size:14px;font-weight:700;text-decoration:none;margin-top:10px;transition:all .3s"
+      aria-label="تتبع الطلب عبر واتساب">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i> تتبع طلبكِ عبر واتساب
+    </a>
+  </div>
 
-  /* بطاقة رئيسية */
-  .shipping-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    border: 1.5px solid var(--border);
-    padding: 40px 30px;
-    box-shadow: var(--shadow-sm);
-    max-width: 860px;
-    margin: 0 auto;
-    line-height: 1.9;
-  }
-
-  .shipping-intro {
-    margin-bottom: 32px;
-    font-size: 15px;
-    color: var(--text);
-    border-bottom: 2px solid var(--pink-soft);
-    padding-bottom: 24px;
-  }
-
-  .shipping-section {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 28px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-  }
-
-  .shipping-section:last-of-type { border-bottom: none; }
-
-  .shipping-number {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-    color: var(--white);
-    font-weight: 800;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 3px 12px rgba(224,120,152,0.25);
-  }
-
-  .shipping-content { flex: 1; }
-
-  .shipping-content h3 {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 14px;
-    padding-top: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .shipping-content h3 i { color: var(--pink-deep); font-size: 15px; }
-
-  .shipping-content p {
-    font-size: 14px;
-    color: var(--text-light);
-    margin-bottom: 10px;
-  }
-
-  .shipping-content ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 8px;
-  }
-
-  .shipping-content ul li {
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--border);
-    font-size: 14px;
-    color: var(--text-light);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .shipping-content ul li:last-child { border-bottom: none; }
-
-  .shipping-content ul li i {
-    color: var(--pink-deep);
-    margin-top: 3px;
-    flex-shrink: 0;
-    width: 16px;
-  }
-
-  /* جدول التوصيل */
-  .delivery-table {
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 1.5px solid var(--border);
-    margin-bottom: 14px;
-  }
-
-  .delivery-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--text-light);
-    border-bottom: 1px solid var(--border);
-    align-items: center;
-  }
-
-  .delivery-row:last-child { border-bottom: none; }
-
-  .delivery-row.header-row {
-    background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-    color: var(--white);
-    font-weight: 700;
-    font-size: 13px;
-  }
-
-  .delivery-row.header-row i { color: var(--white); margin-left: 4px; }
-
-  .delivery-row:not(.header-row):nth-child(even) {
-    background: var(--pink-soft);
-  }
-
-  .highlight { color: var(--pink-deep); font-weight: 700; }
-
-  .free-badge {
-    color: #2d9e5f;
-    font-weight: 700;
-    font-size: 12px;
-  }
-
-  .free-badge i { margin-left: 3px; }
-
-  .note {
-    font-size: 12px !important;
-    color: var(--text-muted) !important;
-    background: var(--pink-soft);
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    border-right: 3px solid var(--pink-deep);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .note i { color: var(--pink-deep); margin-top: 2px; flex-shrink: 0; }
-
-  /* وسائل التواصل */
-  .contact-methods {
-    display: flex;
-    gap: 14px;
-    margin-top: 14px;
-    flex-wrap: wrap;
-  }
-
-  .method-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--pink-soft);
-    padding: 10px 18px;
-    border-radius: var(--radius-xl);
-    font-weight: 600;
-    color: var(--text);
-    font-size: 14px;
-    transition: all 0.25s ease;
-  }
-
-  .method-item:hover {
-    background: var(--pink);
-    transform: translateY(-2px);
-  }
-
-  .method-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--pink-deep);
-    font-size: 15px;
-    flex-shrink: 0;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .phone-number {
-    direction: ltr;
-    display: inline-block;
-    unicode-bidi: embed;
-  }
-
-  .shipping-footer {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  .shipping-footer i { color: var(--pink-deep); }
-
-  /* Responsive */
-  @media (max-width: 640px) {
-    .shipping-card { padding: 24px 16px; }
-
-    .shipping-section {
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .shipping-number {
-      width: 32px;
-      height: 32px;
-      font-size: 14px;
-    }
-
-    .shipping-content h3 { font-size: 15px; }
-
-    .delivery-row {
-      grid-template-columns: 1fr;
-      gap: 4px;
-    }
-
-    .delivery-row.header-row { display: none; }
-
-    .delivery-row:not(.header-row) span:nth-child(2)::before {
-      content: "المدة: ";
-      font-weight: 700;
-      color: var(--pink-deep);
-    }
-
-    .delivery-row:not(.header-row) span:nth-child(3)::before {
-      content: "التكلفة: ";
-      font-weight: 700;
-      color: var(--pink-deep);
-    }
-
-    .contact-methods { flex-direction: column; gap: 10px; }
-
-    .shipping-highlights { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 380px) {
-    .shipping-highlights { grid-template-columns: 1fr; }
-  }
-</style>
+  <div style="text-align:center;margin-top:24px">
+    <button class="back-btn-s" onclick="navigate('home')">
+      <i class="fas fa-arrow-right" aria-hidden="true"></i> العودة للرئيسية
+    </button>
+  </div>
+</div>
+</div>
