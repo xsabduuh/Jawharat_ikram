@@ -450,6 +450,46 @@
     .footer-bottom-bar{border-top:1px solid var(--border);padding:22px 0 8px;text-align:center}
     .copyright-text{font-size:13px;color:var(--text-muted)}
 
+    /* Size Picker Modal */
+    .size-modal{
+      position:fixed;inset:0;background:rgba(58,36,48,.65);
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      z-index:2001;display:none;align-items:center;justify-content:center;padding:20px;
+    }
+    .size-modal.open{display:flex}
+    .size-modal-box{
+      background:var(--white);border-radius:var(--r-xl);padding:30px 26px 26px;
+      max-width:380px;width:100%;box-shadow:var(--shadow-lg);animation:fadeIn .3s ease;
+    }
+    .size-modal-header{text-align:center;margin-bottom:6px}
+    .size-modal-header h3{font-size:18px;font-weight:900;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px}
+    .size-modal-header h3 i{color:var(--pink-deep)}
+    .size-modal-product{
+      font-size:13px;color:var(--text-light);text-align:center;
+      margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);
+      line-height:1.5;font-weight:600;
+    }
+    .size-pick-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:22px}
+    .size-pick-btn{
+      min-width:52px;height:48px;padding:0 16px;border-radius:var(--r-sm);
+      border:1.5px solid var(--border);background:var(--white);
+      font-size:14px;font-weight:700;color:var(--text-light);
+      cursor:pointer;transition:all var(--tr);font-family:var(--font);
+    }
+    .size-pick-btn:hover{border-color:var(--pink-deep);background:var(--pink-soft);color:var(--pink-deep)}
+    .size-pick-btn.selected{border-color:var(--pink-deep);background:var(--pink-deep);color:var(--white);transform:scale(1.06)}
+    .size-modal-actions{display:flex;gap:10px}
+    .size-modal-cancel{flex:1;padding:13px;border-radius:var(--r-xl);font-weight:700;font-size:14px;cursor:pointer;min-height:46px;font-family:var(--font);background:var(--white);border:2px solid var(--border);color:var(--text-light)}
+    .size-modal-cancel:hover{background:var(--pink-bg)}
+    .size-modal-confirm{flex:1;padding:13px;border-radius:var(--r-xl);font-weight:700;font-size:14px;cursor:pointer;min-height:46px;font-family:var(--font);background:linear-gradient(135deg,var(--pink-deep),var(--pink-dark));color:var(--white);border:none;display:flex;align-items:center;justify-content:center;gap:7px}
+    .size-modal-confirm:hover{box-shadow:var(--shadow-md)}
+    .cart-item-size-tag{
+      display:inline-flex;align-items:center;gap:5px;
+      background:var(--pink-soft);color:var(--pink-deep);
+      font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--r-xl);
+      margin-bottom:8px;border:1px solid var(--border);
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar{width:6px}
     ::-webkit-scrollbar-track{background:var(--pink-bg)}
@@ -542,7 +582,7 @@
         />
         <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content">
-          <div class="hero-badge">✨ تشكيلة صيف 2026</div>
+          <div class="hero-badge"><i class="fas fa-star" style="margin-left:5px"></i> تشكيلة صيف 2026</div>
           <h1>تألقي بأسلوبك <span>الخاص</span></h1>
           <p>اكتشفي أحدث صيحات الملابس النسائية، بتصاميم تجمع بين الذوق العصري واللمسة المغربية الأصيلة.</p>
           <div class="hero-btns">
@@ -683,7 +723,7 @@
           <div class="faq-list">
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon">🚚</span>
+                <span class="faq-icon"><i class="fas fa-truck" aria-hidden="true"></i></span>
                 <span class="faq-text">كم يستغرق التوصيل؟</span>
                 <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -691,7 +731,7 @@
             </div>
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon">💳</span>
+                <span class="faq-icon"><i class="fas fa-money-bill-wave" aria-hidden="true"></i></span>
                 <span class="faq-text">ما هي طرق الدفع المتاحة؟</span>
                 <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -699,7 +739,7 @@
             </div>
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon">🔄</span>
+                <span class="faq-icon"><i class="fas fa-rotate-left" aria-hidden="true"></i></span>
                 <span class="faq-text">هل يمكنني إرجاع المنتج؟</span>
                 <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -707,7 +747,7 @@
             </div>
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon">📦</span>
+                <span class="faq-icon"><i class="fas fa-box-open" aria-hidden="true"></i></span>
                 <span class="faq-text">هل الشحن مجاني؟</span>
                 <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -723,10 +763,27 @@
   <!-- حاوية الصفحات الخارجية — منفصلة عن #app حتى لا تُمحى الصفحات الداخلية -->
   <div id="external-container"></div>
 
+  <!-- Size Picker Modal -->
+  <div class="size-modal" id="size-modal" role="dialog" aria-modal="true" aria-labelledby="size-modal-title">
+    <div class="size-modal-box">
+      <div class="size-modal-header">
+        <h3 id="size-modal-title"><i class="fas fa-ruler-combined" aria-hidden="true"></i> اختاري المقاس</h3>
+      </div>
+      <div class="size-modal-product" id="size-modal-product"></div>
+      <div class="size-pick-row" id="size-pick-row" role="group" aria-label="المقاسات المتاحة"></div>
+      <div class="size-modal-actions">
+        <button class="size-modal-cancel" onclick="closeSizePicker()">إلغاء</button>
+        <button class="size-modal-confirm" onclick="confirmSizePicker()">
+          <i class="fas fa-cart-plus" aria-hidden="true"></i> إضافة للسلة
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Checkout Modal -->
   <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box">
-      <h2 id="modal-title">🛍️ إتمام الطلب</h2>
+      <h2 id="modal-title"><i class="fas fa-shopping-bag" style="color:var(--pink-deep);margin-left:8px" aria-hidden="true"></i> إتمام الطلب</h2>
       <div class="form-group">
         <label for="checkout-name">الاسم الكامل <span class="req">*</span></label>
         <input type="text" id="checkout-name" placeholder="أدخلي اسمك الكامل" autocomplete="name" />
@@ -847,24 +904,37 @@
       document.querySelectorAll('.cart-count').forEach(function(el){ el.innerText = total; });
     }
 
-    function addToCart(id) {
+    function addToCart(id, size) {
       var p = products.find(function(x){ return x.id === id; });
       if (!p) return;
-      var existing = cart.find(function(i){ return i.id === id; });
+      var sizeKey = size || null;
+      var existing = cart.find(function(i){ return i.id === id && i.selectedSize === sizeKey; });
       if (existing) {
         existing.qty++;
       } else {
-        cart.push({ id: p.id, name: p.name, price: p.price, img: p.img, category: p.category, qty: 1, selectedSize: null });
+        cart.push({ id: p.id, name: p.name, price: p.price, img: p.img, category: p.category, qty: 1, selectedSize: sizeKey });
       }
       saveCart();
-      showToast('✅ تمت إضافة ' + p.name + ' إلى السلة');
+      var sizeLabel = size ? ' — ' + size : '';
+      showToast('<i class="fas fa-check" style="margin-left:6px"></i> تمت الإضافة: ' + p.name + sizeLabel);
     }
 
-    function removeFromCart(id) {
-      cart = cart.filter(function(i){ return i.id !== id; });
+    function removeCartItem(idx) {
+      cart.splice(idx, 1);
       saveCart();
-      showToast('🗑️ تمت الإزالة');
+      showToast('<i class="fas fa-trash-alt" style="margin-left:6px"></i> تمت إزالة المنتج من السلة');
       if (document.getElementById('page-cart').classList.contains('active')) renderCart();
+    }
+
+    function updateCartItemQty(idx, delta) {
+      if (!cart[idx]) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        removeCartItem(idx);
+      } else {
+        saveCart();
+        renderCart();
+      }
     }
 
     function clearCart() {
@@ -896,30 +966,37 @@
       var cont = document.getElementById('cart-content');
       if (!cont) return;
       if (!cart.length) {
-        cont.innerHTML = '<div class="empty-cart"><h3>🛒 سلة التسوق فارغة</h3><p>أضيفي بعض المنتجات الرائعة!</p><button class="btn-primary" onclick="navigate(\'products\')">تسوقي الآن</button></div>';
+        cont.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-bag" style="font-size:52px;color:var(--pink);display:block;margin-bottom:16px" aria-hidden="true"></i><h3>سلة التسوق فارغة</h3><p>أضيفي بعض المنتجات الرائعة!</p><button class="btn-primary" onclick="navigate(\'products\')">تسوقي الآن</button></div>';
         return;
       }
-      var itemsHtml = cart.map(function(i){
+      var itemsHtml = cart.map(function(i, idx){
+        var sizeTag = i.selectedSize
+          ? '<div><span class="cart-item-size-tag"><i class="fas fa-ruler-combined" aria-hidden="true"></i> المقاس: ' + i.selectedSize + '</span></div>'
+          : '';
         return '<div class="cart-item">' +
           '<div class="cart-item-img">' + getProductImage(i) + '</div>' +
           '<div class="cart-item-info">' +
             '<div class="cart-item-name">' + i.name + '</div>' +
+            sizeTag +
             '<div class="cart-item-price">' + i.price + ' درهم</div>' +
             '<div class="qty-ctrl">' +
-              '<button class="qty-btn" onclick="updateQty(' + i.id + ',-1)">-</button>' +
+              '<button class="qty-btn" onclick="updateCartItemQty(' + idx + ',-1)" aria-label="تقليل الكمية">-</button>' +
               '<span class="qty-num">' + i.qty + '</span>' +
-              '<button class="qty-btn" onclick="updateQty(' + i.id + ',1)">+</button>' +
+              '<button class="qty-btn" onclick="updateCartItemQty(' + idx + ',1)" aria-label="زيادة الكمية">+</button>' +
             '</div>' +
           '</div>' +
-          '<button class="remove-btn" onclick="removeFromCart(' + i.id + ')"><i class="fas fa-trash-alt"></i></button>' +
+          '<button class="remove-btn" onclick="removeCartItem(' + idx + ')" aria-label="إزالة المنتج"><i class="fas fa-trash-alt"></i></button>' +
         '</div>';
       }).join('');
 
       var totals = calculateTotals();
+      var shippingLabel = totals.shipping === 0
+        ? '<i class="fas fa-gift" style="margin-left:4px" aria-hidden="true"></i> مجاني'
+        : totals.shipping + ' درهم';
       var summary = '<div class="cart-summary">' +
         '<div class="summary-title"><i class="fas fa-receipt"></i> ملخص الطلب</div>' +
         '<div class="summary-row"><span>المجموع</span><span class="val">' + totals.subtotal + ' درهم</span></div>' +
-        '<div class="summary-row"><span>الشحن</span><span class="val">' + (totals.shipping === 0 ? 'مجاني' : totals.shipping + ' درهم') + '</span></div>' +
+        '<div class="summary-row"><span>الشحن</span><span class="val" style="' + (totals.shipping === 0 ? 'color:#6dbb8a' : '') + '">' + shippingLabel + '</span></div>' +
         '<div class="summary-row total"><span>الإجمالي</span><span class="val">' + totals.total + ' درهم</span></div>' +
         '<button class="checkout-btn" onclick="openCheckoutModal()"><i class="fab fa-whatsapp"></i> إتمام الطلب عبر واتساب</button>' +
       '</div>';
@@ -929,7 +1006,6 @@
 
     /* ════ بطاقة المنتج ════ */
     function productCard(p) {
-      var inCart = cart.some(function(i){ return i.id === p.id; });
       var badge = p.badge ? '<span class="card-badge">' + p.badge + '</span>' : '';
       return '<article class="product-card" onclick="navigate(\'detail\',' + p.id + ')" role="listitem" aria-label="' + p.name + '، السعر ' + p.price + ' درهم">' +
         '<div class="card-img-wrap">' + badge + getProductImage(p) + '</div>' +
@@ -938,19 +1014,12 @@
           '<div class="card-name">' + p.name + '</div>' +
           '<div class="card-footer">' +
             '<div class="card-price">' + p.price + ' <span>درهم</span></div>' +
-            '<button class="buy-btn' + (inCart ? ' in-cart' : '') + '" onclick="event.stopPropagation();handleBuyClick(this,' + p.id + ')" aria-label="' + (inCart ? 'في السلة' : 'أضفي ' + p.name + ' للسلة') + '">' +
-              (inCart ? '<i class="fas fa-check"></i> في السلة' : '<i class="fas fa-cart-plus"></i> أضف') +
+            '<button class="buy-btn" onclick="event.stopPropagation();openSizePicker(' + p.id + ')" aria-label="أضفي ' + p.name + ' للسلة">' +
+              '<i class="fas fa-cart-plus"></i> أضف' +
             '</button>' +
           '</div>' +
         '</div>' +
       '</article>';
-    }
-
-    function handleBuyClick(btn, id) {
-      if (btn.classList.contains('in-cart')) return;
-      addToCart(id);
-      btn.innerHTML = '<i class="fas fa-check"></i> في السلة';
-      btn.classList.add('in-cart');
     }
 
     /* ════ الرئيسية ════ */
@@ -1005,7 +1074,7 @@
         g.innerHTML = '<div style="text-align:center;padding:60px 20px;grid-column:1/-1">' +
           '<i class="far fa-heart" style="font-size:48px;color:var(--pink);margin-bottom:16px;display:block"></i>' +
           '<h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:10px">قائمة المفضلة فارغة</h3>' +
-          '<p style="color:var(--text-light);margin-bottom:24px">أضيفي المنتجات التي تعجبكِ بالضغط على ❤️</p>' +
+          '<p style="color:var(--text-light);margin-bottom:24px">أضيفي المنتجات التي تعجبكِ بالضغط على <i class=\'fas fa-heart\' style=\'color:#e75480\'></i></p>' +
           '<button class="btn-primary" onclick="navigate(\'products\')">تصفح المنتجات</button>' +
         '</div>';
       } else {
@@ -1059,7 +1128,21 @@
     function handleDetailAdd(id) {
       var btn = document.getElementById('dadd-' + id);
       if (!btn || btn.classList.contains('in-cart')) return;
-      addToCart(id);
+      var p = products.find(function(x){ return x.id === id; });
+      if (!p) return;
+
+      var needsSize = p.sizes && p.sizes.length > 0 && !(p.sizes.length === 1 && p.sizes[0] === 'One Size');
+      var selectedBtn = document.querySelector('#page-detail .sizes-row .size-btn.selected');
+      var size = selectedBtn ? selectedBtn.textContent.trim() : null;
+
+      if (needsSize && !size) {
+        showToast('<i class="fas fa-exclamation-circle" style="margin-left:6px"></i> يرجى اختيار المقاس أولاً');
+        document.querySelector('#page-detail .sizes-row').style.animation = 'none';
+        setTimeout(function(){ document.querySelector('#page-detail .sizes-row').style.animation = ''; }, 50);
+        return;
+      }
+      var finalSize = needsSize ? size : null;
+      addToCart(id, finalSize);
       btn.innerHTML = '<i class="fas fa-check"></i> تمت الإضافة';
       btn.classList.add('in-cart');
     }
@@ -1068,10 +1151,10 @@
       var idx = wishlist.indexOf(id);
       if (idx > -1) {
         wishlist.splice(idx, 1);
-        showToast('💔 تمت الإزالة من المفضلة');
+        showToast('<i class="far fa-heart" style="margin-left:6px"></i> تمت الإزالة من المفضلة');
       } else {
         wishlist.push(id);
-        showToast('❤️ تمت الإضافة للمفضلة');
+        showToast('<i class="fas fa-heart" style="color:#e75480;margin-left:6px"></i> تمت الإضافة للمفضلة');
       }
       localStorage.setItem('warda_wishlist', JSON.stringify(wishlist));
       var btn = document.getElementById('wbtn-' + id);
@@ -1085,7 +1168,7 @@
 
     /* ════ Modal ════ */
     function openCheckoutModal() {
-      if (!cart.length) { showToast('⚠️ السلة فارغة'); return; }
+      if (!cart.length) { showToast('<i class="fas fa-exclamation-circle" style="margin-left:6px"></i> السلة فارغة'); return; }
       document.getElementById('checkout-modal').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -1099,15 +1182,40 @@
       var name = document.getElementById('checkout-name').value.trim();
       var city = document.getElementById('checkout-city').value.trim();
       var phone = document.getElementById('checkout-phone').value.trim();
-      if (!name || !city || !phone) { showToast('⚠️ يرجى ملء جميع الحقول'); return; }
+      if (!name || !city || !phone) {
+        showToast('<i class="fas fa-exclamation-circle" style="margin-left:6px"></i> يرجى ملء جميع الحقول');
+        return;
+      }
       if (!cart.length) return;
       var totals = calculateTotals();
-      var items = cart.map(function(i){ return '• ' + i.name + ' × ' + i.qty + ' — ' + (i.price * i.qty) + ' درهم'; }).join('\n');
-      var msg = '🛍️ طلب جديد من جوهرة اكرام\n\n👤 الاسم: ' + name + '\n📍 المدينة: ' + city + '\n📞 الهاتف: ' + phone + '\n\n📦 المنتجات:\n' + items + '\n💰 الإجمالي: ' + totals.total + ' درهم\n\nشكراً جزيلاً! 🌸';
+
+      var itemLines = cart.map(function(i){
+        var sizePart = i.selectedSize ? ' | المقاس: ' + i.selectedSize : '';
+        var total = i.price * i.qty;
+        return '- ' + i.name + sizePart + '\n  الكمية: ' + i.qty + ' | السعر: ' + total + ' درهم';
+      }).join('\n');
+
+      var shippingLine = totals.shipping === 0 ? 'مجاني' : totals.shipping + ' درهم';
+
+      var msg =
+        'طلب جديد — جوهرة اكرام\n' +
+        '━━━━━━━━━━━━━━━━━━\n' +
+        'الاسم   : ' + name + '\n' +
+        'المدينة : ' + city + '\n' +
+        'الهاتف  : ' + phone + '\n' +
+        '━━━━━━━━━━━━━━━━━━\n' +
+        'المنتجات:\n' +
+        itemLines + '\n' +
+        '━━━━━━━━━━━━━━━━━━\n' +
+        'الشحن   : ' + shippingLine + '\n' +
+        'الإجمالي: ' + totals.total + ' درهم\n' +
+        '━━━━━━━━━━━━━━━━━━\n' +
+        'شكراً على ثقتكم بنا!';
+
       window.open('https://wa.me/212727726891?text=' + encodeURIComponent(msg), '_blank');
       closeCheckoutModal();
       clearCart();
-      showToast('✅ تم إرسال طلبكِ بنجاح! 🎉');
+      showToast('<i class="fas fa-check-circle" style="margin-left:6px"></i> تم إرسال طلبكِ بنجاح');
       navigate('home');
     }
 
@@ -1124,6 +1232,58 @@
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
       }
+    }
+
+    /* ════ Size Picker ════ */
+    var pendingSizeProductId = null;
+    var selectedSizeTemp = null;
+
+    function openSizePicker(id) {
+      var p = products.find(function(x){ return x.id === id; });
+      if (!p) return;
+
+      /* إذا لم يكن للمنتج مقاسات أو مقاسه واحد ثابت — يُضاف مباشرة */
+      if (!p.sizes || p.sizes.length === 0) {
+        addToCart(id, null);
+        return;
+      }
+      if (p.sizes.length === 1 && p.sizes[0] === 'One Size') {
+        addToCart(id, null);
+        return;
+      }
+
+      pendingSizeProductId = id;
+      selectedSizeTemp = null;
+
+      document.getElementById('size-modal-product').textContent = p.name;
+      document.getElementById('size-pick-row').innerHTML = p.sizes.map(function(s){
+        return '<button class="size-pick-btn" onclick="selectSizeTemp(this,\'' + s + '\')" aria-label="مقاس ' + s + '">' + s + '</button>';
+      }).join('');
+
+      document.getElementById('size-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function selectSizeTemp(btn, size) {
+      document.querySelectorAll('#size-pick-row .size-pick-btn').forEach(function(b){ b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      selectedSizeTemp = size;
+    }
+
+    function closeSizePicker() {
+      document.getElementById('size-modal').classList.remove('open');
+      document.body.style.overflow = '';
+      pendingSizeProductId = null;
+      selectedSizeTemp = null;
+    }
+
+    function confirmSizePicker() {
+      if (!selectedSizeTemp) {
+        showToast('<i class="fas fa-exclamation-circle" style="margin-left:6px"></i> يرجى اختيار المقاس أولاً');
+        return;
+      }
+      addToCart(pendingSizeProductId, selectedSizeTemp);
+      closeSizePicker();
     }
 
     /* ════ التنقل ════ */
@@ -1273,6 +1433,7 @@
       if (e.key === 'Escape') {
         closeMobileMenu();
         closeCheckoutModal();
+        closeSizePicker();
       }
     });
 
