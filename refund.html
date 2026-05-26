@@ -28,28 +28,34 @@
       direction: rtl;
     }
 
-    /* NAV */
-    nav {
+    /* زر الرجوع */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brand { font-size: 1.1rem; font-weight: 800; color: var(--pink-dark); }
-    nav a {
-      font-size: .85rem;
-      color: var(--pink);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 8px 18px;
+      margin: 20px 30px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--pink-dark);
+      cursor: pointer;
+      transition: all 0.2s ease;
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: .3rem;
-      transition: opacity .2s;
+      width: fit-content;
     }
-    nav a:hover { opacity: .7; }
+    .back-btn i {
+      font-size: 14px;
+    }
+    .back-btn:hover {
+      background: var(--pink-soft);
+      border-color: var(--pink);
+      transform: translateX(4px);
+    }
 
-    /* HERO */
+    /* HERO (بدون شريط علوي) */
     .hero {
       background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 100%);
       padding: 3rem 1.5rem;
@@ -185,9 +191,22 @@
       font-size: .88rem;
       color: var(--text-light);
       line-height: 1.75;
+      flex-wrap: wrap;
     }
     .note-box i { color: var(--pink); margin-top: 2px; flex-shrink: 0; }
     .note-box strong { color: var(--text); }
+    .phone-number {
+      direction: ltr;
+      display: inline-block;
+      unicode-bidi: embed;
+      font-weight: 700;
+      color: var(--pink-dark);
+      background: var(--pink-soft);
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin: 0 4px;
+      font-size: 0.9rem;
+    }
 
     /* FOOTER */
     footer {
@@ -205,15 +224,16 @@
       .steps-row { flex-direction: column; }
       .step-arrow { transform: rotate(90deg); align-self: flex-start; margin-right: 1rem; }
       .guarantee-banner { flex-direction: column; text-align: center; }
+      .back-btn { margin: 15px 20px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <span class="brand">جوهرة اكرام</span>
-  <a href="index.html"><i class="fa-solid fa-arrow-right"></i> العودة للمتجر</a>
-</nav>
+<!-- زر الرجوع (بدون شريط علوي) -->
+<div class="back-btn" onclick="goBack()">
+  <i class="fa-solid fa-arrow-right"></i> رجوع
+</div>
 
 <div class="hero">
   <h1>سياسة الاسترجاع</h1>
@@ -287,15 +307,31 @@
     </div>
   </div>
 
-  <!-- NOTE -->
+  <!-- NOTE مع رقم الهاتف -->
   <div class="note-box">
     <i class="fa-solid fa-circle-info"></i>
-    <p>للاستفسار عن أي طلب، تواصلي معنا مباشرة عبر <strong>واتساب</strong> وسنرد خلال ساعات.</p>
+    <p>
+      للاستفسار عن أي طلب، تواصلي معنا مباشرة عبر <strong>واتساب</strong> أو اتصل بنا على الرقم 
+      <span class="phone-number" dir="ltr">+212 727-726891</span>
+      وسنرد خلال ساعات.
+    </p>
   </div>
 
 </div>
 
 <footer>جميع الحقوق محفوظة © 2026 — جوهرة اكرام</footer>
+
+<script>
+  // دالة الرجوع إلى الصفحة السابقة
+  function goBack() {
+    // إذا كان هناك صفحة سابقة في التاريخ، نرجع إليها، وإلا نذهب إلى الصفحة الرئيسية
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = 'index.html';
+    }
+  }
+</script>
 
 </body>
 </html>
