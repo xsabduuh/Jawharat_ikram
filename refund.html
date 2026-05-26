@@ -7,25 +7,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --pink:       #e91e8c;
-      --pink-dark:  #c2185b;
-      --pink-soft:  #fce4ec;
-      --pink-pale:  #fff8fa;
-      --white:      #ffffff;
-      --border:     #fce4ec;
-      --text:       #2d1a22;
-      --text-light: #7b5260;
-      --text-muted: #c9a0b0;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Tajawal', sans-serif;
-      background: var(--pink-pale);
-      color: var(--text);
-      direction: rtl;
+      background: linear-gradient(145deg, #fff5f9 0%, #fef0f5 100%);
+      color: #2d1a22;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* خلفية بنقاط خفيفة */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(#f0a0c0 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* زر الرجوع */
@@ -33,282 +41,345 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 8px 18px;
-      margin: 20px 30px;
+      background: #fff;
+      border: 1px solid #f2d8e4;
+      border-radius: 60px;
+      padding: 8px 20px;
+      margin: 25px 30px;
       font-size: 14px;
-      font-weight: 500;
-      color: var(--pink-dark);
+      font-weight: 600;
+      color: #e07898;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       text-decoration: none;
+      z-index: 10;
+      position: relative;
       width: fit-content;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-    .back-btn i {
-      font-size: 14px;
-    }
+    .back-btn i { font-size: 13px; }
     .back-btn:hover {
-      background: var(--pink-soft);
-      border-color: var(--pink);
+      background: #fdf0f5;
+      border-color: #e07898;
       transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(224,120,152,0.15);
     }
 
-    /* HERO (بدون شريط علوي) */
-    .hero {
-      background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 100%);
-      padding: 3rem 1.5rem;
+    /* الحاوية الرئيسية */
+    .refund-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* الهيدر */
+    .refund-header {
       text-align: center;
+      margin-bottom: 48px;
+      padding: 20px 0 10px;
     }
-    .hero h1 { color: var(--white); font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; }
-    .hero p  { color: rgba(255,255,255,.8); font-size: .9rem; margin-top: .5rem; font-weight: 300; }
-
-    /* MAIN */
-    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-
-    /* GUARANTEE BANNER */
-    .guarantee-banner {
+    .refund-header .icon-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #e07898, #f0a0c0);
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 1.2rem;
-      background: linear-gradient(135deg, var(--pink-dark), var(--pink));
-      color: var(--white);
-      border-radius: 16px;
-      padding: 1.6rem 1.8rem;
-      margin-bottom: 2.5rem;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 12px 24px rgba(224,120,152,0.3);
+    }
+    .refund-header .icon-circle i {
+      font-size: 36px;
+      color: #fff;
+    }
+    .refund-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c94b6c, #e07898);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+    }
+    .refund-header .date {
+      font-size: 13px;
+      color: #b89aaa;
+      font-weight: 500;
+    }
+
+    /* بطاقة الضمان */
+    .guarantee-card {
+      background: linear-gradient(135deg, #e07898, #f0a0c0);
+      border-radius: 32px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(224,120,152,0.25);
     }
     .guarantee-icon {
-      width: 54px; height: 54px;
+      width: 64px;
+      height: 64px;
+      background: rgba(255,255,255,0.2);
       border-radius: 50%;
-      background: rgba(255,255,255,.18);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-    .guarantee-banner h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .3rem; }
-    .guarantee-banner p  { font-size: .87rem; opacity: .85; margin: 0; }
-
-    /* STEPS */
-    .steps-label {
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--pink);
-      margin-bottom: 1rem;
-    }
-    .steps-row {
       display: flex;
-      align-items: stretch;
-      gap: .8rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-    }
-    .step-card {
-      flex: 1;
-      min-width: 155px;
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem;
-      display: flex;
-      align-items: flex-start;
-      gap: .9rem;
-      transition: box-shadow .25s;
-    }
-    .step-card:hover { box-shadow: 0 4px 20px rgba(233,30,140,.1); }
-    .step-num {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink-dark), var(--pink));
-      color: var(--white);
-      font-weight: 800; font-size: .88rem;
-      display: flex; align-items: center; justify-content: center;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
       flex-shrink: 0;
     }
-    .step-text strong { display: block; font-size: .92rem; color: var(--text); margin-bottom: .25rem; }
-    .step-text span   { font-size: .81rem; color: var(--text-light); line-height: 1.55; }
-    .step-arrow {
-      color: var(--text-muted);
-      font-size: 1rem;
-      align-self: center;
-      flex-shrink: 0;
+    .guarantee-text h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .guarantee-text p {
+      font-size: 14px;
+      opacity: 0.9;
     }
 
-    /* YES/NO CARDS */
-    .refund-cards {
+    /* شبكة الخطوات */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .step-item {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      border: 1px solid #f2d8e4;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .step-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(224,120,152,0.1);
+      background: #fff;
+    }
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #e07898, #f0a0c0);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .step-item h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #3a2430;
+      margin-bottom: 10px;
+    }
+    .step-item p {
+      font-size: 13px;
+      color: #7a5a68;
+      line-height: 1.6;
+    }
+
+    /* شبكة القبول والرفض */
+    .refund-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 24px;
+      margin-bottom: 40px;
     }
     .refund-card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 1.4rem;
-      border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      border: 1px solid #f2d8e4;
+      padding: 28px;
+      transition: all 0.3s;
     }
-    .refund-card--yes { border-top: 3px solid #27ae60; }
-    .refund-card--no  { border-top: 3px solid var(--pink); }
-
-    .refund-card-header {
-      display: flex; align-items: center; gap: .7rem;
-      margin-bottom: 1rem;
+    .refund-card:hover {
+      transform: translateY(-4px);
+      background: #fff;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.05);
     }
-    .card-icon {
-      width: 30px; height: 30px;
+    .card-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .badge-icon {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .82rem; font-weight: 700;
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
     }
-    .refund-card--yes .card-icon { background: #eafaf1; color: #27ae60; }
-    .refund-card--no  .card-icon { background: var(--pink-soft); color: var(--pink-dark); }
-    .refund-card h4 { font-size: .95rem; font-weight: 700; color: var(--text); }
-
-    .refund-card ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .refund-card.accept .badge-icon {
+      background: #eafaf1;
+      color: #27ae60;
+    }
+    .refund-card.reject .badge-icon {
+      background: #fce4ec;
+      color: #e07898;
+    }
+    .card-badge h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #3a2430;
+    }
+    .refund-card ul {
+      list-style: none;
+    }
     .refund-card ul li {
-      font-size: .86rem;
-      color: var(--text-light);
-      padding-right: 1.3rem;
-      position: relative;
-      line-height: 1.55;
+      font-size: 14px;
+      color: #7a5a68;
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px dashed #f2d8e4;
     }
-    .refund-card--yes ul li::before { content: '✓'; position: absolute; right: 0; color: #27ae60; font-weight: 700; }
-    .refund-card--no  ul li::before { content: '✗'; position: absolute; right: 0; color: var(--pink); font-weight: 700; }
+    .refund-card ul li:last-child { border-bottom: none; }
+    .refund-card.accept ul li i { color: #27ae60; width: 20px; }
+    .refund-card.reject ul li i { color: #e07898; width: 20px; }
 
-    /* NOTE */
-    .note-box {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-right: 4px solid var(--pink);
-      border-radius: 12px;
-      padding: 1.1rem 1.3rem;
+    /* ملاحظة مع رقم الهاتف */
+    .note-card {
+      background: #fff;
+      border-radius: 28px;
+      border: 1px solid #f2d8e4;
+      padding: 24px 28px;
       display: flex;
       align-items: flex-start;
-      gap: .8rem;
-      font-size: .88rem;
-      color: var(--text-light);
-      line-height: 1.75;
-      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
-    .note-box i { color: var(--pink); margin-top: 2px; flex-shrink: 0; }
-    .note-box strong { color: var(--text); }
+    .note-card i {
+      font-size: 28px;
+      color: #e07898;
+      flex-shrink: 0;
+    }
+    .note-card p {
+      font-size: 14px;
+      color: #7a5a68;
+      line-height: 1.7;
+    }
     .phone-number {
       direction: ltr;
       display: inline-block;
       unicode-bidi: embed;
+      background: #fdf0f5;
+      padding: 4px 12px;
+      border-radius: 30px;
       font-weight: 700;
-      color: var(--pink-dark);
-      background: var(--pink-soft);
-      padding: 2px 8px;
-      border-radius: 20px;
+      color: #e07898;
       margin: 0 4px;
-      font-size: 0.9rem;
     }
 
-    /* FOOTER */
-    footer {
+    /* تذييل */
+    .refund-footer {
       text-align: center;
-      padding: 1.5rem;
-      font-size: .78rem;
-      color: var(--text-muted);
-      background: var(--white);
-      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      border-top: 2px dashed #f2d8e4;
+      font-size: 13px;
+      color: #b89aaa;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      .refund-cards { grid-template-columns: 1fr; }
-      .steps-row { flex-direction: column; }
-      .step-arrow { transform: rotate(90deg); align-self: flex-start; margin-right: 1rem; }
-      .guarantee-banner { flex-direction: column; text-align: center; }
+    @media (max-width: 768px) {
+      .steps-grid { grid-template-columns: 1fr; gap: 16px; }
+      .refund-grid { grid-template-columns: 1fr; }
+      .guarantee-card { flex-direction: column; text-align: center; }
+      .refund-wrapper { padding: 0 16px 40px; }
       .back-btn { margin: 15px 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- زر الرجوع (بدون شريط علوي) -->
+<!-- زر الرجوع -->
 <div class="back-btn" onclick="goBack()">
   <i class="fa-solid fa-arrow-right"></i> رجوع
 </div>
 
-<div class="hero">
-  <h1>سياسة الاسترجاع</h1>
-  <p>آخر تحديث: مايو 2026</p>
-</div>
+<div class="refund-wrapper">
+  <div class="refund-header">
+    <div class="icon-circle">
+      <i class="fa-solid fa-rotate-left"></i>
+    </div>
+    <h1>سياسة الاسترجاع</h1>
+    <div class="date">آخر تحديث: مايو 2026</div>
+  </div>
 
-<div class="container">
-
-  <!-- BANNER -->
-  <div class="guarantee-banner">
-    <div class="guarantee-icon"><i class="fa-solid fa-rotate-left"></i></div>
-    <div>
+  <!-- بطاقة الضمان -->
+  <div class="guarantee-card">
+    <div class="guarantee-icon"><i class="fa-solid fa-shield-heart"></i></div>
+    <div class="guarantee-text">
       <h3>استرجاع مضمون خلال 7 أيام</h3>
       <p>رضاكِ أولويتنا — نضمن لكِ تجربة شراء آمنة وبدون قلق</p>
     </div>
   </div>
 
-  <!-- STEPS -->
-  <div class="steps-label">كيف تطلبين الاسترجاع؟</div>
-  <div class="steps-row">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <div class="step-text">
-        <strong>تواصلي معنا</strong>
-        <span>راسلينا عبر واتساب خلال 7 أيام من الاستلام</span>
-      </div>
+  <!-- الخطوات -->
+  <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 20px; color: #3a2430; text-align: center;">كيف تطلبين الاسترجاع؟</h3>
+  <div class="steps-grid">
+    <div class="step-item">
+      <div class="step-number">1</div>
+      <h4>تواصلي معنا</h4>
+      <p>راسلينا عبر واتساب خلال 7 أيام من الاستلام</p>
     </div>
-    <div class="step-arrow"><i class="fa-solid fa-arrow-left"></i></div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <div class="step-text">
-        <strong>أرسلي المنتج</strong>
-        <span>أعيدي تعبئته بغلافه الأصلي مع الملصقات</span>
-      </div>
+    <div class="step-item">
+      <div class="step-number">2</div>
+      <h4>أرسلي المنتج</h4>
+      <p>أعيدي تعبئته بغلافه الأصلي مع الملصقات</p>
     </div>
-    <div class="step-arrow"><i class="fa-solid fa-arrow-left"></i></div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <div class="step-text">
-        <strong>استردي أموالك</strong>
-        <span>نعالج طلبك فور وصول المنتج إلينا</span>
-      </div>
+    <div class="step-item">
+      <div class="step-number">3</div>
+      <h4>استردي أموالك</h4>
+      <p>نعالج طلبك فور وصول المنتج إلينا</p>
     </div>
   </div>
 
-  <!-- YES / NO -->
-  <div class="refund-cards">
-    <div class="refund-card refund-card--yes">
-      <div class="refund-card-header">
-        <span class="card-icon"><i class="fa-solid fa-check"></i></span>
-        <h4>يُقبل الاسترجاع</h4>
+  <!-- شبكة يُقبل / لا يُقبل -->
+  <div class="refund-grid">
+    <div class="refund-card accept">
+      <div class="card-badge">
+        <div class="badge-icon"><i class="fa-solid fa-check"></i></div>
+        <h3>يُقبل الاسترجاع</h3>
       </div>
       <ul>
-        <li>المنتج بحالته الأصلية غير مستعمل</li>
-        <li>الغلاف والملصقات سليمة</li>
-        <li>الطلب خلال 7 أيام من الاستلام</li>
-        <li>عيب مصنعي أو خطأ في الطلبية</li>
+        <li><i class="fa-solid fa-circle-check"></i> المنتج بحالته الأصلية غير مستعمل</li>
+        <li><i class="fa-solid fa-circle-check"></i> الغلاف والملصقات سليمة</li>
+        <li><i class="fa-solid fa-circle-check"></i> الطلب خلال 7 أيام من الاستلام</li>
+        <li><i class="fa-solid fa-circle-check"></i> عيب مصنعي أو خطأ في الطلبية</li>
       </ul>
     </div>
-    <div class="refund-card refund-card--no">
-      <div class="refund-card-header">
-        <span class="card-icon"><i class="fa-solid fa-xmark"></i></span>
-        <h4>لا يُقبل الاسترجاع</h4>
+    <div class="refund-card reject">
+      <div class="card-badge">
+        <div class="badge-icon"><i class="fa-solid fa-xmark"></i></div>
+        <h3>لا يُقبل الاسترجاع</h3>
       </div>
       <ul>
-        <li>المنتج مستعمل أو غُسل</li>
-        <li>إزالة الملصقات أو الغلاف</li>
-        <li>مرور أكثر من 7 أيام على الاستلام</li>
-        <li>الملابس الداخلية لأسباب صحية</li>
+        <li><i class="fa-solid fa-circle-xmark"></i> المنتج مستعمل أو غُسل</li>
+        <li><i class="fa-solid fa-circle-xmark"></i> إزالة الملصقات أو الغلاف</li>
+        <li><i class="fa-solid fa-circle-xmark"></i> مرور أكثر من 7 أيام على الاستلام</li>
+        <li><i class="fa-solid fa-circle-xmark"></i> الملابس الداخلية لأسباب صحية</li>
       </ul>
     </div>
   </div>
 
-  <!-- NOTE مع رقم الهاتف -->
-  <div class="note-box">
+  <!-- ملاحظة مع رقم الهاتف -->
+  <div class="note-card">
     <i class="fa-solid fa-circle-info"></i>
     <p>
       للاستفسار عن أي طلب، تواصلي معنا مباشرة عبر <strong>واتساب</strong> أو اتصل بنا على الرقم 
@@ -317,14 +388,13 @@
     </p>
   </div>
 
+  <div class="refund-footer">
+    <i class="fa-regular fa-heart"></i> جوهرة إكرام — خدمة ما بعد البيع
+  </div>
 </div>
 
-<footer>جميع الحقوق محفوظة © 2026 — جوهرة اكرام</footer>
-
 <script>
-  // دالة الرجوع إلى الصفحة السابقة
   function goBack() {
-    // إذا كان هناك صفحة سابقة في التاريخ، نرجع إليها، وإلا نذهب إلى الصفحة الرئيسية
     if (window.history.length > 1) {
       window.history.back();
     } else {
