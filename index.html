@@ -156,6 +156,14 @@
     .page.active{display:block}
     @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
+    /* External page container */
+    #external-container{
+      display:none;
+      padding-top:var(--nav-h);
+      animation:fadeIn .4s ease;
+    }
+    #external-container.active{display:block}
+
     /* Hero */
     .hero{
       position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;
@@ -479,6 +487,7 @@
         <ul class="nav-links" role="menubar">
           <li role="none"><a role="menuitem" onclick="navigate('home')" data-page="home">الرئيسية</a></li>
           <li role="none"><a role="menuitem" onclick="navigate('products')" data-page="products">المتجر</a></li>
+          <li role="none"><a role="menuitem" onclick="navigate('wishlist')" data-page="wishlist">المفضلة</a></li>
           <li role="none"><a role="menuitem" onclick="navigate('about')" data-page="about">من نحن</a></li>
           <li role="none"><a role="menuitem" onclick="navigate('contact')" data-page="contact">تواصل معنا</a></li>
         </ul>
@@ -508,7 +517,8 @@
     <div class="mobile-menu-nav">
       <a onclick="navigate('home');closeMobileMenu()" data-page="home"><i class="fas fa-home" aria-hidden="true"></i> الرئيسية</a>
       <a onclick="navigate('products');closeMobileMenu()" data-page="products"><i class="fas fa-store" aria-hidden="true"></i> المتجر</a>
-      <a onclick="navigate('about');closeMobileMenu()" data-page="about"><i class="fas fa-heart" aria-hidden="true"></i> من نحن</a>
+      <a onclick="navigate('wishlist');closeMobileMenu()" data-page="wishlist"><i class="fas fa-heart" aria-hidden="true"></i> المفضلة</a>
+      <a onclick="navigate('about');closeMobileMenu()" data-page="about"><i class="fas fa-info-circle" aria-hidden="true"></i> من نحن</a>
       <a onclick="navigate('contact');closeMobileMenu()" data-page="contact"><i class="fas fa-envelope" aria-hidden="true"></i> تواصل معنا</a>
       <div class="mobile-menu-divider"></div>
       <a onclick="navigate('cart');closeMobileMenu()" data-page="cart"><i class="fas fa-shopping-bag" aria-hidden="true"></i> السلة</a>
@@ -516,7 +526,7 @@
     </div>
   </nav>
 
-  <!-- App -->
+  <!-- App — الصفحات الداخلية لا تُمحى أبداً -->
   <div id="app">
 
     <!-- الرئيسية -->
@@ -647,6 +657,20 @@
       </section>
     </main>
 
+    <!-- المفضلة -->
+    <main class="page" id="page-wishlist">
+      <section class="section" aria-labelledby="wishlist-h2">
+        <div class="container">
+          <div class="section-header">
+            <span class="tag">المفضلة</span>
+            <h2 id="wishlist-h2"><i class="fas fa-heart" style="color:var(--pink-deep);margin-left:8px" aria-hidden="true"></i> قائمة المفضلة</h2>
+            <p>المنتجات التي أضفتِها لقائمة أمنياتكِ</p>
+          </div>
+          <div class="products-grid" id="wishlist-grid" role="list"></div>
+        </div>
+      </section>
+    </main>
+
     <!-- الأسئلة الشائعة -->
     <main class="page" id="page-faq">
       <section class="faq-section" aria-labelledby="faq-h2">
@@ -659,71 +683,61 @@
           <div class="faq-list">
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon" aria-hidden="true"><i class="fas fa-truck" style="color:var(--pink-deep)"></i></span>
-                <span class="faq-text">ما مدة التوصيل؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                <span class="faq-icon">🚚</span>
+                <span class="faq-text">كم يستغرق التوصيل؟</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
-              <div class="faq-answer"><p>نوصل الطلبات خلال <strong>24 إلى 48 ساعة عمل</strong> لجميع المدن المغربية.</p></div>
+              <div class="faq-answer"><p>يتم التوصيل خلال 24 إلى 48 ساعة لجميع مدن المغرب من لحظة تأكيد الطلب.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon" aria-hidden="true"><i class="fas fa-arrows-spin" style="color:var(--pink-deep)"></i></span>
-                <span class="faq-text">هل يمكنني استبدال المنتج؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="faq-answer"><p>نعم، يمكنكِ استبدال المنتج خلال <strong>14 يوماً</strong> من تاريخ الاستلام بدون أي شروط.</p></div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon" aria-hidden="true"><i class="fas fa-credit-card" style="color:var(--pink-deep)"></i></span>
+                <span class="faq-icon">💳</span>
                 <span class="faq-text">ما هي طرق الدفع المتاحة؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
-              <div class="faq-answer"><p>ندعم حالياً <strong>الدفع عند الاستلام</strong> — ادفع فقط حين تصلك طلبيتك على بابك.</p></div>
+              <div class="faq-answer"><p>نقبل الدفع نقداً عند الاستلام فقط حالياً، مما يضمن لكِ تجربة تسوق آمنة ومريحة.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon" aria-hidden="true"><i class="fas fa-gift" style="color:var(--pink-deep)"></i></span>
-                <span class="faq-text">هل يوجد توصيل مجاني؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                <span class="faq-icon">🔄</span>
+                <span class="faq-text">هل يمكنني إرجاع المنتج؟</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
-              <div class="faq-answer"><p>نعم! التوصيل <strong>مجاني تماماً</strong> لجميع الطلبات التي تتجاوز <strong>300 درهم</strong>.</p></div>
+              <div class="faq-answer"><p>نعم، يمكنكِ الاستبدال أو الاسترجاع خلال 7 أيام من تاريخ الاستلام شرط أن يكون المنتج في حالته الأصلية.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                <span class="faq-icon" aria-hidden="true"><i class="fas fa-box" style="color:var(--pink-deep)"></i></span>
-                <span class="faq-text">كيف أتابع طلبي؟</span>
-                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                <span class="faq-icon">📦</span>
+                <span class="faq-text">هل الشحن مجاني؟</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
-              <div class="faq-answer"><p>بعد شحن طلبكِ ستصلكِ رسالة واتساب تحتوي على رقم التتبع. يمكنكِ أيضاً مراسلتنا مباشرة عبر واتساب.</p></div>
+              <div class="faq-answer"><p>الشحن مجاني للطلبات التي تتجاوز 300 درهم. للطلبات الأقل، رسوم الشحن 30 درهماً فقط.</p></div>
             </div>
-          </div>
-          <div style="text-align:center;margin-top:40px">
-            <button class="btn-primary" onclick="navigate('home')">
-              <i class="fas fa-home" aria-hidden="true"></i> العودة للرئيسية
-            </button>
           </div>
         </div>
       </section>
     </main>
 
-  </div><!-- #app -->
+  </div><!-- end #app -->
+
+  <!-- حاوية الصفحات الخارجية — منفصلة عن #app حتى لا تُمحى الصفحات الداخلية -->
+  <div id="external-container"></div>
 
   <!-- Checkout Modal -->
-  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box">
-      <h2 id="checkout-title">إتمام الطلب</h2>
+      <h2 id="modal-title">🛍️ إتمام الطلب</h2>
       <div class="form-group">
         <label for="checkout-name">الاسم الكامل <span class="req">*</span></label>
-        <input type="text" id="checkout-name" placeholder="أدخلي اسمكِ الكامل" autocomplete="name" required />
+        <input type="text" id="checkout-name" placeholder="أدخلي اسمك الكامل" autocomplete="name" />
       </div>
       <div class="form-group">
         <label for="checkout-city">المدينة <span class="req">*</span></label>
-        <input type="text" id="checkout-city" placeholder="أدخلي مدينتكِ" autocomplete="address-level2" required />
+        <input type="text" id="checkout-city" placeholder="المدينة أو المنطقة" autocomplete="address-level2" />
       </div>
       <div class="form-group">
         <label for="checkout-phone">رقم الهاتف <span class="req">*</span></label>
-        <input type="tel" id="checkout-phone" placeholder="مثال: 0612345678" autocomplete="tel" dir="ltr" required />
+        <input type="tel" id="checkout-phone" placeholder="06XXXXXXXX" autocomplete="tel" />
       </div>
       <div class="modal-actions">
         <button class="modal-cancel" onclick="closeCheckoutModal()">إلغاء</button>
@@ -982,6 +996,23 @@
         : '<p style="text-align:center;color:var(--text-muted);padding:40px;grid-column:1/-1">لا توجد منتجات في هذا القسم حالياً.</p>';
     }
 
+    /* ════ المفضلة ════ */
+    function renderWishlist() {
+      var g = document.getElementById('wishlist-grid');
+      if (!g) return;
+      var list = products.filter(function(p){ return wishlist.indexOf(p.id) > -1; });
+      if (!list.length) {
+        g.innerHTML = '<div style="text-align:center;padding:60px 20px;grid-column:1/-1">' +
+          '<i class="far fa-heart" style="font-size:48px;color:var(--pink);margin-bottom:16px;display:block"></i>' +
+          '<h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:10px">قائمة المفضلة فارغة</h3>' +
+          '<p style="color:var(--text-light);margin-bottom:24px">أضيفي المنتجات التي تعجبكِ بالضغط على ❤️</p>' +
+          '<button class="btn-primary" onclick="navigate(\'products\')">تصفح المنتجات</button>' +
+        '</div>';
+      } else {
+        g.innerHTML = list.map(productCard).join('');
+      }
+    }
+
     /* ════ التفاصيل ════ */
     function renderDetail(id) {
       var p = products.find(function(x){ return x.id === id; });
@@ -1096,10 +1127,23 @@
     }
 
     /* ════ التنقل ════ */
-    var INTERNAL_PAGES = ['home', 'products', 'detail', 'cart', 'faq'];
+    var INTERNAL_PAGES = ['home', 'products', 'detail', 'cart', 'wishlist', 'faq'];
+
+    /* إظهار/إخفاء الحاويتين */
+    function showAppContainer() {
+      document.getElementById('app').style.display = '';
+      document.getElementById('external-container').classList.remove('active');
+      document.getElementById('external-container').innerHTML = '';
+    }
+
+    function showExternalContainer() {
+      document.getElementById('app').style.display = 'none';
+      document.getElementById('external-container').classList.add('active');
+    }
 
     function showPage(id) {
-      document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+      showAppContainer();
+      document.querySelectorAll('#app .page').forEach(function(p){ p.classList.remove('active'); });
       var page = document.getElementById(id);
       if (page) page.classList.add('active');
     }
@@ -1111,63 +1155,71 @@
     }
 
     function navigate(page, productId) {
+      updateNavActive(page);
+
       if (page === 'home') {
-          // الإصلاح: التحقق من وجود عنصر الصفحة الرئيسية قبل إظهارها
-          if (!document.getElementById('page-home')) {
-              // إذا كان العنصر غير موجود (دخلنا من صفحة خارجية) نعيد تحميل التطبيق كاملاً
-              window.location.href = './#home';
-              return;
-          }
-          showPage('page-home');
-          window.scrollTo(0, 0);
-          history.pushState({ page: 'home' }, '', '#home');
-          return;
+        showPage('page-home');
+        window.scrollTo(0, 0);
+        history.pushState({ page: 'home' }, '', '#home');
+        return;
       }
 
       if (page === 'products') {
-          showPage('page-products');
-          window.scrollTo(0, 0);
-          history.pushState({ page: 'products' }, '', '#products');
-          return;
+        showPage('page-products');
+        renderProducts();
+        window.scrollTo(0, 0);
+        history.pushState({ page: 'products' }, '', '#products');
+        return;
       }
 
       if (page === 'detail' && productId) {
-          showPage('page-detail');
-          window.scrollTo(0, 0);
-          history.pushState({ page: 'detail', productId: productId }, '', `#product-${productId}`);
-          return;
+        showPage('page-detail');
+        renderDetail(productId);
+        window.scrollTo(0, 0);
+        history.pushState({ page: 'detail', productId: productId }, '', '#product-' + productId);
+        return;
       }
 
       if (page === 'cart') {
-          showPage('page-cart');
-          window.scrollTo(0, 0);
-          history.pushState({ page: 'cart' }, '', '#cart');
-          return;
+        showPage('page-cart');
+        renderCart();
+        window.scrollTo(0, 0);
+        history.pushState({ page: 'cart' }, '', '#cart');
+        return;
+      }
+
+      if (page === 'wishlist') {
+        showPage('page-wishlist');
+        renderWishlist();
+        window.scrollTo(0, 0);
+        history.pushState({ page: 'wishlist' }, '', '#wishlist');
+        return;
       }
 
       if (page === 'faq') {
-          showPage('page-faq');
-          window.scrollTo(0, 0);
-          history.pushState({ page: 'faq' }, '', '#faq');
-          return;
+        showPage('page-faq');
+        window.scrollTo(0, 0);
+        history.pushState({ page: 'faq' }, '', '#faq');
+        return;
       }
 
-      // معالجة الصفحات الخارجية (about, contact, refund, shipping, privacy, terms)
+      /* الصفحات الخارجية */
       loadExternalPage(page);
     }
 
     function loadExternalPage(page) {
-      var app = document.getElementById('app');
-      app.innerHTML = '<div class="page active" style="text-align:center;padding:140px 20px 80px"><i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--pink-deep)"></i><p style="color:var(--text-light);margin-top:16px">جاري التحميل...</p></div>';
+      showExternalContainer();
+      var container = document.getElementById('external-container');
+      container.innerHTML = '<div style="text-align:center;padding:140px 20px 80px"><i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--pink-deep)"></i><p style="color:var(--text-light);margin-top:16px">جاري التحميل...</p></div>';
       fetch(page + '.html')
         .then(function(res){
           if (!res.ok) throw new Error('not found');
           return res.text();
         })
         .then(function(html){
-          app.innerHTML = html;
-          window.scrollTo(0, 0); /* تمرير للأعلى بعد تحميل الصفحة الخارجية */
-          app.querySelectorAll('script').forEach(function(old){
+          container.innerHTML = html;
+          window.scrollTo(0, 0);
+          container.querySelectorAll('script').forEach(function(old){
             var s = document.createElement('script');
             s.textContent = old.textContent;
             document.body.appendChild(s);
@@ -1175,8 +1227,8 @@
           history.pushState({ page: page }, '', '#' + page);
         })
         .catch(function(){
-          app.innerHTML = '<div class="page active" style="text-align:center;padding:140px 20px 80px"><i class="fas fa-exclamation-circle" style="font-size:48px;color:var(--pink-deep);margin-bottom:20px"></i><h2 style="color:var(--text);margin-bottom:14px">الصفحة غير موجودة</h2><p style="color:var(--text-light);margin-bottom:28px">هذه الصفحة غير متاحة حالياً</p><button class="btn-primary" onclick="navigate(\'home\')">العودة للرئيسية</button></div>';
-          window.scrollTo(0, 0); /* تمرير للأعلى حتى عند ظهور صفحة الخطأ */
+          container.innerHTML = '<div style="text-align:center;padding:140px 20px 80px"><i class="fas fa-exclamation-circle" style="font-size:48px;color:var(--pink-deep);margin-bottom:20px"></i><h2 style="color:var(--text);margin-bottom:14px">الصفحة غير موجودة</h2><p style="color:var(--text-light);margin-bottom:28px">هذه الصفحة غير متاحة حالياً</p><button class="btn-primary" onclick="navigate(\'home\')">العودة للرئيسية</button></div>';
+          window.scrollTo(0, 0);
           history.pushState({ page: page }, '', '#' + page);
         });
     }
