@@ -20,16 +20,10 @@
   <meta name="twitter:title" content="جوهرة اكرام | متجر الأزياء النسائية" />
   <meta name="twitter:description" content="أجمل الأزياء النسائية بأسعار مناسبة وشحن سريع لجميع مدن المغرب." />
 
-  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     /* ═══ متغيرات ═══ */
@@ -57,7 +51,6 @@
       --tr:         .3s cubic-bezier(.4,0,.2,1);
     }
 
-    /* ═══ ريست ═══ */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{font-family:var(--font);background:var(--pink-bg);color:var(--text);min-height:100vh;line-height:1.6;overflow-x:hidden}
@@ -169,7 +162,7 @@
     .page.active{display:block}
     @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ═══ Hero ═══ */
+    /* ═══ Hero (لم يتم المساس بها) ═══ */
     .hero{
       position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;
       padding:80px 20px 70px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);
@@ -231,11 +224,22 @@
     }
     .product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--pink)}
     .card-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--pink-soft)}
+    /* placeholder للصور التي قيمتها 'test' */
+    .test-placeholder{
+      width:100%;height:100%;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:linear-gradient(145deg, var(--pink-soft), var(--pink));
+      color:var(--pink-deep);
+      font-family:var(--font);
+      gap:12px;
+    }
+    .test-placeholder i{font-size:3.5rem;opacity:0.85}
+    .test-placeholder span{font-size:1.2rem;font-weight:800;background:rgba(255,255,240,0.7);padding:4px 16px;border-radius:60px;backdrop-filter:blur(2px)}
     .card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
     .product-card:hover .card-img-wrap img{transform:scale(1.05)}
     .card-badge{
       position:absolute;top:10px;right:10px;background:var(--pink-deep);color:var(--white);
-      font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--r-xl);
+      font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--r-xl);z-index:2;
     }
     .card-body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column}
     .card-category{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
@@ -267,7 +271,7 @@
 
     /* ═══ Detail ═══ */
     .detail-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-    .detail-img-wrap{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-lg)}
+    .detail-img-wrap{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-lg);background:var(--pink-soft)}
     .detail-img-wrap img{width:100%;height:100%;object-fit:cover}
     .detail-body{padding:10px 0}
     .detail-category{font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
@@ -312,7 +316,10 @@
       padding:16px;display:flex;gap:16px;align-items:center;transition:all var(--tr);
     }
     .cart-item:hover{box-shadow:var(--shadow-sm)}
-    .cart-item-img{width:80px;height:100px;border-radius:var(--r-sm);overflow:hidden;flex-shrink:0}
+    .cart-item-img{width:80px;height:100px;border-radius:var(--r-sm);overflow:hidden;flex-shrink:0;background:var(--pink-soft)}
+    .cart-item-img .test-placeholder{width:100%;height:100%;gap:4px}
+    .cart-item-img .test-placeholder i{font-size:2rem}
+    .cart-item-img .test-placeholder span{font-size:0.7rem;padding:2px 8px}
     .cart-item-img img{width:100%;height:100%;object-fit:cover}
     .cart-item-info{flex:1;min-width:0}
     .cart-item-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
@@ -787,29 +794,42 @@
   </footer>
 
   <script>
-    /* ════ بيانات المنتجات (جميع الصور أصبحت من مجلد /image) ════ */window.products = [
-  {id:1,  name:'طقم بيجامة حريرية ناعمة',    category:'بيجامات',   price:349, badge:'جديد',          isNew:true,  desc:'طقم بيجامة مريح.',                                        img:'test', sizes:['S','M','L','XL']},
-  {id:2,  name:'جلابة تقليدية بتطريز ملكي', category:'جلابيات',   price:450, badge:null,            isNew:true,  desc:'جلابة مغربية أصيلة بتطريز يدوي.',                   img:'test', sizes:['XS','S','M','L']},
-  {id:3,  name:'عباءة سوداء بتطريز فاخر',   category:'عبايات',    price:520, badge:'الأكثر مبيعاً', isNew:true,  desc:'عباءة فاخرة بتطريز ذهبي.',                              img:'test', sizes:['S','M','L','XL','XXL']},
-  {id:4,  name:'بدلة رياضية نسائية كاجوال', category:'معاطف',     price:180, badge:'جديد',          isNew:true,  desc:'بدلة رياضية مريحة وعصرية.',                                   img:'test', sizes:['S','M','L']},
-  {id:5,  name:'معطف شتوي كلاسيكي',         category:'معاطف',     price:680, badge:'حصري',          isNew:false, desc:'معطف شتوي دافئ بتصميم كلاسيكي.',                         img:'test', sizes:['XS','S','M','L']},
-  {id:6,  name:'فستان سهرة طويل',           category:'فساتين',    price:720, badge:null,            isNew:false, desc:'فستان سهرة طويل بقصة راقية.',                                 img:'test', sizes:['36','38','40','42']},
-  {id:7,  name:'جلابة مطرزة بالعقيق',       category:'جلابيات',   price:590, badge:null,            isNew:false, desc:'جلابة مغربية تقليدية بتطريز العقيق الجميل.',                  img:'test', sizes:['S','M','L','XL']},
-  {id:8,  name:'بيجامة قطيفة شتوية',        category:'بيجامات',   price:275, badge:null,            isNew:false, desc:'بيجامة شتوية من القطيفة الفاخرة.',                            img:'test', sizes:['S','M','L','XL']},
-  {id:9,  name:'جلابة كروشيه صيفية',        category:'جلابيات',   price:390, badge:'ترند',          isNew:false, desc:'جلابة بيضاء من الكروشيه الراقي.',                             img:'test', sizes:['S','M','L']},
-  {id:10, name:'عباءة كريمية بحزام',         category:'عبايات',    price:449, badge:'جديد',          isNew:false, desc:'عباءة كريمية ناعمة بحزام أنيق.',                              img:'test', sizes:['S','M','L','XL']},
-  {id:11, name:'فستان نهاري بنقشة الأزهار', category:'فساتين',    price:310, badge:null,            isNew:false, desc:'فستان نهاري مريح بنقشة زهرية.',                               img:'test', sizes:['28','30','32','34']},
-  {id:12, name:'معطف ترنش أنيق',            category:'معاطف',     price:530, badge:'جديد',          isNew:false, desc:'معطف ترنش كلاسيكي بقصة عصرية.',                               img:'test', sizes:['XS','S','M','L']},
-  {id:13, name:'حقيبة يد جلدية فاخرة',      category:'إكسسوارات', price:420, badge:null,            isNew:false, desc:'حقيبة جلدية أنيقة للمناسبات والاستخدام اليومي.',              img:'test', sizes:['One Size']},
-  {id:14, name:'وشاح حرير منقوش',           category:'إكسسوارات', price:180, badge:'جديد',          isNew:true,  desc:'وشاح حريري ناعم بنقشات مغربية.',                              img:'test', sizes:['One Size']},
-  {id:15, name:'حزام جلد مطرز',             category:'إكسسوارات', price:230, badge:null,            isNew:false, desc:'حزام جلد يدوي مطرز بتفاصيل مغربية أصيلة.',                   img:'test', sizes:['S','M','L']}
-];
+    /* ════ بيانات المنتجات (جميع الصور أصبحت بقيمة 'test' لاستخدام placeholder) ════ */
+    window.products = [
+      {id:1,  name:'طقم بيجامة حريرية ناعمة',    category:'بيجامات',   price:349, badge:'جديد',          isNew:true,  desc:'طقم بيجامة مريح.',                                        img:'test', sizes:['S','M','L','XL']},
+      {id:2,  name:'جلابة تقليدية بتطريز ملكي', category:'جلابيات',   price:450, badge:null,            isNew:true,  desc:'جلابة مغربية أصيلة بتطريز يدوي.',                   img:'test', sizes:['XS','S','M','L']},
+      {id:3,  name:'عباءة سوداء بتطريز فاخر',   category:'عبايات',    price:520, badge:'الأكثر مبيعاً', isNew:true,  desc:'عباءة فاخرة بتطريز ذهبي.',                              img:'test', sizes:['S','M','L','XL','XXL']},
+      {id:4,  name:'بدلة رياضية نسائية كاجوال', category:'معاطف',     price:180, badge:'جديد',          isNew:true,  desc:'بدلة رياضية مريحة وعصرية.',                                   img:'test', sizes:['S','M','L']},
+      {id:5,  name:'معطف شتوي كلاسيكي',         category:'معاطف',     price:680, badge:'حصري',          isNew:false, desc:'معطف شتوي دافئ بتصميم كلاسيكي.',                         img:'test', sizes:['XS','S','M','L']},
+      {id:6,  name:'فستان سهرة طويل',           category:'فساتين',    price:720, badge:null,            isNew:false, desc:'فستان سهرة طويل بقصة راقية.',                                 img:'test', sizes:['36','38','40','42']},
+      {id:7,  name:'جلابة مطرزة بالعقيق',       category:'جلابيات',   price:590, badge:null,            isNew:false, desc:'جلابة مغربية تقليدية بتطريز العقيق الجميل.',                  img:'test', sizes:['S','M','L','XL']},
+      {id:8,  name:'بيجامة قطيفة شتوية',        category:'بيجامات',   price:275, badge:null,            isNew:false, desc:'بيجامة شتوية من القطيفة الفاخرة.',                            img:'test', sizes:['S','M','L','XL']},
+      {id:9,  name:'جلابة كروشيه صيفية',        category:'جلابيات',   price:390, badge:'ترند',          isNew:false, desc:'جلابة بيضاء من الكروشيه الراقي.',                             img:'test', sizes:['S','M','L']},
+      {id:10, name:'عباءة كريمية بحزام',         category:'عبايات',    price:449, badge:'جديد',          isNew:false, desc:'عباءة كريمية ناعمة بحزام أنيق.',                              img:'test', sizes:['S','M','L','XL']},
+      {id:11, name:'فستان نهاري بنقشة الأزهار', category:'فساتين',    price:310, badge:null,            isNew:false, desc:'فستان نهاري مريح بنقشة زهرية.',                               img:'test', sizes:['28','30','32','34']},
+      {id:12, name:'معطف ترنش أنيق',            category:'معاطف',     price:530, badge:'جديد',          isNew:false, desc:'معطف ترنش كلاسيكي بقصة عصرية.',                               img:'test', sizes:['XS','S','M','L']},
+      {id:13, name:'حقيبة يد جلدية فاخرة',      category:'إكسسوارات', price:420, badge:null,            isNew:false, desc:'حقيبة جلدية أنيقة للمناسبات والاستخدام اليومي.',              img:'test', sizes:['One Size']},
+      {id:14, name:'وشاح حرير منقوش',           category:'إكسسوارات', price:180, badge:'جديد',          isNew:true,  desc:'وشاح حريري ناعم بنقشات مغربية.',                              img:'test', sizes:['One Size']},
+      {id:15, name:'حزام جلد مطرز',             category:'إكسسوارات', price:230, badge:null,            isNew:false, desc:'حزام جلد يدوي مطرز بتفاصيل مغربية أصيلة.',                   img:'test', sizes:['S','M','L']}
+    ];
 
     /* ════ حالة عامة ════ */
     let cart = JSON.parse(localStorage.getItem('warda_cart') || '[]');
     let wishlist     = JSON.parse(localStorage.getItem('warda_wishlist') || '[]');
     let activeFilter = 'الكل';
     let toastTimer   = null;
+
+    /* دالة إظهار الـ placeholder (أيقونة + نص test) */
+    function getProductImage(p, extraClass = '') {
+      if (p.img === 'test') {
+        return `<div class="test-placeholder ${extraClass}">
+                  <i class="fas fa-tshirt" aria-hidden="true"></i>
+                  <span>test</span>
+                </div>`;
+      } else {
+        return `<img src="${p.img}" alt="${p.name}" loading="lazy" />`;
+      }
+    }
 
     /* ════ Toast ════ */
     function showToast(msg) {
@@ -846,7 +866,9 @@
       }
       let itemsHtml = cart.map(i => `
         <div class="cart-item">
-          <div class="cart-item-img"><img src="${i.img}" alt="${i.name}" onerror="this.parentElement.style.background='var(--pink-soft)';this.remove()"></div>
+          <div class="cart-item-img">
+            ${getProductImage(i, 'cart-img')}
+          </div>
           <div class="cart-item-info">
             <div class="cart-item-name">${i.name}</div>
             <div class="cart-item-price">${i.price} درهم</div>
@@ -867,9 +889,8 @@
       return `
         <article class="product-card" onclick="navigate('detail',${p.id})" role="listitem" aria-label="${p.name}، السعر ${p.price} درهم">
           <div class="card-img-wrap">
-            <img src="${p.img}" alt="${p.name}" loading="lazy" width="300" height="400"
-              onerror="this.parentElement.style.background='var(--pink-soft)';this.remove()" />
             ${badge}
+            ${getProductImage(p)}
           </div>
           <div class="card-body">
             <div class="card-category">${p.category}</div>
@@ -941,8 +962,7 @@
 
       document.getElementById('detail-wrap').innerHTML = `
         <div class="detail-img-wrap">
-          <img src="${p.img}" alt="${p.name}" width="500" height="667"
-            onerror="this.parentElement.style.background='var(--pink-soft)';this.remove()" />
+          ${getProductImage(p, 'detail-img')}
         </div>
         <div class="detail-body">
           <div class="detail-category">${p.category}</div>
